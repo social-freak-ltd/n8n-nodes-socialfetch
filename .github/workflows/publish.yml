@@ -1,0 +1,55 @@
+# Publishes this package to npm when you push a version tag (e.g. 0.1.0).
+# Uses npm provenance (required for n8n community verification from May 2026).
+#
+# One-time setup: npmjs.com → package n8n-nodes-socialfetch → Trusted Publishers
+#   - Provider: GitHub Actions
+#   - Repository: social-freak-ltd/n8n-nodes-socialfetch
+#   - Workflow filename: publish.yml
+#
+# Release: update version in package.json, commit, then:
+#   git tag 0.1.0
+#   git push origin main --tags
+#
+# Tag must match package.json version (no "v" prefix with the filter below).
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Release to npm with provenance
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          fi
+          pnpm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

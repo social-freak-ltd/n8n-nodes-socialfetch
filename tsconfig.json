@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "node16",
+    "moduleResolution": "node16",
+    "target": "es2021",
+    "lib": ["es2021", "es2022.error"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "useUnknownInCatchVariables": false,
+    "outDir": "./dist",
+    "rootDir": "."
+  },
+  "include": ["credentials/**/*", "nodes/**/*"],
+  "exclude": ["dist", "node_modules", "scripts"]
+}
