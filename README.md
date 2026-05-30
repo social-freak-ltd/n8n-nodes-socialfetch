@@ -4,7 +4,7 @@ This is an [n8n](https://n8n.io) community node that lets you fetch real-time so
 
 It exposes a single **SocialFetch** node with one resource per platform (TikTok, Twitter/X, Telegram, Facebook, Instagram, Threads, LinkedIn, Reddit, Spotify, YouTube, Web) plus account operations under **Account** (Whoami, Balance). Each operation maps directly to a SocialFetch public API endpoint.
 
-[Installation](#installation) · [Credentials](#credentials) · [Operations](#operations) · [Development](#development) · [Publishing](PUBLISHING.md)
+[Installation](#installation) · [Credentials](#credentials) · [Operations](#operations) · [Example](#example-workflow) · [Development](#development) · [Publishing](PUBLISHING.md)
 
 ## Installation
 
@@ -27,6 +27,48 @@ Only list endpoints that use SocialFetch’s **cursor** query parameter show a *
 List endpoints that return everything in one response (no cursor), or that paginate with other parameters such as `page`, do not show **Return All**—you get the first response only unless you pass those parameters under **Additional Fields**.
 
 Every request consumes credits from your SocialFetch balance (most endpoints cost 1 credit; some search and media-download options cost more). The credits charged for each call are returned in `meta.creditsCharged`.
+
+## Example workflow
+
+This example fetches a TikTok creator's recent videos and keeps only the high-performing ones.
+
+1. **Manual Trigger** — start the workflow manually for testing.
+2. **SocialFetch** — set **Resource** to `TikTok` and **Operation** to `Profile videos`.
+   - **Handle**: `n8n`
+   - Turn on **Return All** to page through every video, or leave it off to fetch the first page.
+   - Under **Additional Fields**, set **Sort By** to `Popular`.
+3. **Split Out** — field to split out: `data.videos` (one item per video).
+4. **Filter** — keep videos above a view threshold:
+   - Condition: `{{ $json.stats.views }}` _is greater than_ `100000`.
+
+Each SocialFetch item is one API page. With **Return All** off you get a single page; with it on you get one item per page, each containing `data.videos`, `data.page`, and `meta`. **Split Out** turns the videos array into individual items so the Filter node can evaluate `stats.views` on each video.
+
+Example response shape (first video on a page):
+
+```json
+{
+  "data": {
+    "videos": [
+      {
+        "id": "7639528062975053069",
+        "caption": "…",
+        "url": "https://www.tiktok.com/@handle/video/7639528062975053069",
+        "stats": {
+          "views": 302447,
+          "likes": 19880,
+          "comments": 339,
+          "shares": 2232,
+          "saves": 389
+        }
+      }
+    ],
+    "page": { "nextCursor": "…", "hasMore": true }
+  },
+  "meta": { "creditsCharged": 1, "requestId": "…", "version": "v1" }
+}
+```
+
+A second common pattern is enrichment: use **TikTok → User search** (or **Search videos**) to discover handles, then loop those results back into **Profile videos** or **Profile** to pull full details for each match.
 
 ## Development
 

@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-socialfetch",
-	"version": "0.13.2",
+	"version": "0.13.3",
 	"description": "Fetch social media and web data with the SocialFetch API.",
 	"keywords": [
 		"n8n-community-node-package",
