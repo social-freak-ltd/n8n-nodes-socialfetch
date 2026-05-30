@@ -30,14 +30,25 @@ Every request consumes credits from your SocialFetch balance (most endpoints cos
 
 ## Development
 
+The node descriptions are generated from the SocialFetch OpenAPI spec.
+
 ```bash
-pnpm install
-pnpm run lint:fix
+# from the repo root (codegen + eslint fix on generated descriptions)
+pnpm generate:n8n
+
+# full derived check before a PR (openapi, sdk, zapier, n8n, …)
+pnpm check:derived
+
+# local dev (standalone pnpm project — not part of the root pnpm workspace)
+cd integrations/n8n
+pnpm install --ignore-workspace
 pnpm run build
-pnpm run dev   # local n8n at http://localhost:5678 with this node loaded
+pnpm run dev   # http://localhost:5678
 ```
 
-Source of truth for API coverage lives in the [SocialFetch](https://github.com/social-freak-ltd/socialfetch) monorepo (`integrations/n8n/`). Sync generated description files from there when the public API changes.
+`generate:n8n` syncs the package **version** from `@socialfetch/sdk`, regenerates descriptions, and runs `lint:fix`. `check:derived` also runs `check:n8n` (install, lint, build).
+
+Releases and syncing to [n8n-nodes-socialfetch](https://github.com/social-freak-ltd/n8n-nodes-socialfetch) are automated from the monorepo — see [PUBLISHING.md](PUBLISHING.md).
 
 ## License
 
