@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-socialfetch",
-	"version": "0.13.3",
+	"version": "0.13.4",
 	"description": "Fetch social media and web data with the SocialFetch API.",
 	"keywords": [
 		"n8n-community-node-package",
@@ -14,7 +14,8 @@
 	"license": "MIT",
 	"homepage": "https://www.socialfetch.dev",
 	"author": {
-		"name": "Social Fetch"
+		"name": "Social Fetch",
+		"email": "support@socialfetch.dev"
 	},
 	"repository": {
 		"type": "git",
