@@ -22,7 +22,7 @@ function nextCursorFrom(items: INodeExecutionData[]): string | undefined {
 }
 
 /**
- * Cursor paginator for SocialFetch list endpoints.
+ * Cursor paginator for Social Fetch list endpoints.
  *
  * Gated by the `returnAll` parameter via `routing.send.paginate`: when
  * `returnAll` is false n8n performs a single request and this returns only the

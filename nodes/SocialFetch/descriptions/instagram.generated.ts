@@ -30,7 +30,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Basic profile",
+				"name": "Basic Profile",
 				"value": "instagram.profile.basic.get",
 				"action": "Get Instagram basic profile",
 				"description": "Get a lightweight Instagram profile by numeric user ID.",
@@ -42,7 +42,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile posts",
+				"name": "Profile Posts",
 				"value": "instagram.profile.posts.list",
 				"action": "List Instagram profile posts",
 				"description": "Get posts from a specific Instagram profile.",
@@ -60,7 +60,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile reels",
+				"name": "Profile Reels",
 				"value": "instagram.profile.reels.list",
 				"action": "List Instagram profile reels",
 				"description": "Get Reels from a specific Instagram profile.",
@@ -78,7 +78,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile highlights",
+				"name": "Profile Highlights",
 				"value": "instagram.profile.highlights.list",
 				"action": "List Instagram profile highlights",
 				"description": "List story highlight albums for an Instagram profile.",
@@ -102,7 +102,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Post or reel",
+				"name": "Post or Reel",
 				"value": "instagram.post.get",
 				"action": "Get Instagram post or reel",
 				"description": "Get a single Instagram post or Reel.",
@@ -144,7 +144,7 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Search reels",
+				"name": "Search Reels",
 				"value": "instagram.search.reels.list",
 				"action": "Search Instagram Reels",
 				"description": "Search Instagram Reels by keyword with optional date filters and page-based pagination.",
@@ -177,7 +177,7 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "User Id",
+		"displayName": "User ID",
 		"name": "userId",
 		"type": "string",
 		"default": "",
@@ -286,7 +286,7 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Highlight Id",
+		"displayName": "Highlight ID",
 		"name": "highlightId",
 		"type": "string",
 		"default": "",
@@ -304,7 +304,7 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -404,7 +404,7 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -429,7 +429,7 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

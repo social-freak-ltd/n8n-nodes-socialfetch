@@ -30,7 +30,7 @@ export const twitter: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile tweets",
+				"name": "Profile Tweets",
 				"value": "twitter.profile.tweets.list",
 				"action": "List Twitter profile tweets",
 				"description": "Get popular tweets from a specific X profile.",
@@ -84,7 +84,7 @@ export const twitter: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Community tweets",
+				"name": "Community Tweets",
 				"value": "twitter.community.tweets.list",
 				"action": "List Twitter community tweets",
 				"description": "Get tweets from an X community.",
@@ -425,7 +425,7 @@ export const twitter: INodeProperties[] = [
 						"value": "hu"
 					},
 					{
-						"name": "Id",
+						"name": "ID",
 						"value": "id"
 					},
 					{
@@ -497,7 +497,7 @@ export const twitter: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -554,7 +554,7 @@ export const twitter: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -579,7 +579,7 @@ export const twitter: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

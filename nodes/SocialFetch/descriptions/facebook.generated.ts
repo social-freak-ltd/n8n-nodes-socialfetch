@@ -30,7 +30,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile posts",
+				"name": "Profile Posts",
 				"value": "facebook.profile.posts.list",
 				"action": "List Facebook profile posts",
 				"description": "Get posts from a Facebook profile or page.",
@@ -48,7 +48,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile reels",
+				"name": "Profile Reels",
 				"value": "facebook.profile.reels.list",
 				"action": "List Facebook profile reels",
 				"description": "Get Reels from a Facebook profile or page.",
@@ -66,7 +66,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile photos",
+				"name": "Profile Photos",
 				"value": "facebook.profile.photos.list",
 				"action": "List Facebook profile photos",
 				"description": "Get photos from a Facebook profile or page.",
@@ -84,7 +84,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Post or reel",
+				"name": "Post or Reel",
 				"value": "facebook.post.get",
 				"action": "Get Facebook post or reel",
 				"description": "Get a Facebook post or Reel.",
@@ -126,7 +126,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Group posts",
+				"name": "Group Posts",
 				"value": "facebook.group.posts.list",
 				"action": "List Facebook group posts",
 				"description": "Get posts from a Facebook group.",
@@ -144,7 +144,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Marketplace item",
+				"name": "Marketplace Item",
 				"value": "facebook.marketplace.item.get",
 				"action": "Get Facebook Marketplace item",
 				"description": "Get details for a Facebook Marketplace listing.",
@@ -156,7 +156,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Marketplace location search",
+				"name": "Marketplace Location Search",
 				"value": "facebook.marketplace.locations.search",
 				"action": "Search Facebook Marketplace locations",
 				"description": "Search Facebook Marketplace locations to obtain coordinates for listing search.",
@@ -168,7 +168,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Marketplace search",
+				"name": "Marketplace Search",
 				"value": "facebook.marketplace.search.list",
 				"action": "Search Facebook Marketplace listings",
 				"description": "Search Facebook Marketplace listings by keyword near a latitude and longitude.",
@@ -186,7 +186,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Ad library ad",
+				"name": "Ad Library Ad",
 				"value": "facebook.adLibrary.ad.get",
 				"action": "Get Facebook Ad Library ad",
 				"description": "Get a single Facebook Ad Library ad by archive id or public Ad Library URL.",
@@ -198,7 +198,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Ad Library search",
+				"name": "Ad Library Search",
 				"value": "facebook.adLibrary.ads.search.get",
 				"action": "Search Facebook Ad Library ads",
 				"description": "Search Facebook Ad Library ads by keyword.",
@@ -216,7 +216,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Company ads",
+				"name": "Company Ads",
 				"value": "facebook.company.ads.list",
 				"action": "List Facebook company ads",
 				"description": "List ads a company or page is running in the Facebook Ad Library.",
@@ -234,7 +234,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Ad library companies",
+				"name": "Ad Library Companies",
 				"value": "facebook.adLibrary.companies.search",
 				"action": "Search Facebook ad library companies",
 				"description": "Search Facebook ad library companies by name.",
@@ -248,7 +248,7 @@ export const facebook: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -339,7 +339,7 @@ export const facebook: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -353,7 +353,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Page Id",
+				"displayName": "Page ID",
 				"name": "pageId",
 				"type": "string",
 				"default": "",
@@ -385,7 +385,7 @@ export const facebook: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -427,7 +427,7 @@ export const facebook: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -452,7 +452,7 @@ export const facebook: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -556,7 +556,7 @@ export const facebook: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -570,7 +570,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Feedback Id",
+				"displayName": "Feedback ID",
 				"name": "feedbackId",
 				"type": "string",
 				"default": "",
@@ -585,7 +585,7 @@ export const facebook: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -627,7 +627,7 @@ export const facebook: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -719,7 +719,7 @@ export const facebook: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Item Id",
+				"displayName": "Item ID",
 				"name": "itemId",
 				"type": "string",
 				"default": "",
@@ -732,7 +732,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -1092,7 +1092,7 @@ export const facebook: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Ad Id",
+				"displayName": "Ad ID",
 				"name": "adId",
 				"type": "string",
 				"default": "",
@@ -1105,7 +1105,7 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -1261,7 +1261,7 @@ export const facebook: INodeProperties[] = [
 						"value": "all"
 					},
 					{
-						"name": "Political And Issue",
+						"name": "Political and Issue",
 						"value": "political-and-issue"
 					}
 				],
@@ -1336,7 +1336,7 @@ export const facebook: INodeProperties[] = [
 						"value": "meme"
 					},
 					{
-						"name": "Image And Meme",
+						"name": "Image and Meme",
 						"value": "image-and-meme"
 					},
 					{
@@ -1429,7 +1429,7 @@ export const facebook: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Page Id",
+				"displayName": "Page ID",
 				"name": "pageId",
 				"type": "string",
 				"default": "",
@@ -1516,7 +1516,7 @@ export const facebook: INodeProperties[] = [
 						"value": "meme"
 					},
 					{
-						"name": "Image And Meme",
+						"name": "Image and Meme",
 						"value": "image-and-meme"
 					},
 					{

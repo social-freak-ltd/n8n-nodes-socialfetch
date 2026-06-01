@@ -29,7 +29,7 @@ export const threads: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile posts",
+				"name": "Profile Posts",
 				"value": "threads.profile.posts.list",
 				"action": "List Threads profile posts",
 				"description": "Get posts from a specific Threads profile.",
@@ -41,7 +41,7 @@ export const threads: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Search posts",
+				"name": "Search Posts",
 				"value": "threads.search.list",
 				"action": "Search Threads posts",
 				"description": "Search for posts on Threads.",
@@ -65,7 +65,7 @@ export const threads: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "User search",
+				"name": "User Search",
 				"value": "threads.users.search",
 				"action": "Search Threads users",
 				"description": "Search for users on Threads.",
@@ -232,7 +232,7 @@ export const threads: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

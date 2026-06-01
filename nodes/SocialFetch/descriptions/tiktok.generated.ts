@@ -30,7 +30,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile videos",
+				"name": "Profile Videos",
 				"value": "tiktok.profile.videos.list",
 				"action": "List TikTok profile videos",
 				"description": "Get videos from a specific TikTok profile.",
@@ -48,7 +48,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile followers",
+				"name": "Profile Followers",
 				"value": "tiktok.profile.followers.list",
 				"action": "List TikTok profile followers",
 				"description": "Get followers from a specific TikTok profile.",
@@ -66,7 +66,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile following",
+				"name": "Profile Following",
 				"value": "tiktok.profile.following.list",
 				"action": "List TikTok profile following",
 				"description": "Get accounts followed by a specific TikTok profile.",
@@ -84,7 +84,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile region",
+				"name": "Profile Region",
 				"value": "tiktok.profile.region.get",
 				"action": "Get TikTok profile region",
 				"description": "Get the region code reported for a TikTok profile.",
@@ -96,7 +96,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Live stream",
+				"name": "Live Stream",
 				"value": "tiktok.profile.live.check",
 				"action": "Get TikTok live stream",
 				"description": "Check whether a TikTok creator is currently live.",
@@ -108,7 +108,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "User search",
+				"name": "User Search",
 				"value": "tiktok.users.search",
 				"action": "Search TikTok users",
 				"description": "Search TikTok users by keyword.",
@@ -126,7 +126,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Search videos",
+				"name": "Search Videos",
 				"value": "tiktok.search.videos.list",
 				"action": "Search TikTok videos",
 				"description": "Search TikTok videos by keyword.",
@@ -144,7 +144,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Hashtag search",
+				"name": "Hashtag Search",
 				"value": "tiktok.search.hashtag.list",
 				"action": "Search TikTok by hashtag",
 				"description": "Search TikTok videos by hashtag.",
@@ -204,7 +204,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Trending feed",
+				"name": "Trending Feed",
 				"value": "tiktok.feed.trending.list",
 				"action": "List TikTok trending feed",
 				"description": "Discover currently trending TikTok posts.",
@@ -216,7 +216,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Shop product search",
+				"name": "Shop Product Search",
 				"value": "tiktok.shop.products.search",
 				"action": "Search TikTok Shop products",
 				"description": "Search products in TikTok Shop.",
@@ -228,7 +228,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Shop store products",
+				"name": "Shop Store Products",
 				"value": "tiktok.shop.products.list",
 				"action": "List TikTok Shop store products",
 				"description": "Get products listed in a TikTok Shop store.",
@@ -246,7 +246,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Shop product",
+				"name": "Shop Product",
 				"value": "tiktok.product.get",
 				"action": "Get TikTok Shop product",
 				"description": "Get details for a TikTok Shop product.",
@@ -258,7 +258,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Shop product reviews",
+				"name": "Shop Product Reviews",
 				"value": "tiktok.product.reviews.list",
 				"action": "List TikTok Shop product reviews",
 				"description": "Get buyer reviews for a TikTok Shop product.",
@@ -270,7 +270,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Profile showcase products",
+				"name": "Profile Showcase Products",
 				"value": "tiktok.profile.showcaseProducts.list",
 				"action": "List TikTok profile showcase products",
 				"description": "Get products featured on a creator's TikTok showcase.",
@@ -294,7 +294,7 @@ export const tiktok: INodeProperties[] = [
 		"name": "handle",
 		"type": "string",
 		"default": "",
-		"description": "TikTok handle to look up, with or without leading @.",
+		"description": "TikTok handle to look up, with or without a leading @.",
 		"placeholder": "e.g. n8n",
 		"required": true,
 		"displayOptions": {
@@ -385,7 +385,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "User Id",
+				"displayName": "User ID",
 				"name": "userId",
 				"type": "string",
 				"default": "",
@@ -479,7 +479,7 @@ export const tiktok: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "User Id",
+				"displayName": "User ID",
 				"name": "userId",
 				"type": "string",
 				"default": "",
@@ -894,7 +894,7 @@ export const tiktok: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -1007,7 +1007,7 @@ export const tiktok: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -1064,7 +1064,7 @@ export const tiktok: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -1119,11 +1119,11 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Use Ai Fallback",
+				"displayName": "Use AI Fallback",
 				"name": "useAiFallback",
 				"type": "boolean",
 				"default": false,
-				"description": "When true, uses SocialFetch's AI fallback when a transcript is not otherwise available. Adds 10 credits on completed lookups (11 total with the base lookup).",
+				"description": "When true, uses Social Fetch's AI fallback when a transcript is not otherwise available. Adds 10 credits on completed lookups (11 total with the base lookup).",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -1343,7 +1343,7 @@ export const tiktok: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -1466,7 +1466,7 @@ export const tiktok: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -1606,7 +1606,7 @@ export const tiktok: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -1620,7 +1620,7 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Product Id",
+				"displayName": "Product ID",
 				"name": "productId",
 				"type": "string",
 				"default": "",

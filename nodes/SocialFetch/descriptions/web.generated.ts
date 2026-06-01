@@ -67,11 +67,11 @@ export const web: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
-		"description": "Absolute http or https URL to fetch.",
+		"description": "Web page URL to fetch.",
 		"placeholder": "e.g. https://example.com/page",
 		"required": true,
 		"routing": {
@@ -179,11 +179,11 @@ export const web: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
-		"description": "Absolute http or https URL to fetch.",
+		"description": "Web page URL to fetch.",
 		"placeholder": "e.g. https://example.com/page",
 		"required": true,
 		"routing": {
@@ -229,11 +229,11 @@ export const web: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
-		"description": "Absolute http or https URL to fetch.",
+		"description": "Web page URL to fetch.",
 		"placeholder": "e.g. https://example.com/page",
 		"required": true,
 		"routing": {
@@ -254,21 +254,11 @@ export const web: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
-		"name": "url",
-		"type": "string",
-		"typeOptions": {
-			"multipleValues": true
-		},
-		"default": [],
-		"description": "URLs to crawl. Repeat the `url` query parameter for multiple pages (max 5).",
-		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -278,6 +268,24 @@ export const web: INodeProperties[] = [
 					"web.crawl.run"
 				]
 			}
-		}
+		},
+		"options": [
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"typeOptions": {
+					"multipleValues": true
+				},
+				"default": [],
+				"description": "URLs to crawl. Repeat the `url` query parameter for multiple pages (max 5).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "url"
+					}
+				}
+			}
+		]
 	}
 ];

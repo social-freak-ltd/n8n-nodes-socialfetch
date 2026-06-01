@@ -30,7 +30,7 @@ export const telegram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Channel posts",
+				"name": "Channel Posts",
 				"value": "telegram.channel_posts.get",
 				"action": "List Telegram channel posts",
 				"description": "List recent posts from a public Telegram channel. Groups are not supported.",
@@ -48,7 +48,7 @@ export const telegram: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Channel post",
+				"name": "Channel Post",
 				"value": "telegram.channel_post.get",
 				"action": "Get Telegram channel post",
 				"description": "Get a single public post from a Telegram channel by handle and post ID. Groups are not supported.",
@@ -136,7 +136,7 @@ export const telegram: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Post Id",
+		"displayName": "Post ID",
 		"name": "postId",
 		"type": "string",
 		"default": "",

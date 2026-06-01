@@ -35,7 +35,7 @@ If **Publish n8n node** ever fails with `403` on `socialfetch` and commit paths 
 ## Day-to-day: API changes (no npm release yet)
 
 1. Implement API + update `public-api-endpoint-metadata.ts` + OpenAPI (same as SDK).
-2. From the monorepo root: `pnpm generate:derived` (includes `generate:n8n` + lint:fix) or `pnpm check:derived` before opening a PR.
+2. From the monorepo root: `pnpm generate:derived` (includes `generate:n8n` + lint:fix) or `pnpm check:derived` before opening a PR. Run `pnpm test:n8n` when changing label formatting or generated descriptions.
 3. Commit to the monorepo (including `descriptions/*.generated.ts`).
 4. Merge to `main`.
 5. Run **Sync n8n public mirror** in GitHub Actions (or locally, see below).
@@ -59,6 +59,7 @@ The workflow will:
 
 ```bash
 pnpm generate:n8n
+pnpm test:n8n
 
 cd integrations/n8n
 pnpm install --ignore-workspace

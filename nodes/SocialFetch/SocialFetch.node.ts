@@ -8,15 +8,15 @@ import {
 
 export class SocialFetch implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: "SocialFetch",
+		displayName: "Social Fetch",
 		name: "socialFetch",
 		icon: "file:socialfetch.svg",
 		group: ["input"],
 		version: 1,
 		subtitle:
 			'={{$parameter["operation"].replace(/\\./g, " › ").replace(/^[^›]+ › /, "")}}',
-		description: "Fetch social media and web data via the SocialFetch API",
-		defaults: { name: "SocialFetch" },
+		description: "Fetch social media and web data via the Social Fetch API",
+		defaults: { name: "Social Fetch" },
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: "socialFetchApi", required: true }],

@@ -29,7 +29,7 @@ export const linkedin: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Company page",
+				"name": "Company Page",
 				"value": "linkedin.company.get",
 				"action": "Get LinkedIn company page",
 				"description": "Get a LinkedIn company page.",
@@ -41,7 +41,7 @@ export const linkedin: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Company posts",
+				"name": "Company Posts",
 				"value": "linkedin.company.posts.list",
 				"action": "List LinkedIn company posts",
 				"description": "Get posts from a LinkedIn company page.",
@@ -53,7 +53,7 @@ export const linkedin: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Post or article",
+				"name": "Post or Article",
 				"value": "linkedin.post.get",
 				"action": "Get LinkedIn post or article",
 				"description": "Get a LinkedIn post or article.",
@@ -67,7 +67,7 @@ export const linkedin: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -92,7 +92,7 @@ export const linkedin: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -117,7 +117,7 @@ export const linkedin: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -174,7 +174,7 @@ export const linkedin: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

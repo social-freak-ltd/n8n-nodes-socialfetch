@@ -8,7 +8,7 @@ import type {
 export class SocialFetchApi implements ICredentialType {
 	name = "socialFetchApi";
 
-	displayName = "SocialFetch API";
+	displayName = "Social Fetch API";
 
 	documentationUrl = "https://www.socialfetch.dev/docs";
 
@@ -23,7 +23,7 @@ export class SocialFetchApi implements ICredentialType {
 			default: "",
 			required: true,
 			description:
-				"Your SocialFetch API key (starts with sfk_). Create one in the SocialFetch dashboard.",
+				"Your Social Fetch API key (starts with sfk_). Create one in the Social Fetch dashboard.",
 		},
 	];
 

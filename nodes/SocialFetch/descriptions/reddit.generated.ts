@@ -48,7 +48,7 @@ export const reddit: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Subreddit posts",
+				"name": "Subreddit Posts",
 				"value": "reddit.subreddit.posts.list",
 				"action": "List Reddit subreddit posts",
 				"description": "Get posts from a specific subreddit.",
@@ -66,7 +66,7 @@ export const reddit: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Subreddit search",
+				"name": "Subreddit Search",
 				"value": "reddit.subreddit.search.list",
 				"action": "Search Reddit subreddit",
 				"description": "Search posts within a subreddit.",
@@ -84,7 +84,7 @@ export const reddit: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Post comments",
+				"name": "Post Comments",
 				"value": "reddit.post.comments.list",
 				"action": "List Reddit post comments",
 				"description": "Get comments on a Reddit post.",
@@ -134,7 +134,7 @@ export const reddit: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -575,7 +575,7 @@ export const reddit: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

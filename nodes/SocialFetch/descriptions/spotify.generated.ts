@@ -72,7 +72,7 @@ export const spotify: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Artist Id",
+				"displayName": "Artist ID",
 				"name": "artistId",
 				"type": "string",
 				"default": "",
@@ -85,7 +85,7 @@ export const spotify: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -118,7 +118,7 @@ export const spotify: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Album Id",
+				"displayName": "Album ID",
 				"name": "albumId",
 				"type": "string",
 				"default": "",
@@ -131,7 +131,7 @@ export const spotify: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -164,7 +164,7 @@ export const spotify: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Track Id",
+				"displayName": "Track ID",
 				"name": "trackId",
 				"type": "string",
 				"default": "",
@@ -177,7 +177,7 @@ export const spotify: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",

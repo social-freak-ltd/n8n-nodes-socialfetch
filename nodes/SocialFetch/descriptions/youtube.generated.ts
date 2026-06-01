@@ -30,7 +30,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Channel videos",
+				"name": "Channel Videos",
 				"value": "youtube.channel.videos.list",
 				"action": "List YouTube channel videos",
 				"description": "Get videos published by a specific YouTube channel.",
@@ -48,7 +48,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Channel shorts",
+				"name": "Channel Shorts",
 				"value": "youtube.channel.shorts.list",
 				"action": "List YouTube channel shorts",
 				"description": "Get Shorts published by a specific YouTube channel.",
@@ -78,7 +78,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Community post",
+				"name": "Community Post",
 				"value": "youtube.community.post.get",
 				"action": "Get YouTube community post",
 				"description": "Get the contents of a YouTube community post.",
@@ -108,7 +108,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Hashtag search",
+				"name": "Hashtag Search",
 				"value": "youtube.search.hashtag.list",
 				"action": "Search YouTube by hashtag",
 				"description": "Search YouTube by hashtag.",
@@ -126,7 +126,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Trending shorts",
+				"name": "Trending Shorts",
 				"value": "youtube.shorts.trending.list",
 				"action": "List trending YouTube Shorts",
 				"description": "Discover currently trending YouTube Shorts.",
@@ -217,7 +217,7 @@ export const youtube: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Channel Id",
+				"displayName": "Channel ID",
 				"name": "channelId",
 				"type": "string",
 				"default": "",
@@ -244,7 +244,7 @@ export const youtube: INodeProperties[] = [
 				}
 			},
 			{
-				"displayName": "Url",
+				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
@@ -294,7 +294,7 @@ export const youtube: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Channel Id",
+				"displayName": "Channel ID",
 				"name": "channelId",
 				"type": "string",
 				"default": "",
@@ -393,7 +393,7 @@ export const youtube: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Channel Id",
+				"displayName": "Channel ID",
 				"name": "channelId",
 				"type": "string",
 				"default": "",
@@ -445,7 +445,7 @@ export const youtube: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Playlist Id",
+		"displayName": "Playlist ID",
 		"name": "playlistId",
 		"type": "string",
 		"default": "",
@@ -469,7 +469,7 @@ export const youtube: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -647,7 +647,7 @@ export const youtube: INodeProperties[] = [
 						"value": "under_3_min"
 					},
 					{
-						"name": "Between 3 And 20 Min",
+						"name": "Between 3 and 20 Min",
 						"value": "between_3_and_20_min"
 					},
 					{
@@ -776,7 +776,7 @@ export const youtube: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -850,7 +850,7 @@ export const youtube: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
@@ -934,7 +934,7 @@ export const youtube: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Url",
+		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",

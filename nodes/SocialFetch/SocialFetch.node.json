@@ -2,11 +2,21 @@
 	"node": "n8n-nodes-socialfetch.socialFetch",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Data & Storage", "Marketing", "Productivity"],
+	"categories": [
+		"Data & Storage",
+		"Marketing & Content",
+		"Productivity"
+	],
 	"resources": {
 		"credentialDocumentation": [
-			{ "url": "https://www.socialfetch.dev/docs" }
+			{
+				"url": "https://www.socialfetch.dev/docs"
+			}
 		],
-		"primaryDocumentation": [{ "url": "https://www.socialfetch.dev/docs" }]
+		"primaryDocumentation": [
+			{
+				"url": "https://www.socialfetch.dev/docs"
+			}
+		]
 	}
 }
