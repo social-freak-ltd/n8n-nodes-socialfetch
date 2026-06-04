@@ -17,14 +17,38 @@ export const linkedin: INodeProperties[] = [
 		"default": "linkedin.profile.get",
 		"options": [
 			{
-				"name": "Profile",
+				"name": "Profiles",
 				"value": "linkedin.profile.get",
-				"action": "Get LinkedIn profile",
-				"description": "Get a LinkedIn profile.",
+				"action": "Get LinkedIn profiles",
+				"description": "Get LinkedIn profiles by URL or handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
 						"url": "/v1/linkedin/profiles"
+					}
+				}
+			},
+			{
+				"name": "Profile Posts",
+				"value": "linkedin.profiles.posts.list",
+				"action": "List LinkedIn profile posts",
+				"description": "Get posts from a LinkedIn profile.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/linkedin/profiles/posts"
+					}
+				}
+			},
+			{
+				"name": "People Search",
+				"value": "linkedin.people.search.list",
+				"action": "Search LinkedIn people",
+				"description": "Search LinkedIn people by first and/or last name.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/linkedin/people/search"
 					}
 				}
 			},
@@ -63,6 +87,30 @@ export const linkedin: INodeProperties[] = [
 						"url": "/v1/linkedin/posts"
 					}
 				}
+			},
+			{
+				"name": "Jobs",
+				"value": "linkedin.jobs.get",
+				"action": "Get LinkedIn jobs",
+				"description": "Get LinkedIn job postings by URL.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/linkedin/jobs"
+					}
+				}
+			},
+			{
+				"name": "Job Search",
+				"value": "linkedin.jobs.search.list",
+				"action": "Search LinkedIn jobs",
+				"description": "Search LinkedIn jobs by keyword and filters.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/linkedin/jobs/search"
+					}
+				}
 			}
 		]
 	},
@@ -70,9 +118,11 @@ export const linkedin: INodeProperties[] = [
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
-		"default": "",
-		"description": "LinkedIn public profile URL for this lookup.",
-		"placeholder": "e.g. https://example.com/page",
+		"typeOptions": {
+			"multipleValues": true
+		},
+		"default": [],
+		"description": "LinkedIn profile URL.",
 		"required": true,
 		"routing": {
 			"send": {
@@ -90,6 +140,134 @@ export const linkedin: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn profile URL or vanity handle whose public posts should be listed.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.profiles.posts.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.profiles.posts.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Start Date",
+				"name": "startDate",
+				"type": "string",
+				"default": "",
+				"description": "Optional start of the date range for posts to include.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "startDate"
+					}
+				}
+			},
+			{
+				"displayName": "End Date",
+				"name": "endDate",
+				"type": "string",
+				"default": "",
+				"description": "Optional end of the date range for posts to include.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "endDate"
+					}
+				}
+			},
+			{
+				"displayName": "Only Authored Posts",
+				"name": "onlyAuthoredPosts",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, return only posts created by the profile owner.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "onlyAuthoredPosts"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.people.search.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "First Name",
+				"name": "firstName",
+				"type": "string",
+				"default": "",
+				"description": "First name filter. At least one of `firstName` or `lastName` is required.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "firstName"
+					}
+				}
+			},
+			{
+				"displayName": "Last Name",
+				"name": "lastName",
+				"type": "string",
+				"default": "",
+				"description": "Last name filter. At least one of `firstName` or `lastName` is required.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "lastName"
+					}
+				}
+			}
+		]
 	},
 	{
 		"displayName": "URL",
@@ -121,7 +299,7 @@ export const linkedin: INodeProperties[] = [
 		"name": "url",
 		"type": "string",
 		"default": "",
-		"description": "Public LinkedIn company page URL for the organization whose posts should be listed.",
+		"description": "LinkedIn company page URL or slug whose posts should be listed.",
 		"placeholder": "e.g. https://example.com/page",
 		"required": true,
 		"routing": {
@@ -197,5 +375,292 @@ export const linkedin: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"typeOptions": {
+			"multipleValues": true
+		},
+		"default": [],
+		"description": "LinkedIn job posting URL to look up.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.jobs.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Keyword",
+		"name": "keyword",
+		"type": "string",
+		"default": "",
+		"description": "Search keyword for LinkedIn job listings.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "keyword"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.jobs.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Location",
+		"name": "location",
+		"type": "string",
+		"default": "",
+		"description": "Location label for the search, e.g. `United States`, `Paris`, or `Remote`.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "location"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.jobs.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.jobs.search.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Country",
+				"name": "country",
+				"type": "string",
+				"default": "",
+				"description": "Optional two-letter country code, e.g. `FR` or `US`.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "country"
+					}
+				}
+			},
+			{
+				"displayName": "Time Range",
+				"name": "timeRange",
+				"type": "options",
+				"options": [
+					{
+						"name": "Any",
+						"value": "any"
+					},
+					{
+						"name": "Past Month",
+						"value": "past-month"
+					},
+					{
+						"name": "Past Week",
+						"value": "past-week"
+					},
+					{
+						"name": "Past 24 Hours",
+						"value": "past-24-hours"
+					}
+				],
+				"default": "any",
+				"description": "Optional time range filter for when jobs were posted.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "timeRange"
+					}
+				}
+			},
+			{
+				"displayName": "Job Type",
+				"name": "jobType",
+				"type": "options",
+				"options": [
+					{
+						"name": "Full Time",
+						"value": "full-time"
+					},
+					{
+						"name": "Part Time",
+						"value": "part-time"
+					},
+					{
+						"name": "Contract",
+						"value": "contract"
+					},
+					{
+						"name": "Temporary",
+						"value": "temporary"
+					},
+					{
+						"name": "Volunteer",
+						"value": "volunteer"
+					}
+				],
+				"default": "full-time",
+				"description": "Optional job type filter.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "jobType"
+					}
+				}
+			},
+			{
+				"displayName": "Experience Level",
+				"name": "experienceLevel",
+				"type": "options",
+				"options": [
+					{
+						"name": "Internship",
+						"value": "internship"
+					},
+					{
+						"name": "Entry Level",
+						"value": "entry-level"
+					},
+					{
+						"name": "Associate",
+						"value": "associate"
+					},
+					{
+						"name": "Mid Senior Level",
+						"value": "mid-senior-level"
+					},
+					{
+						"name": "Director",
+						"value": "director"
+					},
+					{
+						"name": "Executive",
+						"value": "executive"
+					}
+				],
+				"default": "internship",
+				"description": "Optional experience level filter.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "experienceLevel"
+					}
+				}
+			},
+			{
+				"displayName": "Remote",
+				"name": "remote",
+				"type": "options",
+				"options": [
+					{
+						"name": "On Site",
+						"value": "on-site"
+					},
+					{
+						"name": "Remote",
+						"value": "remote"
+					},
+					{
+						"name": "Hybrid",
+						"value": "hybrid"
+					}
+				],
+				"default": "on-site",
+				"description": "Optional work arrangement filter.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "remote"
+					}
+				}
+			},
+			{
+				"displayName": "Company",
+				"name": "company",
+				"type": "string",
+				"default": "",
+				"description": "Optional company name filter.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "company"
+					}
+				}
+			},
+			{
+				"displayName": "Location Radius",
+				"name": "locationRadius",
+				"type": "options",
+				"options": [
+					{
+						"name": "Exact Location",
+						"value": "exact-location"
+					},
+					{
+						"name": "5 Miles",
+						"value": "5-miles"
+					},
+					{
+						"name": "10 Miles",
+						"value": "10-miles"
+					},
+					{
+						"name": "25 Miles",
+						"value": "25-miles"
+					},
+					{
+						"name": "50 Miles",
+						"value": "50-miles"
+					}
+				],
+				"default": "exact-location",
+				"description": "Optional location radius filter.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "locationRadius"
+					}
+				}
+			}
+		]
 	}
 ];

@@ -254,11 +254,21 @@ export const web: INodeProperties[] = [
 		}
 	},
 	{
-		"displayName": "Additional Fields",
-		"name": "additionalOptions",
-		"type": "collection",
-		"placeholder": "Add Field",
-		"default": {},
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"typeOptions": {
+			"multipleValues": true
+		},
+		"default": [],
+		"description": "URLs to crawl. Repeat the `url` query parameter for multiple pages (max 5).",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -268,24 +278,6 @@ export const web: INodeProperties[] = [
 					"web.crawl.run"
 				]
 			}
-		},
-		"options": [
-			{
-				"displayName": "URL",
-				"name": "url",
-				"type": "string",
-				"typeOptions": {
-					"multipleValues": true
-				},
-				"default": [],
-				"description": "URLs to crawl. Repeat the `url` query parameter for multiple pages (max 5).",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "url"
-					}
-				}
-			}
-		]
+		}
 	}
 ];
