@@ -1136,7 +1136,7 @@ export const facebook: INodeProperties[] = [
 				"name": "trim",
 				"type": "boolean",
 				"default": false,
-				"description": "When true, requests a smaller upstream payload before normalization.",
+				"description": "When true, requests a smaller payload before normalization.",
 				"routing": {
 					"send": {
 						"type": "query",

@@ -125,7 +125,7 @@ export const reddit: INodeProperties[] = [
 				"name": "subreddit",
 				"type": "string",
 				"default": "",
-				"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing (for example `AskReddit`, not `askreddit`).",
+				"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -307,7 +307,7 @@ export const reddit: INodeProperties[] = [
 		"name": "subreddit",
 		"type": "string",
 		"default": "",
-		"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing (for example `AskReddit`, not `askreddit`). Lists posts for this subreddit.",
+		"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing. Lists posts for this subreddit.",
 		"required": true,
 		"displayOptions": {
 			"show": {
@@ -431,7 +431,7 @@ export const reddit: INodeProperties[] = [
 		"name": "subreddit",
 		"type": "string",
 		"default": "",
-		"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing (for example `AskReddit`, not `askreddit`). Searches posts within this subreddit.",
+		"description": "Subreddit name, optional `r/` prefix, or Reddit subreddit URL. Must match Reddit's exact casing. Searches posts within this subreddit.",
 		"required": true,
 		"routing": {
 			"send": {

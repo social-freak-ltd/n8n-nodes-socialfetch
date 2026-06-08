@@ -14,8 +14,20 @@ export const web: INodeProperties[] = [
 				]
 			}
 		},
-		"default": "web.markdown.generate",
+		"default": "web.search.run",
 		"options": [
+			{
+				"name": "Search",
+				"value": "web.search.run",
+				"action": "Search the web",
+				"description": "Search the public web and return ranked results with snippets.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/web/search"
+					}
+				}
+			},
 			{
 				"name": "Markdown",
 				"value": "web.markdown.generate",
@@ -61,6 +73,210 @@ export const web: INodeProperties[] = [
 					"request": {
 						"method": "GET",
 						"url": "/v1/web/crawl"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Search query text to run against the public web.",
+		"placeholder": "e.g. automation",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "query"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.search.run"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.search.run"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Search Depth",
+				"name": "searchDepth",
+				"type": "options",
+				"options": [
+					{
+						"name": "Basic",
+						"value": "basic"
+					},
+					{
+						"name": "Fast",
+						"value": "fast"
+					},
+					{
+						"name": "Ultra Fast",
+						"value": "ultra-fast"
+					},
+					{
+						"name": "Advanced",
+						"value": "advanced"
+					}
+				],
+				"default": "basic",
+				"description": "Search depth: basic (default), fast, ultra-fast, or advanced.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "searchDepth"
+					}
+				}
+			},
+			{
+				"displayName": "Max Results",
+				"name": "maxResults",
+				"type": "number",
+				"default": 0,
+				"description": "Maximum number of search results to return (1–20).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "maxResults"
+					}
+				}
+			},
+			{
+				"displayName": "Topic",
+				"name": "topic",
+				"type": "options",
+				"options": [
+					{
+						"name": "General",
+						"value": "general"
+					},
+					{
+						"name": "News",
+						"value": "news"
+					},
+					{
+						"name": "Finance",
+						"value": "finance"
+					}
+				],
+				"default": "general",
+				"description": "Search topic category. Defaults to general.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "topic"
+					}
+				}
+			},
+			{
+				"displayName": "Time Range",
+				"name": "timeRange",
+				"type": "options",
+				"options": [
+					{
+						"name": "Day",
+						"value": "day"
+					},
+					{
+						"name": "Week",
+						"value": "week"
+					},
+					{
+						"name": "Month",
+						"value": "month"
+					},
+					{
+						"name": "Year",
+						"value": "year"
+					}
+				],
+				"default": "day",
+				"description": "Optional time range filter based on publish or last-updated date.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "timeRange"
+					}
+				}
+			},
+			{
+				"displayName": "Start Date",
+				"name": "startDate",
+				"type": "string",
+				"default": "",
+				"description": "Optional start date filter in YYYY-MM-DD format.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "startDate"
+					}
+				}
+			},
+			{
+				"displayName": "End Date",
+				"name": "endDate",
+				"type": "string",
+				"default": "",
+				"description": "Optional end date filter in YYYY-MM-DD format.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "endDate"
+					}
+				}
+			},
+			{
+				"displayName": "Include Domain",
+				"name": "includeDomain",
+				"type": "string",
+				"typeOptions": {
+					"multipleValues": true
+				},
+				"default": [],
+				"description": "Domains to include in results. Repeat includeDomain for multiple values (max 20).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "includeDomain"
+					}
+				}
+			},
+			{
+				"displayName": "Exclude Domain",
+				"name": "excludeDomain",
+				"type": "string",
+				"typeOptions": {
+					"multipleValues": true
+				},
+				"default": [],
+				"description": "Domains to exclude from results. Repeat excludeDomain for multiple values (max 20).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "excludeDomain"
 					}
 				}
 			}
@@ -168,7 +384,7 @@ export const web: INodeProperties[] = [
 					}
 				],
 				"default": "enabled",
-				"description": "Cache behavior: enabled (read/write cache), bypass (skip cache), or write_only.",
+				"description": "Cache behavior. Defaults to enabled.",
 				"routing": {
 					"send": {
 						"type": "query",

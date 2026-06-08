@@ -53,6 +53,18 @@ export const linkedin: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Organization Page",
+				"value": "linkedin.organization.get",
+				"action": "Get LinkedIn organization page",
+				"description": "Look up LinkedIn company, school, and organization pages by URL.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/linkedin/organizations"
+					}
+				}
+			},
+			{
 				"name": "Company Page",
 				"value": "linkedin.company.get",
 				"action": "Get LinkedIn company page",
@@ -273,8 +285,35 @@ export const linkedin: INodeProperties[] = [
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
+		"typeOptions": {
+			"multipleValues": true
+		},
+		"default": [],
+		"description": "LinkedIn organization page URL.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.organization.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
 		"default": "",
-		"description": "LinkedIn company page URL for this lookup.",
+		"description": "LinkedIn company page URL for this lookup. School and organization-guest pages are not supported; use `GET /v1/linkedin/organizations`.",
 		"placeholder": "e.g. https://example.com/page",
 		"required": true,
 		"routing": {
@@ -432,7 +471,7 @@ export const linkedin: INodeProperties[] = [
 		"name": "location",
 		"type": "string",
 		"default": "",
-		"description": "Location label for the search, e.g. `United States`, `Paris`, or `Remote`.",
+		"description": "Location label for the search.",
 		"required": true,
 		"routing": {
 			"send": {
@@ -473,7 +512,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "country",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter country code, e.g. `FR` or `US`.",
+				"description": "Optional two-letter country code.",
 				"routing": {
 					"send": {
 						"type": "query",

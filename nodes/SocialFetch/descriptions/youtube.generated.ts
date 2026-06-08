@@ -765,7 +765,7 @@ export const youtube: INodeProperties[] = [
 					}
 				],
 				"default": "all",
-				"description": "Optional content filter. Use all for broad results or shorts for Shorts-focused results.",
+				"description": "Optional content filter.",
 				"routing": {
 					"send": {
 						"type": "query",

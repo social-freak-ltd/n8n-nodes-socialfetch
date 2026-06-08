@@ -42,6 +42,48 @@ export const twitter: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Tweet",
+				"value": "twitter.tweet.get",
+				"action": "Get Twitter tweet",
+				"description": "Get a single tweet.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/twitter/tweets"
+					}
+				}
+			},
+			{
+				"name": "Tweet Replies",
+				"value": "twitter.tweet.replies.list",
+				"action": "List Twitter tweet replies",
+				"description": "List replies to a tweet.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/twitter/tweets/replies"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
+				"name": "Transcript",
+				"value": "twitter.tweet.transcript.get",
+				"action": "Get Twitter tweet transcript",
+				"description": "Get the transcript for a video tweet.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/twitter/tweets/transcript"
+					}
+				}
+			},
+			{
 				"name": "Search",
 				"value": "twitter.search.list",
 				"action": "Search Twitter posts",
@@ -60,14 +102,20 @@ export const twitter: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Tweet",
-				"value": "twitter.tweet.get",
-				"action": "Get Twitter tweet",
-				"description": "Get a single tweet.",
+				"name": "Hashtag Search",
+				"value": "twitter.hashtag.list",
+				"action": "Search Twitter by hashtag",
+				"description": "Search for posts on X by hashtag.",
 				"routing": {
 					"request": {
 						"method": "GET",
-						"url": "/v1/twitter/tweets"
+						"url": "/v1/twitter/hashtags"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
 					}
 				}
 			},
@@ -166,6 +214,130 @@ export const twitter: INodeProperties[] = [
 				}
 			}
 		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Tweet permalink or identifier.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.tweet.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.tweet.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Trim",
+				"name": "trim",
+				"type": "boolean",
+				"default": false,
+				"description": "Optional: omit author profile and tweet `core` for a smaller response.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "trim"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.tweet.replies.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Tweet permalink or identifier.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.tweet.replies.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Tweet permalink or identifier.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.tweet.transcript.get"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Return All",
@@ -497,17 +669,33 @@ export const twitter: INodeProperties[] = [
 		]
 	},
 	{
-		"displayName": "URL",
-		"name": "url",
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.hashtag.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Hashtag",
+		"name": "hashtag",
 		"type": "string",
 		"default": "",
-		"description": "Tweet permalink or identifier.",
-		"placeholder": "e.g. https://example.com/page",
+		"description": "Hashtag to search for on X. A leading # is optional.",
 		"required": true,
 		"routing": {
 			"send": {
 				"type": "query",
-				"property": "url"
+				"property": "hashtag"
 			}
 		},
 		"displayOptions": {
@@ -516,7 +704,7 @@ export const twitter: INodeProperties[] = [
 					"twitter"
 				],
 				"operation": [
-					"twitter.tweet.get"
+					"twitter.hashtag.list"
 				]
 			}
 		}
@@ -533,21 +721,34 @@ export const twitter: INodeProperties[] = [
 					"twitter"
 				],
 				"operation": [
-					"twitter.tweet.get"
+					"twitter.hashtag.list"
 				]
 			}
 		},
 		"options": [
 			{
-				"displayName": "Trim",
-				"name": "trim",
-				"type": "boolean",
-				"default": false,
-				"description": "Optional: omit author profile and tweet `core` for a smaller response.",
+				"displayName": "Section",
+				"name": "section",
+				"type": "string",
+				"default": "",
+				"description": "Optional section filter for the hashtag feed.",
 				"routing": {
 					"send": {
 						"type": "query",
-						"property": "trim"
+						"property": "section"
+					}
+				}
+			},
+			{
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 0,
+				"description": "Optional page size. Maximum supported value is 20.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "limit"
 					}
 				}
 			}
