@@ -233,6 +233,19 @@ export const linkedin: INodeProperties[] = [
 						"property": "onlyAuthoredPosts"
 					}
 				}
+			},
+			{
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 10,
+				"description": "Maximum posts to return (default 10).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "limit"
+					}
+				}
 			}
 		]
 	},
@@ -697,6 +710,19 @@ export const linkedin: INodeProperties[] = [
 					"send": {
 						"type": "query",
 						"property": "locationRadius"
+					}
+				}
+			},
+			{
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 10,
+				"description": "Maximum job listings to return (default 10).",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "limit"
 					}
 				}
 			}

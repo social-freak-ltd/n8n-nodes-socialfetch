@@ -155,7 +155,7 @@ export const web: INodeProperties[] = [
 				"displayName": "Max Results",
 				"name": "maxResults",
 				"type": "number",
-				"default": 0,
+				"default": 5,
 				"description": "Maximum number of search results to return (1–20).",
 				"routing": {
 					"send": {
