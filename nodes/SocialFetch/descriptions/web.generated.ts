@@ -20,7 +20,7 @@ export const web: INodeProperties[] = [
 				"name": "Search",
 				"value": "web.search.run",
 				"action": "Search the web",
-				"description": "Search the public web and return ranked results with snippets.",
+				"description": "Search the public web and return ranked organic results with snippets.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -121,162 +121,63 @@ export const web: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Search Depth",
-				"name": "searchDepth",
-				"type": "options",
-				"options": [
-					{
-						"name": "Basic",
-						"value": "basic"
-					},
-					{
-						"name": "Fast",
-						"value": "fast"
-					},
-					{
-						"name": "Ultra Fast",
-						"value": "ultra-fast"
-					},
-					{
-						"name": "Advanced",
-						"value": "advanced"
-					}
-				],
-				"default": "basic",
-				"description": "Search depth: basic (default), fast, ultra-fast, or advanced.",
+				"displayName": "Region",
+				"name": "region",
+				"type": "string",
+				"default": "",
+				"description": "2-letter country code for localized results (e.g. US, UK).",
 				"routing": {
 					"send": {
 						"type": "query",
-						"property": "searchDepth"
+						"property": "region"
 					}
 				}
 			},
 			{
-				"displayName": "Max Results",
-				"name": "maxResults",
+				"displayName": "Date Posted",
+				"name": "datePosted",
+				"type": "options",
+				"options": [
+					{
+						"name": "Last Hour",
+						"value": "last-hour"
+					},
+					{
+						"name": "Last Day",
+						"value": "last-day"
+					},
+					{
+						"name": "Last Week",
+						"value": "last-week"
+					},
+					{
+						"name": "Last Month",
+						"value": "last-month"
+					},
+					{
+						"name": "Last Year",
+						"value": "last-year"
+					}
+				],
+				"default": "last-hour",
+				"description": "Optional filter by when results were posted.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "datePosted"
+					}
+				}
+			},
+			{
+				"displayName": "Page",
+				"name": "page",
 				"type": "number",
-				"default": 5,
-				"description": "Maximum number of search results to return (1–20).",
+				"default": 0,
+				"description": "Page number (1-based). Defaults to 1 when omitted.",
 				"routing": {
 					"send": {
 						"type": "query",
-						"property": "maxResults"
-					}
-				}
-			},
-			{
-				"displayName": "Topic",
-				"name": "topic",
-				"type": "options",
-				"options": [
-					{
-						"name": "General",
-						"value": "general"
-					},
-					{
-						"name": "News",
-						"value": "news"
-					},
-					{
-						"name": "Finance",
-						"value": "finance"
-					}
-				],
-				"default": "general",
-				"description": "Search topic category. Defaults to general.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "topic"
-					}
-				}
-			},
-			{
-				"displayName": "Time Range",
-				"name": "timeRange",
-				"type": "options",
-				"options": [
-					{
-						"name": "Day",
-						"value": "day"
-					},
-					{
-						"name": "Week",
-						"value": "week"
-					},
-					{
-						"name": "Month",
-						"value": "month"
-					},
-					{
-						"name": "Year",
-						"value": "year"
-					}
-				],
-				"default": "day",
-				"description": "Optional time range filter based on publish or last-updated date.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "timeRange"
-					}
-				}
-			},
-			{
-				"displayName": "Start Date",
-				"name": "startDate",
-				"type": "string",
-				"default": "",
-				"description": "Optional start date filter in YYYY-MM-DD format.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "startDate"
-					}
-				}
-			},
-			{
-				"displayName": "End Date",
-				"name": "endDate",
-				"type": "string",
-				"default": "",
-				"description": "Optional end date filter in YYYY-MM-DD format.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "endDate"
-					}
-				}
-			},
-			{
-				"displayName": "Include Domain",
-				"name": "includeDomain",
-				"type": "string",
-				"typeOptions": {
-					"multipleValues": true
-				},
-				"default": [],
-				"description": "Domains to include in results. Repeat includeDomain for multiple values (max 20).",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "includeDomain"
-					}
-				}
-			},
-			{
-				"displayName": "Exclude Domain",
-				"name": "excludeDomain",
-				"type": "string",
-				"typeOptions": {
-					"multipleValues": true
-				},
-				"default": [],
-				"description": "Domains to exclude from results. Repeat excludeDomain for multiple values (max 20).",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "excludeDomain"
+						"property": "page"
 					}
 				}
 			}
