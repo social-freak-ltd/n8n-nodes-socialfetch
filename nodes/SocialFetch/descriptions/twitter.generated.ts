@@ -690,7 +690,7 @@ export const twitter: INodeProperties[] = [
 		"name": "hashtag",
 		"type": "string",
 		"default": "",
-		"description": "Hashtag to search for on X. A leading # is optional.",
+		"description": "Hashtag to search for.",
 		"required": true,
 		"routing": {
 			"send": {
@@ -729,9 +729,31 @@ export const twitter: INodeProperties[] = [
 			{
 				"displayName": "Section",
 				"name": "section",
-				"type": "string",
-				"default": "",
-				"description": "Optional section filter for the hashtag feed.",
+				"type": "options",
+				"options": [
+					{
+						"name": "Top",
+						"value": "top"
+					},
+					{
+						"name": "Latest",
+						"value": "latest"
+					},
+					{
+						"name": "People",
+						"value": "people"
+					},
+					{
+						"name": "Photos",
+						"value": "photos"
+					},
+					{
+						"name": "Videos",
+						"value": "videos"
+					}
+				],
+				"default": "top",
+				"description": "Optional section filter for the hashtag feed. Omit to use the default `top` section.",
 				"routing": {
 					"send": {
 						"type": "query",

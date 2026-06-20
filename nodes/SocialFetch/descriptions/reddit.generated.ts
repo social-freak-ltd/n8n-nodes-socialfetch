@@ -30,24 +30,6 @@ export const reddit: INodeProperties[] = [
 				}
 			},
 			{
-				"name": "Search",
-				"value": "reddit.search.list",
-				"action": "Search Reddit posts",
-				"description": "Search for posts on Reddit.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/reddit/search"
-					},
-					"send": {
-						"paginate": "={{$parameter[\"returnAll\"]}}"
-					},
-					"operations": {
-						"pagination": cursorPagination
-					}
-				}
-			},
-			{
 				"name": "Subreddit Posts",
 				"value": "reddit.subreddit.posts.list",
 				"action": "List Reddit subreddit posts",
@@ -100,6 +82,36 @@ export const reddit: INodeProperties[] = [
 						"pagination": cursorPagination
 					}
 				}
+			},
+			{
+				"name": "Post Transcript",
+				"value": "reddit.post.transcript.get",
+				"action": "Get Reddit post transcript",
+				"description": "Get captions transcript for a Reddit video post.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/reddit/posts/transcript"
+					}
+				}
+			},
+			{
+				"name": "Search",
+				"value": "reddit.search.list",
+				"action": "Search Reddit posts",
+				"description": "Search for posts on Reddit.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/reddit/search"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
 			}
 		]
 	},
@@ -144,142 +156,6 @@ export const reddit: INodeProperties[] = [
 					"send": {
 						"type": "query",
 						"property": "url"
-					}
-				}
-			}
-		]
-	},
-	{
-		"displayName": "Return All",
-		"name": "returnAll",
-		"type": "boolean",
-		"default": false,
-		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
-		"displayOptions": {
-			"show": {
-				"resource": [
-					"reddit"
-				],
-				"operation": [
-					"reddit.search.list"
-				]
-			}
-		}
-	},
-	{
-		"displayName": "Query",
-		"name": "query",
-		"type": "string",
-		"default": "",
-		"description": "Search query text for public Reddit posts.",
-		"placeholder": "e.g. automation",
-		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "query"
-			}
-		},
-		"displayOptions": {
-			"show": {
-				"resource": [
-					"reddit"
-				],
-				"operation": [
-					"reddit.search.list"
-				]
-			}
-		}
-	},
-	{
-		"displayName": "Additional Fields",
-		"name": "additionalOptions",
-		"type": "collection",
-		"placeholder": "Add Field",
-		"default": {},
-		"displayOptions": {
-			"show": {
-				"resource": [
-					"reddit"
-				],
-				"operation": [
-					"reddit.search.list"
-				]
-			}
-		},
-		"options": [
-			{
-				"displayName": "Sort By",
-				"name": "sortBy",
-				"type": "options",
-				"options": [
-					{
-						"name": "Relevance",
-						"value": "relevance"
-					},
-					{
-						"name": "New",
-						"value": "new"
-					},
-					{
-						"name": "Top",
-						"value": "top"
-					}
-				],
-				"default": "relevance",
-				"description": "Optional sort order for search results.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "sortBy"
-					}
-				}
-			},
-			{
-				"displayName": "Timeframe",
-				"name": "timeframe",
-				"type": "options",
-				"options": [
-					{
-						"name": "All",
-						"value": "all"
-					},
-					{
-						"name": "Day",
-						"value": "day"
-					},
-					{
-						"name": "Week",
-						"value": "week"
-					},
-					{
-						"name": "Month",
-						"value": "month"
-					},
-					{
-						"name": "Year",
-						"value": "year"
-					}
-				],
-				"default": "all",
-				"description": "Optional time range filter for search results.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "timeframe"
-					}
-				}
-			},
-			{
-				"displayName": "Trim",
-				"name": "trim",
-				"type": "boolean",
-				"default": false,
-				"description": "Whether to request a smaller response shape when available.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "trim"
 					}
 				}
 			}
@@ -622,6 +498,199 @@ export const reddit: INodeProperties[] = [
 				"type": "boolean",
 				"default": false,
 				"description": "When true, requests a lighter response shape when available.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "trim"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the Reddit post or direct hosted video URL whose transcript should be returned.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"reddit"
+				],
+				"operation": [
+					"reddit.post.transcript.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"reddit"
+				],
+				"operation": [
+					"reddit.post.transcript.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Language",
+				"name": "language",
+				"type": "string",
+				"default": "",
+				"description": "Optional ISO 639-1 language code (two letters) to prefer when multiple caption tracks exist.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "language"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"reddit"
+				],
+				"operation": [
+					"reddit.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Search query text for public Reddit posts.",
+		"placeholder": "e.g. automation",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "query"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"reddit"
+				],
+				"operation": [
+					"reddit.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"reddit"
+				],
+				"operation": [
+					"reddit.search.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Sort By",
+				"name": "sortBy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Relevance",
+						"value": "relevance"
+					},
+					{
+						"name": "New",
+						"value": "new"
+					},
+					{
+						"name": "Top",
+						"value": "top"
+					}
+				],
+				"default": "relevance",
+				"description": "Optional sort order for search results.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "sortBy"
+					}
+				}
+			},
+			{
+				"displayName": "Timeframe",
+				"name": "timeframe",
+				"type": "options",
+				"options": [
+					{
+						"name": "All",
+						"value": "all"
+					},
+					{
+						"name": "Day",
+						"value": "day"
+					},
+					{
+						"name": "Week",
+						"value": "week"
+					},
+					{
+						"name": "Month",
+						"value": "month"
+					},
+					{
+						"name": "Year",
+						"value": "year"
+					}
+				],
+				"default": "all",
+				"description": "Optional time range filter for search results.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "timeframe"
+					}
+				}
+			},
+			{
+				"displayName": "Trim",
+				"name": "trim",
+				"type": "boolean",
+				"default": false,
+				"description": "Whether to request a smaller response shape when available.",
 				"routing": {
 					"send": {
 						"type": "query",
