@@ -33,11 +33,17 @@ export const twitter: INodeProperties[] = [
 				"name": "Profile Tweets",
 				"value": "twitter.profile.tweets.list",
 				"action": "List Twitter profile tweets",
-				"description": "Get popular tweets from a specific X profile.",
+				"description": "List tweets from a specific X profile.",
 				"routing": {
 					"request": {
 						"method": "GET",
 						"url": "=/v1/twitter/profiles/{{$parameter[\"handle\"]}}/tweets"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
 					}
 				}
 			},
@@ -165,6 +171,23 @@ export const twitter: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.profile.tweets.list"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "Handle",
 		"name": "handle",
 		"type": "string",
@@ -201,15 +224,41 @@ export const twitter: INodeProperties[] = [
 		},
 		"options": [
 			{
-				"displayName": "Trim",
-				"name": "trim",
-				"type": "boolean",
-				"default": false,
-				"description": "Optional: omit per-tweet author and profile card for a smaller response.",
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 40,
+				"description": "Optional page size. Defaults to 40 when omitted. Maximum supported value is 100.",
 				"routing": {
 					"send": {
 						"type": "query",
-						"property": "trim"
+						"property": "limit"
+					}
+				}
+			},
+			{
+				"displayName": "Include Replies",
+				"name": "includeReplies",
+				"type": "boolean",
+				"default": false,
+				"description": "Optional: include reply tweets in the returned list. Defaults to false.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "includeReplies"
+					}
+				}
+			},
+			{
+				"displayName": "Include Pinned",
+				"name": "includePinned",
+				"type": "boolean",
+				"default": false,
+				"description": "Optional: include pinned tweets on the first page. Defaults to false.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "includePinned"
 					}
 				}
 			}

@@ -172,7 +172,7 @@ export const web: INodeProperties[] = [
 				"displayName": "Page",
 				"name": "page",
 				"type": "number",
-				"default": 0,
+				"default": 1,
 				"description": "Page number (1-based). Defaults to 1 when omitted.",
 				"routing": {
 					"send": {

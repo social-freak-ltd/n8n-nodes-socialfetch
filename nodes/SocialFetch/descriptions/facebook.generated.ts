@@ -815,6 +815,54 @@ export const facebook: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Lat",
+		"name": "lat",
+		"type": "number",
+		"default": 0,
+		"description": "Latitude for the marketplace search location.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "lat"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"facebook"
+				],
+				"operation": [
+					"facebook.marketplace.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Lng",
+		"name": "lng",
+		"type": "number",
+		"default": 0,
+		"description": "Longitude for the marketplace search location.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "lng"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"facebook"
+				],
+				"operation": [
+					"facebook.marketplace.search.list"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "Additional Fields",
 		"name": "additionalOptions",
 		"type": "collection",
@@ -831,32 +879,6 @@ export const facebook: INodeProperties[] = [
 			}
 		},
 		"options": [
-			{
-				"displayName": "Lat",
-				"name": "lat",
-				"type": "number",
-				"default": 0,
-				"description": "Latitude for the marketplace search location.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "lat"
-					}
-				}
-			},
-			{
-				"displayName": "Lng",
-				"name": "lng",
-				"type": "number",
-				"default": 0,
-				"description": "Longitude for the marketplace search location.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "lng"
-					}
-				}
-			},
 			{
 				"displayName": "Radius Km",
 				"name": "radiusKm",
