@@ -21,7 +21,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Channel",
 				"value": "youtube.channel.get",
 				"action": "Get YouTube channel",
-				"description": "Get details for a YouTube channel.",
+				"description": "Get YouTube channel details by channel id, handle, or URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Channel Videos",
 				"value": "youtube.channel.videos.list",
 				"action": "List YouTube channel videos",
-				"description": "Get videos published by a specific YouTube channel.",
+				"description": "List long-form videos from a YouTube channel (not Shorts — use youtube.channel.shorts.list).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -51,7 +51,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Channel Shorts",
 				"value": "youtube.channel.shorts.list",
 				"action": "List YouTube channel shorts",
-				"description": "Get Shorts published by a specific YouTube channel.",
+				"description": "List Shorts from a YouTube channel (not long-form videos).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -69,7 +69,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Playlist",
 				"value": "youtube.playlist.get",
 				"action": "Get YouTube playlist",
-				"description": "Get a YouTube playlist.",
+				"description": "Get a YouTube playlist by playlist id.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -81,7 +81,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Community Post",
 				"value": "youtube.community.post.get",
 				"action": "Get YouTube community post",
-				"description": "Get the contents of a YouTube community post.",
+				"description": "Get a YouTube community post by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -93,7 +93,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Search",
 				"value": "youtube.search.list",
 				"action": "Search YouTube",
-				"description": "Search YouTube.",
+				"description": "Search YouTube videos, channels, and playlists by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -111,7 +111,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Hashtag Search",
 				"value": "youtube.search.hashtag.list",
 				"action": "Search YouTube by hashtag",
-				"description": "Search YouTube by hashtag.",
+				"description": "Search YouTube content by hashtag.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -129,7 +129,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Trending Shorts",
 				"value": "youtube.shorts.trending.list",
 				"action": "List trending YouTube Shorts",
-				"description": "Discover currently trending YouTube Shorts.",
+				"description": "List currently trending YouTube Shorts.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -141,7 +141,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Video",
 				"value": "youtube.video.get",
 				"action": "Get YouTube video",
-				"description": "Get a single YouTube video.",
+				"description": "Get a single YouTube video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -153,7 +153,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Comments",
 				"value": "youtube.video.comments.list",
 				"action": "List YouTube video comments",
-				"description": "Get comments on a YouTube video.",
+				"description": "List comments on a YouTube video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -171,7 +171,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Replies",
 				"value": "youtube.video.comments.replies.list",
 				"action": "List YouTube comment replies",
-				"description": "Get replies to a YouTube comment.",
+				"description": "List replies to a YouTube comment.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -189,7 +189,7 @@ export const youtube: INodeProperties[] = [
 				"name": "Transcript",
 				"value": "youtube.video.transcript.get",
 				"action": "Get YouTube video transcript",
-				"description": "Get the transcript for a YouTube video.",
+				"description": "Get the transcript for a YouTube video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -669,7 +669,7 @@ export const youtube: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter region code for localized search results.",
+				"description": "Optional ISO 3166-1 country code for localized search results.",
 				"routing": {
 					"send": {
 						"type": "query",

@@ -21,7 +21,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Profile",
 				"value": "twitter.profile.get",
 				"action": "Get Twitter profile",
-				"description": "Get an X profile for a creator or account.",
+				"description": "Get an X (Twitter) profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Profile Tweets",
 				"value": "twitter.profile.tweets.list",
 				"action": "List Twitter profile tweets",
-				"description": "List tweets from a specific X profile.",
+				"description": "List tweets from an X profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -51,7 +51,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Tweet",
 				"value": "twitter.tweet.get",
 				"action": "Get Twitter tweet",
-				"description": "Get a single tweet.",
+				"description": "Get a single tweet by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -63,7 +63,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Tweet Replies",
 				"value": "twitter.tweet.replies.list",
 				"action": "List Twitter tweet replies",
-				"description": "List replies to a tweet.",
+				"description": "List replies to a tweet by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -81,7 +81,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Transcript",
 				"value": "twitter.tweet.transcript.get",
 				"action": "Get Twitter tweet transcript",
-				"description": "Get the transcript for a video tweet.",
+				"description": "Get the transcript for a video tweet by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -93,7 +93,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Search",
 				"value": "twitter.search.list",
 				"action": "Search Twitter posts",
-				"description": "Search for posts on X.",
+				"description": "Search X posts by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -111,7 +111,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Hashtag Search",
 				"value": "twitter.hashtag.list",
 				"action": "Search Twitter by hashtag",
-				"description": "Search for posts on X by hashtag.",
+				"description": "Search X posts by hashtag (not free-text keyword — use twitter.search.list for that).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -129,7 +129,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Community",
 				"value": "twitter.community.get",
 				"action": "Get Twitter community",
-				"description": "Get details for an X community.",
+				"description": "Get details for an X community by community id or URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -141,7 +141,7 @@ export const twitter: INodeProperties[] = [
 				"name": "Community Tweets",
 				"value": "twitter.community.tweets.list",
 				"action": "List Twitter community tweets",
-				"description": "Get tweets from an X community.",
+				"description": "List tweets from an X community by community id or URL.",
 				"routing": {
 					"request": {
 						"method": "GET",

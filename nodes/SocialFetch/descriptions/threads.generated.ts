@@ -32,7 +32,7 @@ export const threads: INodeProperties[] = [
 				"name": "Profile Posts",
 				"value": "threads.profile.posts.list",
 				"action": "List Threads profile posts",
-				"description": "Get posts from a specific Threads profile.",
+				"description": "List posts from a Threads profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -44,7 +44,7 @@ export const threads: INodeProperties[] = [
 				"name": "Search Posts",
 				"value": "threads.search.list",
 				"action": "Search Threads posts",
-				"description": "Search for posts on Threads.",
+				"description": "Search Threads posts by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -56,7 +56,7 @@ export const threads: INodeProperties[] = [
 				"name": "Post",
 				"value": "threads.post.get",
 				"action": "Get Threads post",
-				"description": "Get a single Threads post.",
+				"description": "Get a single Threads post by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -68,7 +68,7 @@ export const threads: INodeProperties[] = [
 				"name": "User Search",
 				"value": "threads.users.search",
 				"action": "Search Threads users",
-				"description": "Search for users on Threads.",
+				"description": "Search Threads users by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",

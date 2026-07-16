@@ -32,7 +32,7 @@ export const web: INodeProperties[] = [
 				"name": "Markdown",
 				"value": "web.markdown.generate",
 				"action": "Generate web page markdown",
-				"description": "Convert a web page into clean markdown.",
+				"description": "Convert a web page URL into clean markdown.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -44,7 +44,7 @@ export const web: INodeProperties[] = [
 				"name": "Ask",
 				"value": "web.ask.run",
 				"action": "Ask a question about a web page",
-				"description": "Ask a natural-language question about a web page and get an LLM-generated answer.",
+				"description": "Ask a natural-language question about a specific web page and get an LLM-generated answer.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -56,7 +56,7 @@ export const web: INodeProperties[] = [
 				"name": "HTML",
 				"value": "web.html.generate",
 				"action": "Generate web page HTML",
-				"description": "Fetch and return cleaned HTML for a web page.",
+				"description": "Fetch cleaned HTML for a web page URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -125,7 +125,7 @@ export const web: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "2-letter country code for localized results (e.g. US, UK).",
+				"description": "ISO 3166-1 country code for localized results (e.g. US, GB, CA).",
 				"routing": {
 					"send": {
 						"type": "query",

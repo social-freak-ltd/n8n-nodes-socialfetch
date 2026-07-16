@@ -21,7 +21,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Subreddit",
 				"value": "reddit.subreddit.get",
 				"action": "Get Reddit subreddit",
-				"description": "Get details for a Reddit community.",
+				"description": "Get details for a Reddit community (subreddit).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Subreddit Posts",
 				"value": "reddit.subreddit.posts.list",
 				"action": "List Reddit subreddit posts",
-				"description": "Get posts from a specific subreddit.",
+				"description": "List posts from a specific subreddit.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -51,7 +51,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Subreddit Search",
 				"value": "reddit.subreddit.search.list",
 				"action": "Search Reddit subreddit",
-				"description": "Search posts within a subreddit.",
+				"description": "Search posts within one subreddit (not site-wide — use reddit.search.list for that).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -69,7 +69,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Post Comments",
 				"value": "reddit.post.comments.list",
 				"action": "List Reddit post comments",
-				"description": "Get comments on a Reddit post.",
+				"description": "List comments on a Reddit post by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -99,7 +99,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Search",
 				"value": "reddit.search.list",
 				"action": "Search Reddit posts",
-				"description": "Search for posts on Reddit.",
+				"description": "Search Reddit posts across Reddit by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",

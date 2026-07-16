@@ -21,7 +21,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Profile",
 				"value": "instagram.profile.get",
 				"action": "Get Instagram profile",
-				"description": "Get a full Instagram profile by handle.",
+				"description": "Get a full Instagram profile by handle (bio, counts, and related fields).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Basic Profile",
 				"value": "instagram.profile.basic.get",
 				"action": "Get Instagram basic profile",
-				"description": "Get a lightweight Instagram profile by numeric user ID.",
+				"description": "Get a lightweight Instagram profile by numeric user ID when you already have the id — prefer instagram.profile.get for handle lookups.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -45,7 +45,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Profile Posts",
 				"value": "instagram.profile.posts.list",
 				"action": "List Instagram profile posts",
-				"description": "Get posts from a specific Instagram profile.",
+				"description": "List posts from an Instagram profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -63,7 +63,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Profile Reels",
 				"value": "instagram.profile.reels.list",
 				"action": "List Instagram profile reels",
-				"description": "Get Reels from a specific Instagram profile.",
+				"description": "List Reels from an Instagram profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -81,7 +81,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Profile Highlights",
 				"value": "instagram.profile.highlights.list",
 				"action": "List Instagram profile highlights",
-				"description": "List story highlight albums for an Instagram profile.",
+				"description": "List story highlight albums for an Instagram profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -93,7 +93,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Highlight",
 				"value": "instagram.highlight.get",
 				"action": "Get Instagram highlight",
-				"description": "Get stories from a saved Instagram highlight.",
+				"description": "Get stories inside a saved Instagram highlight by highlight id.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -105,7 +105,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Post or Reel",
 				"value": "instagram.post.get",
 				"action": "Get Instagram post or reel",
-				"description": "Get a single Instagram post or Reel.",
+				"description": "Get a single Instagram post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -117,7 +117,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Comments",
 				"value": "instagram.post.comments.list",
 				"action": "List Instagram post or reel comments",
-				"description": "Get comments on an Instagram post or Reel.",
+				"description": "List comments on an Instagram post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -135,7 +135,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Transcript",
 				"value": "instagram.post.transcript.get",
 				"action": "Get Instagram post transcript",
-				"description": "Get the transcript for an Instagram post or Reel.",
+				"description": "Get the spoken transcript for an Instagram post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -147,7 +147,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Search Reels",
 				"value": "instagram.search.reels.list",
 				"action": "Search Instagram Reels",
-				"description": "Search Instagram Reels by keyword with optional date filters and page-based pagination.",
+				"description": "Search Instagram Reels by keyword (optional date filters and page-based pagination).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -350,7 +350,7 @@ export const instagram: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter region (country code) for request routing.",
+				"description": "Optional ISO 3166-1 country code for request routing.",
 				"routing": {
 					"send": {
 						"type": "query",

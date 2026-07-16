@@ -20,7 +20,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Profiles",
 				"value": "linkedin.profile.get",
 				"action": "Get LinkedIn profiles",
-				"description": "Get LinkedIn profiles by URL or handle.",
+				"description": "Get LinkedIn person profiles by URL or handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -32,7 +32,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Profile Posts",
 				"value": "linkedin.profiles.posts.list",
 				"action": "List LinkedIn profile posts",
-				"description": "Get posts from a LinkedIn profile.",
+				"description": "List posts from a LinkedIn person profile.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -56,7 +56,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Organization Page",
 				"value": "linkedin.organization.get",
 				"action": "Get LinkedIn organization page",
-				"description": "Look up LinkedIn company, school, and organization pages by URL.",
+				"description": "Look up LinkedIn company, school, or organization pages by URL (broader than linkedin.company.get).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -68,7 +68,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Company Page",
 				"value": "linkedin.company.get",
 				"action": "Get LinkedIn company page",
-				"description": "Get a LinkedIn company page.",
+				"description": "Get a LinkedIn company page by company URL — use linkedin.organization.get for schools and mixed organization URLs.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -80,7 +80,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Company Posts",
 				"value": "linkedin.company.posts.list",
 				"action": "List LinkedIn company posts",
-				"description": "Get posts from a LinkedIn company page.",
+				"description": "List posts from a LinkedIn company page.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -92,7 +92,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Post or Article",
 				"value": "linkedin.post.get",
 				"action": "Get LinkedIn post or article",
-				"description": "Get a LinkedIn post or article.",
+				"description": "Get a LinkedIn post or article by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -104,7 +104,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "Jobs",
 				"value": "linkedin.jobs.get",
 				"action": "Get LinkedIn jobs",
-				"description": "Get LinkedIn job postings by URL.",
+				"description": "Get LinkedIn job postings by job URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -525,7 +525,7 @@ export const linkedin: INodeProperties[] = [
 				"name": "country",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter country code.",
+				"description": "Optional ISO 3166-1 country code.",
 				"routing": {
 					"send": {
 						"type": "query",

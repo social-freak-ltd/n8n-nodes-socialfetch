@@ -21,7 +21,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile",
 				"value": "tiktok.profile.get",
 				"action": "Get TikTok profile",
-				"description": "Get a TikTok profile for a creator or account.",
+				"description": "Get a TikTok profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile Videos",
 				"value": "tiktok.profile.videos.list",
 				"action": "List TikTok profile videos",
-				"description": "Get videos from a specific TikTok profile.",
+				"description": "List videos from a TikTok profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -51,7 +51,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile Followers",
 				"value": "tiktok.profile.followers.list",
 				"action": "List TikTok profile followers",
-				"description": "Get followers from a specific TikTok profile.",
+				"description": "List followers of a TikTok profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -69,7 +69,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile Following",
 				"value": "tiktok.profile.following.list",
 				"action": "List TikTok profile following",
-				"description": "Get accounts followed by a specific TikTok profile.",
+				"description": "List accounts followed by a TikTok profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -87,7 +87,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile Region",
 				"value": "tiktok.profile.region.get",
 				"action": "Get TikTok profile region",
-				"description": "Get the region code reported for a TikTok profile.",
+				"description": "Get the region code reported for a TikTok profile by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -96,10 +96,22 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Profile Audience",
+				"value": "tiktok.profile.audience.get",
+				"action": "Get TikTok profile audience",
+				"description": "Get audience location demographics for a TikTok profile by handle.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "=/v1/tiktok/profiles/{{$parameter[\"handle\"]}}/audience"
+					}
+				}
+			},
+			{
 				"name": "Live Stream",
 				"value": "tiktok.profile.live.check",
 				"action": "Get TikTok live stream",
-				"description": "Check whether a TikTok creator is currently live.",
+				"description": "Check whether a TikTok creator is currently live by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -147,7 +159,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Hashtag Search",
 				"value": "tiktok.search.hashtag.list",
 				"action": "Search TikTok by hashtag",
-				"description": "Search TikTok videos by hashtag.",
+				"description": "Search TikTok videos by hashtag (not free-text keyword — use tiktok.search.videos.list for that).",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -165,7 +177,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Video",
 				"value": "tiktok.video.get",
 				"action": "Get TikTok video",
-				"description": "Get a single TikTok video.",
+				"description": "Get a single TikTok video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -177,7 +189,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Comments",
 				"value": "tiktok.video.comments.list",
 				"action": "List TikTok video comments",
-				"description": "Get comments on a TikTok video.",
+				"description": "List comments on a TikTok video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -195,7 +207,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Transcript",
 				"value": "tiktok.video.transcript.get",
 				"action": "Get TikTok video transcript",
-				"description": "Get the spoken transcript for a TikTok video.",
+				"description": "Get the spoken transcript for a TikTok video by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -207,7 +219,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Trending Feed",
 				"value": "tiktok.feed.trending.list",
 				"action": "List TikTok trending feed",
-				"description": "Discover currently trending TikTok posts.",
+				"description": "List currently trending TikTok posts for a region.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -219,7 +231,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Shop Product Search",
 				"value": "tiktok.shop.products.search",
 				"action": "Search TikTok Shop products",
-				"description": "Search products in TikTok Shop.",
+				"description": "Search products in TikTok Shop by keyword.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -231,7 +243,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Shop Store Products",
 				"value": "tiktok.shop.products.list",
 				"action": "List TikTok Shop store products",
-				"description": "Get products listed in a TikTok Shop store.",
+				"description": "List products in a TikTok Shop store by shop id or URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -249,7 +261,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Shop Product",
 				"value": "tiktok.product.get",
 				"action": "Get TikTok Shop product",
-				"description": "Get details for a TikTok Shop product.",
+				"description": "Get details for a TikTok Shop product by product id.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -261,7 +273,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Shop Product Reviews",
 				"value": "tiktok.product.reviews.list",
 				"action": "List TikTok Shop product reviews",
-				"description": "Get buyer reviews for a TikTok Shop product.",
+				"description": "List buyer reviews for a TikTok Shop product by product id.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -273,7 +285,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "Profile Showcase Products",
 				"value": "tiktok.profile.showcaseProducts.list",
 				"action": "List TikTok profile showcase products",
-				"description": "Get products featured on a creator's TikTok showcase.",
+				"description": "List products featured on a creator's TikTok showcase by handle.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -402,7 +414,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional region (country code) for the request.",
+				"description": "Optional ISO 3166-1 country code for the request.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -607,6 +619,25 @@ export const tiktok: INodeProperties[] = [
 					"tiktok"
 				],
 				"operation": [
+					"tiktok.profile.audience.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "TikTok handle to look up, with or without a leading @.",
+		"placeholder": "e.g. n8n",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
 					"tiktok.profile.live.check"
 				]
 			}
@@ -784,7 +815,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter region code for localized search results.",
+				"description": "Optional two-letter ISO 3166-1 country code for localized search results.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -870,7 +901,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional region (country code) for the request. This sets the proxy region and does not filter results to that country only.",
+				"description": "Optional ISO 3166-1 country code for the request. This sets the proxy region and does not filter results to that country only.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -940,7 +971,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter region (country code) used to route the request when needed.",
+				"description": "Optional ISO 3166-1 country code used to route the request when needed.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -1138,7 +1169,7 @@ export const tiktok: INodeProperties[] = [
 		"name": "region",
 		"type": "string",
 		"default": "",
-		"description": "Two-letter region code for the request.",
+		"description": "Two-letter ISO 3166-1 country code for the request.",
 		"required": true,
 		"routing": {
 			"send": {
@@ -1784,7 +1815,7 @@ export const tiktok: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional region (country code) for the request.",
+				"description": "Optional ISO 3166-1 country code for the request.",
 				"routing": {
 					"send": {
 						"type": "query",

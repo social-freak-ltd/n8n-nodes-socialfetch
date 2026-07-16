@@ -21,7 +21,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Profile",
 				"value": "facebook.profile.get",
 				"action": "Get Facebook profile",
-				"description": "Get a Facebook profile or page.",
+				"description": "Get a Facebook profile or Page by URL or username.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -33,7 +33,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Profile Posts",
 				"value": "facebook.profile.posts.list",
 				"action": "List Facebook profile posts",
-				"description": "Get posts from a Facebook profile or page.",
+				"description": "List posts from a Facebook profile or Page.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -51,7 +51,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Profile Reels",
 				"value": "facebook.profile.reels.list",
 				"action": "List Facebook profile reels",
-				"description": "Get Reels from a Facebook profile or page.",
+				"description": "List Reels from a Facebook profile or Page.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -69,7 +69,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Profile Photos",
 				"value": "facebook.profile.photos.list",
 				"action": "List Facebook profile photos",
-				"description": "Get photos from a Facebook profile or page.",
+				"description": "List photos from a Facebook profile or Page.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -87,7 +87,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Post or Reel",
 				"value": "facebook.post.get",
 				"action": "Get Facebook post or reel",
-				"description": "Get a Facebook post or Reel.",
+				"description": "Get a Facebook post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -99,7 +99,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Comments",
 				"value": "facebook.post.comments.list",
 				"action": "List Facebook post or reel comments",
-				"description": "Get comments on a Facebook post or Reel.",
+				"description": "List comments on a Facebook post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -117,7 +117,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Transcript",
 				"value": "facebook.post.transcript.get",
 				"action": "Get Facebook post transcript",
-				"description": "Get the transcript for a Facebook post.",
+				"description": "Get the transcript for a Facebook post or Reel by URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -129,7 +129,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Group Posts",
 				"value": "facebook.group.posts.list",
 				"action": "List Facebook group posts",
-				"description": "Get posts from a Facebook group.",
+				"description": "List posts from a Facebook group by group URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -147,7 +147,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Marketplace Item",
 				"value": "facebook.marketplace.item.get",
 				"action": "Get Facebook Marketplace item",
-				"description": "Get details for a Facebook Marketplace listing.",
+				"description": "Get details for a Facebook Marketplace listing by item URL.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -201,7 +201,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Ad Library Search",
 				"value": "facebook.adLibrary.ads.search.get",
 				"action": "Search Facebook Ad Library ads",
-				"description": "Search Facebook Ad Library ads by keyword.",
+				"description": "Search Facebook Ad Library ads by keyword and filters.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -219,7 +219,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Company Ads",
 				"value": "facebook.company.ads.list",
 				"action": "List Facebook company ads",
-				"description": "List ads a company or page is running in the Facebook Ad Library.",
+				"description": "List ads a company or Page is running in the Facebook Ad Library.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -237,7 +237,7 @@ export const facebook: INodeProperties[] = [
 				"name": "Ad Library Companies",
 				"value": "facebook.adLibrary.companies.search",
 				"action": "Search Facebook ad library companies",
-				"description": "Search Facebook ad library companies by name.",
+				"description": "Search Facebook Ad Library companies / advertisers by name.",
 				"routing": {
 					"request": {
 						"method": "GET",
