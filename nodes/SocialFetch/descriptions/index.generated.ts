@@ -4,6 +4,7 @@ import { tiktok } from "./tiktok.generated";
 import { twitter } from "./twitter.generated";
 import { telegram } from "./telegram.generated";
 import { facebook } from "./facebook.generated";
+import { google } from "./google.generated";
 import { instagram } from "./instagram.generated";
 import { threads } from "./threads.generated";
 import { linkedin } from "./linkedin.generated";
@@ -29,6 +30,10 @@ export const resourceOptions = [
 	{
 		"name": "Facebook",
 		"value": "facebook"
+	},
+	{
+		"name": "Google",
+		"value": "google"
 	},
 	{
 		"name": "Instagram",
@@ -69,6 +74,7 @@ export const allResourceProperties: INodeProperties[] = [
 	...twitter,
 	...telegram,
 	...facebook,
+	...google,
 	...instagram,
 	...threads,
 	...linkedin,

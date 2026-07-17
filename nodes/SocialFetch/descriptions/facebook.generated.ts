@@ -114,6 +114,24 @@ export const facebook: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Replies",
+				"value": "facebook.post.comments.replies.list",
+				"action": "List Facebook comment replies",
+				"description": "List replies to a Facebook comment.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/facebook/posts/comments/replies"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
 				"name": "Transcript",
 				"value": "facebook.post.transcript.get",
 				"action": "Get Facebook post transcript",
@@ -583,6 +601,23 @@ export const facebook: INodeProperties[] = [
 				}
 			}
 		]
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"facebook"
+				],
+				"operation": [
+					"facebook.post.comments.replies.list"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "URL",

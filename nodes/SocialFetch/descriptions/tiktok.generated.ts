@@ -204,6 +204,24 @@ export const tiktok: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Replies",
+				"value": "tiktok.video.comments.replies.list",
+				"action": "List TikTok comment replies",
+				"description": "List replies to a TikTok video comment.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/tiktok/videos/comments/replies"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
 				"name": "Transcript",
 				"value": "tiktok.video.transcript.get",
 				"action": "Get TikTok video transcript",
@@ -224,6 +242,36 @@ export const tiktok: INodeProperties[] = [
 					"request": {
 						"method": "GET",
 						"url": "/v1/tiktok/feed/trending"
+					}
+				}
+			},
+			{
+				"name": "Song",
+				"value": "tiktok.song.get",
+				"action": "Get TikTok song",
+				"description": "Get details for a TikTok song or sound by id.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/tiktok/songs"
+					}
+				}
+			},
+			{
+				"name": "Music Videos",
+				"value": "tiktok.music.videos.list",
+				"action": "List TikTok music videos",
+				"description": "List TikTok videos that use a specific music clip.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "=/v1/tiktok/music/{{$parameter[\"clipId\"]}}/videos"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
 					}
 				}
 			},
@@ -290,6 +338,36 @@ export const tiktok: INodeProperties[] = [
 					"request": {
 						"method": "GET",
 						"url": "=/v1/tiktok/profiles/{{$parameter[\"handle\"]}}/showcase-products"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
+				"name": "Ad Library Ad",
+				"value": "tiktok.adLibrary.ad.get",
+				"action": "Get TikTok Ad Library ad",
+				"description": "Get a single TikTok Ad Library or Top Ads creative by ad id or public ad URL.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/tiktok/ad-library/ads"
+					}
+				}
+			},
+			{
+				"name": "Ad Library Search",
+				"value": "tiktok.adLibrary.ads.search.get",
+				"action": "Search TikTok Ad Library ads",
+				"description": "Search TikTok Top Ads by keyword and filters, or search the public Ads Library by advertiser name.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/tiktok/ad-library/ads/search"
 					},
 					"send": {
 						"paginate": "={{$parameter[\"returnAll\"]}}"
@@ -1095,6 +1173,72 @@ export const tiktok: INodeProperties[] = [
 		]
 	},
 	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.video.comments.replies.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Comment ID",
+		"name": "commentId",
+		"type": "string",
+		"default": "",
+		"description": "Parent comment id from List TikTok video comments (`data.comments[].id`).",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "commentId"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.video.comments.replies.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the TikTok video that contains the parent comment.",
+		"placeholder": "e.g. https://example.com/page",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "url"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.video.comments.replies.list"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
@@ -1219,6 +1363,65 @@ export const tiktok: INodeProperties[] = [
 				}
 			}
 		]
+	},
+	{
+		"displayName": "ID",
+		"name": "id",
+		"type": "string",
+		"default": "",
+		"description": "TikTok song or sound id. Use the trailing id from a music page URL, or `music.id` from a video lookup.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "id"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.song.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.music.videos.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Clip ID",
+		"name": "clipId",
+		"type": "string",
+		"default": "",
+		"description": "TikTok music clip id whose videos should be listed.",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.music.videos.list"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Query",
@@ -1820,6 +2023,842 @@ export const tiktok: INodeProperties[] = [
 					"send": {
 						"type": "query",
 						"property": "region"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.adLibrary.ad.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Ad ID",
+				"name": "adId",
+				"type": "string",
+				"default": "",
+				"description": "TikTok Ad Library or Top Ads ad id.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "adId"
+					}
+				}
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public TikTok Ad Library or Top Ads detail URL for the ad.",
+				"placeholder": "e.g. https://example.com/page",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "url"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.adLibrary.ads.search.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"tiktok"
+				],
+				"operation": [
+					"tiktok.adLibrary.ads.search.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Region",
+				"name": "region",
+				"type": "options",
+				"options": [
+					{
+						"name": "DZ",
+						"value": "DZ"
+					},
+					{
+						"name": "AR",
+						"value": "AR"
+					},
+					{
+						"name": "AU",
+						"value": "AU"
+					},
+					{
+						"name": "AT",
+						"value": "AT"
+					},
+					{
+						"name": "AZ",
+						"value": "AZ"
+					},
+					{
+						"name": "BH",
+						"value": "BH"
+					},
+					{
+						"name": "BD",
+						"value": "BD"
+					},
+					{
+						"name": "BY",
+						"value": "BY"
+					},
+					{
+						"name": "BE",
+						"value": "BE"
+					},
+					{
+						"name": "BO",
+						"value": "BO"
+					},
+					{
+						"name": "BR",
+						"value": "BR"
+					},
+					{
+						"name": "BG",
+						"value": "BG"
+					},
+					{
+						"name": "KH",
+						"value": "KH"
+					},
+					{
+						"name": "CA",
+						"value": "CA"
+					},
+					{
+						"name": "CL",
+						"value": "CL"
+					},
+					{
+						"name": "CO",
+						"value": "CO"
+					},
+					{
+						"name": "CR",
+						"value": "CR"
+					},
+					{
+						"name": "HR",
+						"value": "HR"
+					},
+					{
+						"name": "CY",
+						"value": "CY"
+					},
+					{
+						"name": "CZ",
+						"value": "CZ"
+					},
+					{
+						"name": "DK",
+						"value": "DK"
+					},
+					{
+						"name": "DO",
+						"value": "DO"
+					},
+					{
+						"name": "EC",
+						"value": "EC"
+					},
+					{
+						"name": "EG",
+						"value": "EG"
+					},
+					{
+						"name": "EE",
+						"value": "EE"
+					},
+					{
+						"name": "FI",
+						"value": "FI"
+					},
+					{
+						"name": "FR",
+						"value": "FR"
+					},
+					{
+						"name": "DE",
+						"value": "DE"
+					},
+					{
+						"name": "GR",
+						"value": "GR"
+					},
+					{
+						"name": "GT",
+						"value": "GT"
+					},
+					{
+						"name": "JO",
+						"value": "JO"
+					},
+					{
+						"name": "HU",
+						"value": "HU"
+					},
+					{
+						"name": "ID",
+						"value": "ID"
+					},
+					{
+						"name": "IQ",
+						"value": "IQ"
+					},
+					{
+						"name": "IE",
+						"value": "IE"
+					},
+					{
+						"name": "IL",
+						"value": "IL"
+					},
+					{
+						"name": "IT",
+						"value": "IT"
+					},
+					{
+						"name": "JP",
+						"value": "JP"
+					},
+					{
+						"name": "KZ",
+						"value": "KZ"
+					},
+					{
+						"name": "KE",
+						"value": "KE"
+					},
+					{
+						"name": "KW",
+						"value": "KW"
+					},
+					{
+						"name": "LV",
+						"value": "LV"
+					},
+					{
+						"name": "LB",
+						"value": "LB"
+					},
+					{
+						"name": "MY",
+						"value": "MY"
+					},
+					{
+						"name": "MX",
+						"value": "MX"
+					},
+					{
+						"name": "MA",
+						"value": "MA"
+					},
+					{
+						"name": "NL",
+						"value": "NL"
+					},
+					{
+						"name": "NZ",
+						"value": "NZ"
+					},
+					{
+						"name": "NG",
+						"value": "NG"
+					},
+					{
+						"name": "NO",
+						"value": "NO"
+					},
+					{
+						"name": "OM",
+						"value": "OM"
+					},
+					{
+						"name": "PK",
+						"value": "PK"
+					},
+					{
+						"name": "PA",
+						"value": "PA"
+					},
+					{
+						"name": "PY",
+						"value": "PY"
+					},
+					{
+						"name": "PE",
+						"value": "PE"
+					},
+					{
+						"name": "PH",
+						"value": "PH"
+					},
+					{
+						"name": "PL",
+						"value": "PL"
+					},
+					{
+						"name": "PT",
+						"value": "PT"
+					},
+					{
+						"name": "PR",
+						"value": "PR"
+					},
+					{
+						"name": "QA",
+						"value": "QA"
+					},
+					{
+						"name": "LT",
+						"value": "LT"
+					},
+					{
+						"name": "RO",
+						"value": "RO"
+					},
+					{
+						"name": "SA",
+						"value": "SA"
+					},
+					{
+						"name": "RS",
+						"value": "RS"
+					},
+					{
+						"name": "SG",
+						"value": "SG"
+					},
+					{
+						"name": "SK",
+						"value": "SK"
+					},
+					{
+						"name": "SI",
+						"value": "SI"
+					},
+					{
+						"name": "ZA",
+						"value": "ZA"
+					},
+					{
+						"name": "KR",
+						"value": "KR"
+					},
+					{
+						"name": "ES",
+						"value": "ES"
+					},
+					{
+						"name": "LK",
+						"value": "LK"
+					},
+					{
+						"name": "SE",
+						"value": "SE"
+					},
+					{
+						"name": "CH",
+						"value": "CH"
+					},
+					{
+						"name": "TW",
+						"value": "TW"
+					},
+					{
+						"name": "TH",
+						"value": "TH"
+					},
+					{
+						"name": "TR",
+						"value": "TR"
+					},
+					{
+						"name": "AE",
+						"value": "AE"
+					},
+					{
+						"name": "GB",
+						"value": "GB"
+					},
+					{
+						"name": "US",
+						"value": "US"
+					},
+					{
+						"name": "UY",
+						"value": "UY"
+					},
+					{
+						"name": "VN",
+						"value": "VN"
+					}
+				],
+				"default": "DZ",
+				"description": "Country code for Top Ads results. Defaults to US when omitted.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "region"
+					}
+				}
+			},
+			{
+				"displayName": "Period",
+				"name": "period",
+				"type": "options",
+				"options": [
+					{
+						"name": "7",
+						"value": "7"
+					},
+					{
+						"name": "30",
+						"value": "30"
+					},
+					{
+						"name": "180",
+						"value": "180"
+					}
+				],
+				"default": "7",
+				"description": "Time window in days for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "period"
+					}
+				}
+			},
+			{
+				"displayName": "Query",
+				"name": "query",
+				"type": "string",
+				"default": "",
+				"description": "Optional keyword to search ad titles and content.",
+				"placeholder": "e.g. automation",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "query"
+					}
+				}
+			},
+			{
+				"displayName": "Advertiser Name",
+				"name": "advertiserName",
+				"type": "string",
+				"default": "",
+				"description": "Search the public TikTok Ads Library by advertiser name. When set, results come from the public Ads Library instead of Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "advertiserName"
+					}
+				}
+			},
+			{
+				"displayName": "Order By",
+				"name": "orderBy",
+				"type": "options",
+				"options": [
+					{
+						"name": "For You",
+						"value": "for-you"
+					},
+					{
+						"name": "Impression",
+						"value": "impression"
+					},
+					{
+						"name": "Play 2s Rate",
+						"value": "play-2s-rate"
+					},
+					{
+						"name": "Play 6s Rate",
+						"value": "play-6s-rate"
+					},
+					{
+						"name": "Cvr",
+						"value": "cvr"
+					},
+					{
+						"name": "Ctr",
+						"value": "ctr"
+					},
+					{
+						"name": "Like",
+						"value": "like"
+					}
+				],
+				"default": "for-you",
+				"description": "Sort metric for Top Ads. Defaults to for-you when omitted.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "orderBy"
+					}
+				}
+			},
+			{
+				"displayName": "Industry",
+				"name": "industry",
+				"type": "options",
+				"options": [
+					{
+						"name": "Apparel Accessories",
+						"value": "apparel-accessories"
+					},
+					{
+						"name": "Appliances",
+						"value": "appliances"
+					},
+					{
+						"name": "Apps",
+						"value": "apps"
+					},
+					{
+						"name": "Baby Kids Maternity",
+						"value": "baby-kids-maternity"
+					},
+					{
+						"name": "Beauty Personal Care",
+						"value": "beauty-personal-care"
+					},
+					{
+						"name": "Business Services",
+						"value": "business-services"
+					},
+					{
+						"name": "Ecommerce Non App",
+						"value": "ecommerce-non-app"
+					},
+					{
+						"name": "Education",
+						"value": "education"
+					},
+					{
+						"name": "Financial Services",
+						"value": "financial-services"
+					},
+					{
+						"name": "Food Beverage",
+						"value": "food-beverage"
+					},
+					{
+						"name": "Games",
+						"value": "games"
+					},
+					{
+						"name": "Health",
+						"value": "health"
+					},
+					{
+						"name": "Home Improvement",
+						"value": "home-improvement"
+					},
+					{
+						"name": "Household Products",
+						"value": "household-products"
+					},
+					{
+						"name": "Life Services",
+						"value": "life-services"
+					},
+					{
+						"name": "News Entertainment",
+						"value": "news-entertainment"
+					},
+					{
+						"name": "Pets",
+						"value": "pets"
+					},
+					{
+						"name": "Sports Outdoor",
+						"value": "sports-outdoor"
+					},
+					{
+						"name": "Tech Electronics",
+						"value": "tech-electronics"
+					},
+					{
+						"name": "Travel",
+						"value": "travel"
+					},
+					{
+						"name": "Vehicle Transportation",
+						"value": "vehicle-transportation"
+					}
+				],
+				"default": "apparel-accessories",
+				"description": "Industry filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "industry"
+					}
+				}
+			},
+			{
+				"displayName": "Objective",
+				"name": "objective",
+				"type": "options",
+				"options": [
+					{
+						"name": "App Installs",
+						"value": "app-installs"
+					},
+					{
+						"name": "Conversions",
+						"value": "conversions"
+					},
+					{
+						"name": "Lead Generation",
+						"value": "lead-generation"
+					},
+					{
+						"name": "Product Sales",
+						"value": "product-sales"
+					},
+					{
+						"name": "Reach",
+						"value": "reach"
+					},
+					{
+						"name": "Traffic",
+						"value": "traffic"
+					},
+					{
+						"name": "Video Views",
+						"value": "video-views"
+					}
+				],
+				"default": "app-installs",
+				"description": "Campaign objective filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "objective"
+					}
+				}
+			},
+			{
+				"displayName": "Duration",
+				"name": "duration",
+				"type": "options",
+				"options": [
+					{
+						"name": "Under 10s",
+						"value": "under-10s"
+					},
+					{
+						"name": "10 20s",
+						"value": "10-20s"
+					},
+					{
+						"name": "20 30s",
+						"value": "20-30s"
+					},
+					{
+						"name": "30 40s",
+						"value": "30-40s"
+					},
+					{
+						"name": "40 50s",
+						"value": "40-50s"
+					},
+					{
+						"name": "Over 50s",
+						"value": "over-50s"
+					}
+				],
+				"default": "under-10s",
+				"description": "Video duration filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "duration"
+					}
+				}
+			},
+			{
+				"displayName": "Likes",
+				"name": "likes",
+				"type": "options",
+				"options": [
+					{
+						"name": "Top 1 20",
+						"value": "top-1-20"
+					},
+					{
+						"name": "Top 21 40",
+						"value": "top-21-40"
+					},
+					{
+						"name": "Top 41 60",
+						"value": "top-41-60"
+					},
+					{
+						"name": "Top 61 80",
+						"value": "top-61-80"
+					},
+					{
+						"name": "Top 81 100",
+						"value": "top-81-100"
+					}
+				],
+				"default": "top-1-20",
+				"description": "Likes percentile filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "likes"
+					}
+				}
+			},
+			{
+				"displayName": "Ad Format",
+				"name": "adFormat",
+				"type": "options",
+				"options": [
+					{
+						"name": "Spark Ads",
+						"value": "spark-ads"
+					},
+					{
+						"name": "Non Spark Ads",
+						"value": "non-spark-ads"
+					}
+				],
+				"default": "spark-ads",
+				"description": "Ad format filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "adFormat"
+					}
+				}
+			},
+			{
+				"displayName": "Ad Language",
+				"name": "adLanguage",
+				"type": "options",
+				"options": [
+					{
+						"name": "En",
+						"value": "en"
+					},
+					{
+						"name": "Es",
+						"value": "es"
+					},
+					{
+						"name": "Ar",
+						"value": "ar"
+					},
+					{
+						"name": "Vi",
+						"value": "vi"
+					},
+					{
+						"name": "Th",
+						"value": "th"
+					},
+					{
+						"name": "De",
+						"value": "de"
+					},
+					{
+						"name": "ID",
+						"value": "id"
+					},
+					{
+						"name": "Pt",
+						"value": "pt"
+					},
+					{
+						"name": "Fr",
+						"value": "fr"
+					},
+					{
+						"name": "Ms",
+						"value": "ms"
+					},
+					{
+						"name": "Nl",
+						"value": "nl"
+					},
+					{
+						"name": "Ja",
+						"value": "ja"
+					},
+					{
+						"name": "It",
+						"value": "it"
+					},
+					{
+						"name": "Ro",
+						"value": "ro"
+					},
+					{
+						"name": "Zh Hant",
+						"value": "zh-Hant"
+					},
+					{
+						"name": "Ko",
+						"value": "ko"
+					}
+				],
+				"default": "en",
+				"description": "Ad language filter for Top Ads.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "adLanguage"
 					}
 				}
 			}

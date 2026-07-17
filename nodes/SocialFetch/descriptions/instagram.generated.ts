@@ -144,6 +144,24 @@ export const instagram: INodeProperties[] = [
 				}
 			},
 			{
+				"name": "Search Profiles",
+				"value": "instagram.search.profiles.list",
+				"action": "Search Instagram profiles",
+				"description": "Search Instagram profiles by keyword.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/instagram/search/profiles"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
 				"name": "Search Reels",
 				"value": "instagram.search.reels.list",
 				"action": "Search Instagram Reels",
@@ -152,6 +170,36 @@ export const instagram: INodeProperties[] = [
 					"request": {
 						"method": "GET",
 						"url": "/v1/instagram/search/reels"
+					}
+				}
+			},
+			{
+				"name": "Hashtag Search",
+				"value": "instagram.search.hashtag.list",
+				"action": "Search Instagram by hashtag",
+				"description": "Search public Instagram posts and Reels by hashtag.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/instagram/search/hashtags"
+					},
+					"send": {
+						"paginate": "={{$parameter[\"returnAll\"]}}"
+					},
+					"operations": {
+						"pagination": cursorPagination
+					}
+				}
+			},
+			{
+				"name": "Trending Reels",
+				"value": "instagram.reels.trending.list",
+				"action": "List trending Instagram Reels",
+				"description": "List currently trending Instagram Reels.",
+				"routing": {
+					"request": {
+						"method": "GET",
+						"url": "/v1/instagram/reels/trending"
 					}
 				}
 			}
@@ -454,6 +502,48 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.search.profiles.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Search query text for Instagram profiles.",
+		"placeholder": "e.g. automation",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "query"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.search.profiles.list"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "Query",
 		"name": "query",
 		"type": "string",
@@ -540,6 +630,124 @@ export const instagram: INodeProperties[] = [
 					"send": {
 						"type": "query",
 						"property": "page"
+					}
+				}
+			}
+		]
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.search.hashtag.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Hashtag",
+		"name": "hashtag",
+		"type": "string",
+		"default": "",
+		"description": "Hashtag to search for. A leading # is optional.",
+		"required": true,
+		"routing": {
+			"send": {
+				"type": "query",
+				"property": "hashtag"
+			}
+		},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.search.hashtag.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.search.hashtag.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Date Posted",
+				"name": "datePosted",
+				"type": "options",
+				"options": [
+					{
+						"name": "Last Hour",
+						"value": "last-hour"
+					},
+					{
+						"name": "Last Day",
+						"value": "last-day"
+					},
+					{
+						"name": "Last Week",
+						"value": "last-week"
+					},
+					{
+						"name": "Last Month",
+						"value": "last-month"
+					},
+					{
+						"name": "Last Year",
+						"value": "last-year"
+					}
+				],
+				"default": "last-hour",
+				"description": "Optional filter for when matching posts were posted.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "datePosted"
+					}
+				}
+			},
+			{
+				"displayName": "Media Type",
+				"name": "mediaType",
+				"type": "options",
+				"options": [
+					{
+						"name": "All",
+						"value": "all"
+					},
+					{
+						"name": "Reels",
+						"value": "reels"
+					}
+				],
+				"default": "all",
+				"description": "Content filter. Use all for posts and Reels, or reels for Reels only. Defaults to all.",
+				"routing": {
+					"send": {
+						"type": "query",
+						"property": "mediaType"
 					}
 				}
 			}
