@@ -228,7 +228,7 @@ export const twitter: INodeProperties[] = [
 				"name": "limit",
 				"type": "number",
 				"default": 40,
-				"description": "Optional page size. Defaults to 40 when omitted. Maximum supported value is 100.",
+				"description": "Page size (maximum 100). Default: 40.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -241,7 +241,7 @@ export const twitter: INodeProperties[] = [
 				"name": "includeReplies",
 				"type": "boolean",
 				"default": false,
-				"description": "Optional: include reply tweets in the returned list. Defaults to false.",
+				"description": "Include reply tweets in the returned list. Default: false.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -254,7 +254,7 @@ export const twitter: INodeProperties[] = [
 				"name": "includePinned",
 				"type": "boolean",
 				"default": false,
-				"description": "Optional: include pinned tweets on the first page. Defaults to false.",
+				"description": "Include pinned tweets on the first page. Default: false.",
 				"routing": {
 					"send": {
 						"type": "query",

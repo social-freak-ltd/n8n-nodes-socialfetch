@@ -384,7 +384,7 @@ export const reddit: INodeProperties[] = [
 					}
 				],
 				"default": "relevance",
-				"description": "Optional sort order for search results. Defaults to relevance when omitted.",
+				"description": "Sort order for search results. Default: `relevance`.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -423,7 +423,7 @@ export const reddit: INodeProperties[] = [
 					}
 				],
 				"default": "all",
-				"description": "Optional time range filter for search results. Defaults to all when omitted.",
+				"description": "Time range filter for search results. Default: `all`.",
 				"routing": {
 					"send": {
 						"type": "query",

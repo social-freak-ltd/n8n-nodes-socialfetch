@@ -2439,7 +2439,7 @@ export const tiktok: INodeProperties[] = [
 					}
 				],
 				"default": "DZ",
-				"description": "Country code for Top Ads results. Defaults to US when omitted.",
+				"description": "Country code for Top Ads results. Default: `US`.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -2536,7 +2536,7 @@ export const tiktok: INodeProperties[] = [
 					}
 				],
 				"default": "for-you",
-				"description": "Sort metric for Top Ads. Defaults to for-you when omitted.",
+				"description": "Sort metric for Top Ads. Default: `for-you`.",
 				"routing": {
 					"send": {
 						"type": "query",

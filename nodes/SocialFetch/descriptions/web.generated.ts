@@ -173,7 +173,7 @@ export const web: INodeProperties[] = [
 				"name": "page",
 				"type": "number",
 				"default": 1,
-				"description": "Page number (1-based). Defaults to 1 when omitted.",
+				"description": "Page number (1-based). Default: 1.",
 				"routing": {
 					"send": {
 						"type": "query",
@@ -285,7 +285,7 @@ export const web: INodeProperties[] = [
 					}
 				],
 				"default": "enabled",
-				"description": "Cache behavior. Defaults to enabled.",
+				"description": "Cache behavior. Default: `enabled`.",
 				"routing": {
 					"send": {
 						"type": "query",

@@ -319,7 +319,7 @@ export const google: INodeProperties[] = [
 				"name": "region",
 				"type": "string",
 				"default": "",
-				"description": "Optional two-letter country code to search in. Defaults to US when omitted.",
+				"description": "Two-letter country code to search in. Default: `US`.",
 				"routing": {
 					"send": {
 						"type": "query",

@@ -12,7 +12,10 @@ export class SocialFetchApi implements ICredentialType {
 
 	documentationUrl = "https://www.socialfetch.dev/docs";
 
-	icon = "file:socialfetch.svg" as const;
+	icon = {
+		light: "file:socialfetch.svg",
+		dark: "file:socialfetch.dark.svg",
+	} as const;
 
 	properties: INodeProperties[] = [
 		{

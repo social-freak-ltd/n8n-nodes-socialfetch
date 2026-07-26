@@ -33,7 +33,7 @@ export const instagram: INodeProperties[] = [
 				"name": "Basic Profile",
 				"value": "instagram.profile.basic.get",
 				"action": "Get Instagram basic profile",
-				"description": "Get a lightweight Instagram profile by numeric user ID when you already have the id — prefer instagram.profile.get for handle lookups.",
+				"description": "Get a lightweight Instagram profile by numeric user ID when you already have the id.",
 				"routing": {
 					"request": {
 						"method": "GET",
@@ -743,7 +743,7 @@ export const instagram: INodeProperties[] = [
 					}
 				],
 				"default": "all",
-				"description": "Content filter. Use all for posts and Reels, or reels for Reels only. Defaults to all.",
+				"description": "Content filter. Use `all` for posts and Reels, or `reels` for Reels only. Default: `all`.",
 				"routing": {
 					"send": {
 						"type": "query",

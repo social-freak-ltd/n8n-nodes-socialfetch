@@ -10,7 +10,10 @@ export class SocialFetch implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: "Social Fetch",
 		name: "socialFetch",
-		icon: "file:socialfetch.svg",
+		icon: {
+			light: "file:socialfetch.svg",
+			dark: "file:socialfetch.dark.svg",
+		},
 		group: ["input"],
 		version: 1,
 		subtitle:

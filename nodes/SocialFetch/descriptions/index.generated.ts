@@ -3,6 +3,9 @@ import type { INodeProperties } from "n8n-workflow";
 import { tiktok } from "./tiktok.generated";
 import { twitter } from "./twitter.generated";
 import { telegram } from "./telegram.generated";
+import { linktree } from "./linktree.generated";
+import { hackernews } from "./hackernews.generated";
+import { truthsocial } from "./truthsocial.generated";
 import { facebook } from "./facebook.generated";
 import { google } from "./google.generated";
 import { instagram } from "./instagram.generated";
@@ -26,6 +29,18 @@ export const resourceOptions = [
 	{
 		"name": "Telegram",
 		"value": "telegram"
+	},
+	{
+		"name": "Linktree",
+		"value": "linktree"
+	},
+	{
+		"name": "Hacker News",
+		"value": "hackernews"
+	},
+	{
+		"name": "Truth Social",
+		"value": "truthsocial"
 	},
 	{
 		"name": "Facebook",
@@ -73,6 +88,9 @@ export const allResourceProperties: INodeProperties[] = [
 	...tiktok,
 	...twitter,
 	...telegram,
+	...linktree,
+	...hackernews,
+	...truthsocial,
 	...facebook,
 	...google,
 	...instagram,
