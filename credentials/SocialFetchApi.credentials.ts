@@ -10,7 +10,8 @@ export class SocialFetchApi implements ICredentialType {
 
 	displayName = "Social Fetch API";
 
-	documentationUrl = "https://www.socialfetch.dev/docs";
+	documentationUrl =
+		"https://www.socialfetch.dev/docs/integrations/n8n#step-2-connect-your-api-key";
 
 	icon = {
 		light: "file:socialfetch.svg",
@@ -25,8 +26,9 @@ export class SocialFetchApi implements ICredentialType {
 			typeOptions: { password: true },
 			default: "",
 			required: true,
+			placeholder: "sfk_...",
 			description:
-				"Your Social Fetch API key (starts with sfk_). Create one in the Social Fetch dashboard.",
+				'Your Social Fetch API key. It starts with sfk_. Create one at <a href="https://app.socialfetch.dev/api-keys" target="_blank">app.socialfetch.dev/api-keys</a>.',
 		},
 	];
 

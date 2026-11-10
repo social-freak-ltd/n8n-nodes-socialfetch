@@ -20,13 +20,7 @@ export const linktree: INodeProperties[] = [
 				"name": "Profile",
 				"value": "linktree.profile.get",
 				"action": "Get Linktree profile",
-				"description": "Get a public Linktree profile by handle, including links and socials.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "=/v1/linktree/profiles/{{$parameter[\"handle\"]}}"
-					}
-				}
+				"description": "Get a public Linktree profile by handle, including links and socials."
 			}
 		]
 	},
@@ -36,7 +30,7 @@ export const linktree: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Linktree handle to look up, with or without a leading @.",
-		"placeholder": "e.g. n8n",
+		"placeholder": "e.g. miguelangeles",
 		"required": true,
 		"displayOptions": {
 			"show": {

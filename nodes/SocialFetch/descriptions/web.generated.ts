@@ -20,61 +20,43 @@ export const web: INodeProperties[] = [
 				"name": "Search",
 				"value": "web.search.run",
 				"action": "Search the web",
-				"description": "Search the public web and return ranked organic results with snippets.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/web/search"
-					}
-				}
+				"description": "Search the public web and return ranked organic results with snippets."
 			},
 			{
 				"name": "Markdown",
 				"value": "web.markdown.generate",
 				"action": "Generate web page markdown",
-				"description": "Convert a web page URL into clean markdown.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/web/markdown"
-					}
-				}
+				"description": "Convert a web page URL into clean markdown."
 			},
 			{
 				"name": "Ask",
 				"value": "web.ask.run",
 				"action": "Ask a question about a web page",
-				"description": "Ask a natural-language question about a specific web page and get an LLM-generated answer.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/web/ask"
-					}
-				}
+				"description": "Ask a natural-language question about a specific web page and get an LLM-generated answer."
 			},
 			{
 				"name": "HTML",
 				"value": "web.html.generate",
 				"action": "Generate web page HTML",
-				"description": "Fetch cleaned HTML for a web page URL.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/web/html"
-					}
-				}
+				"description": "Fetch cleaned HTML for a web page URL."
+			},
+			{
+				"name": "Network",
+				"value": "web.network.capture",
+				"action": "Capture a web page's network responses",
+				"description": "Load a web page and return the JSON and other responses its own scripts fetch while it loads."
+			},
+			{
+				"name": "Screenshot",
+				"value": "web.screenshot.capture",
+				"action": "Capture website screenshot",
+				"description": "Capture a screenshot of a public web page URL as a hosted image artifact."
 			},
 			{
 				"name": "Crawl",
 				"value": "web.crawl.run",
 				"action": "Crawl web pages",
-				"description": "Crawl a small set of web pages synchronously.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/web/crawl"
-					}
-				}
+				"description": "Crawl a small set of web pages synchronously."
 			}
 		]
 	},
@@ -83,15 +65,25 @@ export const web: INodeProperties[] = [
 		"name": "query",
 		"type": "string",
 		"default": "",
-		"description": "Search query text to run against the public web.",
-		"placeholder": "e.g. automation",
-		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "query"
+		"description": "Search query text to run against the public web. Leave empty only if you set Region under Additional Fields instead.",
+		"placeholder": "e.g. social media scraping API",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.search.run"
+				]
 			}
-		},
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -116,22 +108,28 @@ export const web: INodeProperties[] = [
 				],
 				"operation": [
 					"web.search.run"
+				],
+				"@version": [
+					1
 				]
 			}
 		},
 		"options": [
+			{
+				"displayName": "Query",
+				"name": "query",
+				"type": "string",
+				"default": "",
+				"description": "Search query text to run against the public web.",
+				"placeholder": "e.g. social media scraping API"
+			},
 			{
 				"displayName": "Region",
 				"name": "region",
 				"type": "string",
 				"default": "",
 				"description": "ISO 3166-1 country code for localized results (e.g. US, GB, CA).",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "region"
-					}
-				}
+				"placeholder": "e.g. US"
 			},
 			{
 				"displayName": "Date Posted",
@@ -160,26 +158,84 @@ export const web: INodeProperties[] = [
 					}
 				],
 				"default": "last-hour",
-				"description": "Optional filter by when results were posted.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "datePosted"
-					}
-				}
+				"description": "Optional filter by when results were posted."
 			},
 			{
 				"displayName": "Page",
 				"name": "page",
 				"type": "number",
 				"default": 1,
-				"description": "Page number (1-based). Default: 1.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "page"
+				"description": "Page number (1-based). Default: 1."
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.search.run"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
 					}
-				}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Region",
+				"name": "region",
+				"type": "string",
+				"default": "",
+				"description": "ISO 3166-1 country code for localized results (e.g. US, GB, CA).",
+				"placeholder": "e.g. US"
+			},
+			{
+				"displayName": "Date Posted",
+				"name": "datePosted",
+				"type": "options",
+				"options": [
+					{
+						"name": "Last Hour",
+						"value": "last-hour"
+					},
+					{
+						"name": "Last Day",
+						"value": "last-day"
+					},
+					{
+						"name": "Last Week",
+						"value": "last-week"
+					},
+					{
+						"name": "Last Month",
+						"value": "last-month"
+					},
+					{
+						"name": "Last Year",
+						"value": "last-year"
+					}
+				],
+				"default": "last-hour",
+				"description": "Optional filter by when results were posted."
+			},
+			{
+				"displayName": "Page",
+				"name": "page",
+				"type": "number",
+				"default": 1,
+				"description": "Page number (1-based). Default: 1."
 			}
 		]
 	},
@@ -189,14 +245,8 @@ export const web: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Web page URL to fetch.",
-		"placeholder": "e.g. https://example.com/page",
+		"placeholder": "e.g. https://www.socialfetch.dev",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -244,13 +294,7 @@ export const web: INodeProperties[] = [
 					}
 				],
 				"default": "fit",
-				"description": "Content filter strategy for markdown extraction.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "filter"
-					}
-				}
+				"description": "Markdown extraction filter. `fit`: strip boilerplate and extract the main readable content. `raw`: full unfiltered page markdown, no content pruning. `bm25`: rank and return only the content most relevant to `query`, using the BM25 keyword-relevance algorithm — requires `query` to be set."
 			},
 			{
 				"displayName": "Query",
@@ -258,13 +302,7 @@ export const web: INodeProperties[] = [
 				"type": "string",
 				"default": "",
 				"description": "Optional query string used by the bm25 filter to rank relevant content.",
-				"placeholder": "e.g. automation",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "query"
-					}
-				}
+				"placeholder": "e.g. social media scraper API"
 			},
 			{
 				"displayName": "Cache Mode",
@@ -285,13 +323,49 @@ export const web: INodeProperties[] = [
 					}
 				],
 				"default": "enabled",
-				"description": "Cache behavior. Default: `enabled`.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "cacheMode"
+				"description": "Cache behavior. `enabled`: read from cache if present, else fetch and write to cache. `bypass`: always fetch fresh, ignoring and not updating the cache. `write_only`: always fetch fresh, but write the result to cache without reading from it first. Default: `enabled`."
+			},
+			{
+				"displayName": "Scan Full Page",
+				"name": "scanFullPage",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, scroll the page to load dynamically appended content (infinite scroll). Default false."
+			},
+			{
+				"displayName": "Wait For",
+				"name": "waitFor",
+				"type": "string",
+				"default": "",
+				"description": "Wait for a CSS selector before extraction. Must be prefixed with \"css:\" (e.g. css:main). JavaScript wait conditions are not supported."
+			},
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
 					}
-				}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). Default 1, which loads about 1.6 MB on the datacenter proxy or 190 KB on residential or mobile. Raise it for heavy pages; you're charged only for what the page uses."
 			}
 		]
 	},
@@ -301,14 +375,8 @@ export const web: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Web page URL to fetch.",
-		"placeholder": "e.g. https://example.com/page",
+		"placeholder": "e.g. https://www.socialfetch.dev",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -328,12 +396,6 @@ export const web: INodeProperties[] = [
 		"description": "Natural-language question to answer about the page content.",
 		"placeholder": "e.g. What is this page about?",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "q"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -346,19 +408,60 @@ export const web: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.ask.run"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). One credit covers loading a typical page and the model reading roughly 1,500 words of it (less in languages such as Japanese); long pages are answered from their first part (`truncated: true`) unless you raise this. Charged only for what the call uses."
+			}
+		]
+	},
+	{
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
 		"default": "",
 		"description": "Web page URL to fetch.",
-		"placeholder": "e.g. https://example.com/page",
+		"placeholder": "e.g. https://www.socialfetch.dev",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -371,6 +474,369 @@ export const web: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.html.generate"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Scan Full Page",
+				"name": "scanFullPage",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, scroll the page to load dynamically appended content (infinite scroll). Default false."
+			},
+			{
+				"displayName": "Wait For",
+				"name": "waitFor",
+				"type": "string",
+				"default": "",
+				"description": "Wait for a CSS selector before extraction. Must be prefixed with \"css:\" (e.g. css:main). JavaScript wait conditions are not supported."
+			},
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). Default 1, which loads about 1.6 MB on the datacenter proxy or 190 KB on residential or mobile. Raise it for heavy pages; you're charged only for what the page uses."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Web page URL to load.",
+		"placeholder": "e.g. https://www.socialfetch.dev",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.network.capture"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Match",
+		"name": "match",
+		"type": "string",
+		"default": "",
+		"description": "Part of the request URL to keep, for example `/api/` or `/graphql`. Only fetch and XHR requests whose URL contains it are returned.",
+		"placeholder": "e.g. /api/",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.network.capture"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.network.capture"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Wait Ms",
+				"name": "waitMs",
+				"type": "number",
+				"default": 0,
+				"description": "How long to keep listening after the page loads, in milliseconds (0–15000). Default 4000."
+			},
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). Default 1, which loads about 1.6 MB on the datacenter proxy or 190 KB on residential or mobile. Raise it for heavy pages; you're charged only for what the page uses."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Web page URL to fetch.",
+		"placeholder": "e.g. https://www.socialfetch.dev",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.screenshot.capture"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.screenshot.capture"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Full Page",
+				"name": "fullPage",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, capture the full scrollable page. Default: false (viewport)."
+			},
+			{
+				"displayName": "Viewport Width",
+				"name": "viewportWidth",
+				"type": "number",
+				"default": 1280,
+				"description": "Viewport width in CSS pixels. Default: 1280."
+			},
+			{
+				"displayName": "Viewport Height",
+				"name": "viewportHeight",
+				"type": "number",
+				"default": 800,
+				"description": "Viewport height in CSS pixels. Default: 800."
+			},
+			{
+				"displayName": "Device Scale Factor",
+				"name": "deviceScaleFactor",
+				"type": "number",
+				"default": 1,
+				"description": "Device scale factor (1–3). Default: 1."
+			},
+			{
+				"displayName": "Selector",
+				"name": "selector",
+				"type": "string",
+				"default": "",
+				"description": "CSS selector to clip the screenshot to a single element. Cannot be combined with fullPage."
+			},
+			{
+				"displayName": "Format",
+				"name": "format",
+				"type": "options",
+				"options": [
+					{
+						"name": "Png",
+						"value": "png"
+					},
+					{
+						"name": "Jpeg",
+						"value": "jpeg"
+					},
+					{
+						"name": "Webp",
+						"value": "webp"
+					}
+				],
+				"default": "png",
+				"description": "Output image format. Default: png."
+			},
+			{
+				"displayName": "Quality",
+				"name": "quality",
+				"type": "number",
+				"default": 0,
+				"description": "JPEG/WebP quality 1–100. Invalid when format is png."
+			},
+			{
+				"displayName": "Delay",
+				"name": "delay",
+				"type": "number",
+				"default": 0,
+				"description": "Extra settle delay in milliseconds after load (0–10000)."
+			},
+			{
+				"displayName": "Wait For",
+				"name": "waitFor",
+				"type": "string",
+				"default": "",
+				"description": "CSS selector to wait for before capturing."
+			},
+			{
+				"displayName": "Wait Until",
+				"name": "waitUntil",
+				"type": "options",
+				"options": [
+					{
+						"name": "Load",
+						"value": "load"
+					},
+					{
+						"name": "Domcontentloaded",
+						"value": "domcontentloaded"
+					},
+					{
+						"name": "Networkidle",
+						"value": "networkidle"
+					}
+				],
+				"default": "load",
+				"description": "Navigation wait condition. `networkidle` is bounded and resolves on idle or a short cap, whichever comes first. Default: load."
+			},
+			{
+				"displayName": "Block Cookie Banners",
+				"name": "blockCookieBanners",
+				"type": "boolean",
+				"default": true,
+				"description": "Dismiss/block cookie consent banners. Default: true."
+			},
+			{
+				"displayName": "Block Ads",
+				"name": "blockAds",
+				"type": "boolean",
+				"default": true,
+				"description": "Block ads and trackers during render. Default: true."
+			},
+			{
+				"displayName": "Dark Mode",
+				"name": "darkMode",
+				"type": "boolean",
+				"default": false,
+				"description": "Request prefers-color-scheme: dark. Default: false."
+			},
+			{
+				"displayName": "Region",
+				"name": "region",
+				"type": "string",
+				"default": "",
+				"description": "Optional ISO 3166-1 alpha-2 country for geo-located rendering (+1 credit).",
+				"placeholder": "e.g. US"
+			},
+			{
+				"displayName": "Cache Mode",
+				"name": "cacheMode",
+				"type": "options",
+				"options": [
+					{
+						"name": "Enabled",
+						"value": "enabled"
+					},
+					{
+						"name": "Bypass",
+						"value": "bypass"
+					},
+					{
+						"name": "Write Only",
+						"value": "write_only"
+					}
+				],
+				"default": "enabled",
+				"description": "Cache behavior. `enabled`: read from cache if present, else fetch and write to cache. `bypass`: always fetch fresh, ignoring and not updating the cache. `write_only`: always fetch fresh, but write the result to cache without reading from it first. Default: `enabled`."
+			},
+			{
+				"displayName": "Cache Ttl",
+				"name": "cacheTtl",
+				"type": "number",
+				"default": 0,
+				"description": "Optional Redis artifact-cache TTL in seconds (60–604800). Must stay strictly below the 7-day object lifetime."
+			},
+			{
+				"displayName": "Response",
+				"name": "response",
+				"type": "options",
+				"options": [
+					{
+						"name": "URL",
+						"value": "url"
+					},
+					{
+						"name": "Base64",
+						"value": "base64"
+					}
+				],
+				"default": "url",
+				"description": "Delivery mode. `url` (default) returns a hosted CDN URL valid for 7 days. `base64` returns the image bytes inline when small enough."
+			}
+		]
+	},
+	{
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
@@ -379,13 +845,8 @@ export const web: INodeProperties[] = [
 		},
 		"default": [],
 		"description": "URLs to crawl. Repeat the `url` query parameter for multiple pages (max 5).",
+		"placeholder": "e.g. https://www.socialfetch.dev",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -396,5 +857,66 @@ export const web: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.crawl.run"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Scan Full Page",
+				"name": "scanFullPage",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, scroll the page to load dynamically appended content (infinite scroll). Default false."
+			},
+			{
+				"displayName": "Wait For",
+				"name": "waitFor",
+				"type": "string",
+				"default": "",
+				"description": "Wait for a CSS selector before extraction. Must be prefixed with \"css:\" (e.g. css:main). JavaScript wait conditions are not supported."
+			},
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits each URL may cost (1–25). Default 1. The batch shares one budget of this times the number of URLs; you're charged for what the pages use, at least 1 credit per URL."
+			}
+		]
 	}
 ];

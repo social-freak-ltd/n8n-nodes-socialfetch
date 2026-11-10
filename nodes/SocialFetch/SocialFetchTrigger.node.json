@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-socialfetch.socialFetchTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Data & Storage", "Marketing & Content", "Productivity"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://www.socialfetch.dev/docs/integrations/n8n/watch-for-new-posts"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://www.socialfetch.dev/docs/integrations/n8n/watch-for-new-posts"
+			}
+		]
+	}
+}

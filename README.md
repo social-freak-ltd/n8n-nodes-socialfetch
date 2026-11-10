@@ -1,104 +1,67 @@
 # n8n-nodes-socialfetch
 
-This is an [n8n](https://n8n.io) community node that lets you fetch real-time social media and web data using the [Social Fetch API](https://www.socialfetch.dev).
+The [Social Fetch](https://www.socialfetch.dev) community node for [n8n](https://n8n.io). Fetch live social media and web data in your workflows and AI agents: profiles, posts, videos, comments, transcripts, search results and ads from TikTok, Instagram, YouTube, X (Twitter), Facebook, LinkedIn, Reddit and more.
 
-It exposes a single **Social Fetch** node with one resource per platform (TikTok, Twitter/X, Telegram, Facebook, Instagram, Threads, LinkedIn, Reddit, Spotify, YouTube, Web) plus account operations under **Account** (Whoami, Balance). Each operation maps directly to a Social Fetch public API endpoint.
+**Full guides:** [socialfetch.dev/docs/integrations/n8n](https://www.socialfetch.dev/docs/integrations/n8n) · [Your first workflow](https://www.socialfetch.dev/docs/integrations/n8n/first-workflow) · [Templates](https://www.socialfetch.dev/docs/integrations/n8n/templates) · [Troubleshooting](https://www.socialfetch.dev/docs/integrations/n8n/troubleshooting)
 
-[Installation](#installation) · [Credentials](#credentials) · [Operations](#operations) · [Example](#example-workflow) · [Development](#development) · [Publishing](PUBLISHING.md)
+[Installation](#installation) · [Credentials](#credentials) · [Nodes](#nodes) · [Development](#development) · [Publishing](PUBLISHING.md)
 
 ## Installation
 
-Follow the [community nodes installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) and install the npm package `n8n-nodes-socialfetch`.
+Social Fetch is a verified community node. In n8n, open the nodes panel, search for **Social Fetch** and click **Install node** (owner or admin only). On a self-hosted instance you can also install the npm package `n8n-nodes-socialfetch` from **Settings → Community nodes**. See n8n's [community nodes guide](https://docs.n8n.io/integrations/community-nodes/installation/).
 
 ## Credentials
 
-You need a Social Fetch API key (it starts with `sfk_`). Create one in your [Social Fetch API Keys](https://app.socialfetch.dev/api-keys).
+Create an API key (it starts with `sfk_`) in [Social Fetch API Keys](https://app.socialfetch.dev/api-keys). In n8n, create a **Social Fetch API** credential and paste the key. n8n checks it against `GET /v1/whoami` when you save.
 
-In n8n, create a new **Social Fetch API** credential and paste your key. The credential is validated against `GET /v1/whoami` when you save it.
+## Nodes
 
-## Operations
+### Social Fetch
 
-Pick a **Resource** (platform) and an **Operation**. Required inputs appear as direct fields; optional inputs live under **Additional Fields**.
+One node with a **Resource** per platform and an **Operation** per Social Fetch endpoint. The operation's main input (a handle, URL or query) is on the node; optional inputs are under **Additional Fields**. Every operation is listed in the [operation catalog](https://www.socialfetch.dev/docs/integrations/n8n/operations).
 
-### Pagination and “Return All”
+- **Simplify** (on by default) returns one item per result: one item per video, post or comment. Turn it off for the full response, including `data.page` and `meta.creditsCharged`.
+- **Return All** follows the API's pages (`data.page.nextCursor` or `data.page.nextPage`) until there are no more, up to 100 pages. Each page is a request and uses credits.
+- **Errors** explain what went wrong and what to do (for example an invalid key or an empty balance), with the request ID linked to the Social Fetch request log. Failed lookups aren't charged; turn on **Retry On Fail** for unattended workflows.
+- **Usable as a tool** for n8n's AI Agent.
 
-Only list endpoints that use Social Fetch’s **cursor** query parameter show a **Return All** toggle. When enabled, the node follows `data.page.nextCursor` until `data.page.hasMore` is false. Each page is a separate output item containing the full API JSON body (`data`, `meta`, etc.). Use n8n’s **Item Lists** or **Code** node if you need a single merged array.
+Node version 2 is the default for new nodes. Version 1 nodes keep their original behaviour (the full response, one item per page, most inputs under Additional Fields) so existing workflows don't change when you update the package.
 
-List endpoints that return everything in one response (no cursor), or that paginate with other parameters such as `page`, do not show **Return All**—you get the first response only unless you pass those parameters under **Additional Fields**.
+### Social Fetch Trigger
 
-Every request consumes credits from your Social Fetch balance (most endpoints cost 1 credit; some search and media-download options cost more). The credits charged for each call are returned in `meta.creditsCharged`.
+Starts a workflow when a watched account, channel, subreddit or search has a new post (TikTok, Instagram, YouTube, X, LinkedIn and Reddit). Publishing the workflow creates a Social Fetch [monitor](https://www.socialfetch.dev/docs/monitors) that checks on your schedule and delivers signed events to the trigger; unpublishing deletes it. Testing in the editor sends a sample event within seconds. Each check uses credits.
 
-## Example workflow
-
-This example fetches a TikTok creator's recent videos and keeps only the high-performing ones.
-
-1. **Manual Trigger** — start the workflow manually for testing.
-2. **Social Fetch** — set **Resource** to `TikTok` and **Operation** to `Profile Videos`.
-   - **Handle**: `n8n`
-   - Turn on **Return All** to page through every video, or leave it off to fetch the first page.
-   - Under **Additional Fields**, set **Sort By** to `Popular`.
-3. **Split Out** — field to split out: `data.videos` (one item per video).
-4. **Filter** — keep videos above a view threshold:
-   - Condition: `{{ $json.stats.views }}` _is greater than_ `100000`.
-
-Each Social Fetch item is one API page. With **Return All** off you get a single page; with it on you get one item per page, each containing `data.videos`, `data.page`, and `meta`. **Split Out** turns the videos array into individual items so the Filter node can evaluate `stats.views` on each video.
-
-Example response shape (first video on a page):
-
-```json
-{
-  "data": {
-    "videos": [
-      {
-        "id": "7639528062975053069",
-        "caption": "…",
-        "url": "https://www.tiktok.com/@handle/video/7639528062975053069",
-        "stats": {
-          "views": 302447,
-          "likes": 19880,
-          "comments": 339,
-          "shares": 2232,
-          "saves": 389
-        }
-      }
-    ],
-    "page": { "nextCursor": "…", "hasMore": true }
-  },
-  "meta": { "creditsCharged": 1, "requestId": "…", "version": "v1" }
-}
-```
-
-A second common pattern is enrichment: use **TikTok → User Search** (or **Search Videos**) to discover handles, then loop those results back into **Profile Videos** or **Profile** to pull full details for each match.
+The trigger needs n8n to be reachable at a public `https://` address on port 443 (n8n Cloud is). Guide: [Watch for new posts](https://www.socialfetch.dev/docs/integrations/n8n/watch-for-new-posts).
 
 ## Development
 
-The node descriptions are generated from the Social Fetch OpenAPI spec. Parameter labels and operation dropdown names follow [n8n node UX guidelines](https://docs.n8n.io/integrations/creating-nodes/build/reference/ux-guidelines/): Title Case with canonical acronyms (`URL`, `ID`, `AI`) on parameters and operation names; sentence case on operation `action` strings and descriptions.
+The node is generated from the Social Fetch OpenAPI spec and endpoint metadata. Labels follow n8n's [UX guidelines](https://docs.n8n.io/integrations/creating-nodes/build/reference/ux-guidelines/) (see `scripts/n8n-label-formatting.mts`).
 
-Label formatting lives in `scripts/n8n-label-formatting.mts` and is covered by unit and integration tests.
+| File | What it is |
+| --- | --- |
+| `scripts/generate-from-openapi.mts` | Writes `nodes/SocialFetch/descriptions/*.generated.ts` (UI, operations table, trigger sources) and the docs catalog `apps/web/content/docs/integrations/n8n/operations.mdx` |
+| `scripts/build-templates.mts` | Writes the importable workflow templates to `apps/web/public/integrations/n8n/workflows/` |
+| `nodes/SocialFetch/SocialFetch.node.ts` | Runs operations from the generated table (`shared/request.ts`, `shared/pagination.ts`, `shared/errors.ts`) |
+| `nodes/SocialFetch/SocialFetchTrigger.node.ts` | Monitor-backed webhook trigger |
 
 ```bash
-# from the repo root (codegen + eslint fix on generated descriptions)
+# from the repo root: version sync, codegen, templates, lint:fix
 pnpm generate:n8n
 
-# label formatting tests (unit + committed generated output; lives in monorepo tests/)
+# unit and generated-output tests (in tests/integrations/n8n)
 pnpm test:n8n
 
-# full derived check before a PR (openapi, sdk, zapier, n8n, …)
-pnpm check:derived
-
-# lint, build, and label tests for the n8n package only
+# tests, lint and build for this package
 pnpm check:n8n
 
-# local dev (standalone pnpm project — not part of the root pnpm workspace)
+# local n8n with the node loaded (standalone pnpm project, not in the root workspace)
 cd integrations/n8n
 pnpm install --ignore-workspace
 pnpm run build
 pnpm run dev   # http://localhost:5678
 ```
 
-`generate:n8n` syncs the package **version** from `@socialfetch/sdk`, regenerates descriptions, and runs `lint:fix`. `check:n8n` runs label tests, lint, and build. `check:derived` also runs `check:n8n`.
-
-Releases and syncing to [n8n-nodes-socialfetch](https://github.com/social-freak-ltd/n8n-nodes-socialfetch) are automated from the monorepo — see [PUBLISHING.md](PUBLISHING.md).
+Releases and the public mirror ([n8n-nodes-socialfetch](https://github.com/social-freak-ltd/n8n-nodes-socialfetch)) are automated from the monorepo. See [PUBLISHING.md](PUBLISHING.md).
 
 ## License
 

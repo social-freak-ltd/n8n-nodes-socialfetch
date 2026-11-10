@@ -20,61 +20,31 @@ export const threads: INodeProperties[] = [
 				"name": "Profile",
 				"value": "threads.profile.get",
 				"action": "Get Threads profile",
-				"description": "Get a Threads profile for a creator or account.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "=/v1/threads/profiles/{{$parameter[\"handle\"]}}"
-					}
-				}
+				"description": "Get a Threads profile for a creator or account."
 			},
 			{
 				"name": "Profile Posts",
 				"value": "threads.profile.posts.list",
 				"action": "List Threads profile posts",
-				"description": "List posts from a Threads profile by handle.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "=/v1/threads/profiles/{{$parameter[\"handle\"]}}/posts"
-					}
-				}
-			},
-			{
-				"name": "Search Posts",
-				"value": "threads.search.list",
-				"action": "Search Threads posts",
-				"description": "Search Threads posts by keyword.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/threads/search"
-					}
-				}
+				"description": "List posts from a Threads profile by handle."
 			},
 			{
 				"name": "Post",
 				"value": "threads.post.get",
 				"action": "Get Threads post",
-				"description": "Get a single Threads post by URL.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/threads/posts"
-					}
-				}
+				"description": "Get a single Threads post by URL."
+			},
+			{
+				"name": "Search Posts",
+				"value": "threads.search.list",
+				"action": "Search Threads posts",
+				"description": "Search Threads posts by keyword."
 			},
 			{
 				"name": "User Search",
 				"value": "threads.users.search",
 				"action": "Search Threads users",
-				"description": "Search Threads users by keyword.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/threads/users/search"
-					}
-				}
+				"description": "Search Threads users by keyword."
 			}
 		]
 	},
@@ -84,7 +54,7 @@ export const threads: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Threads handle to look up, with or without a leading @.",
-		"placeholder": "e.g. n8n",
+		"placeholder": "e.g. charlidamelio",
 		"required": true,
 		"displayOptions": {
 			"show": {
@@ -103,7 +73,7 @@ export const threads: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Threads handle whose posts should be listed.",
-		"placeholder": "e.g. n8n",
+		"placeholder": "e.g. charlidamelio",
 		"required": true,
 		"displayOptions": {
 			"show": {
@@ -138,13 +108,52 @@ export const threads: INodeProperties[] = [
 				"name": "trim",
 				"type": "boolean",
 				"default": false,
-				"description": "When true, returns a smaller response with fewer post fields when available.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "trim"
-					}
-				}
+				"description": "When true, returns a smaller response with fewer post fields when available."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the Threads post.",
+		"placeholder": "e.g. https://www.threads.net/@zuck/post/DK-BydcJHkF",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"threads"
+				],
+				"operation": [
+					"threads.post.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"threads"
+				],
+				"operation": [
+					"threads.post.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Trim",
+				"name": "trim",
+				"type": "boolean",
+				"default": false,
+				"description": "When true, returns a smaller response with fewer fields."
 			}
 		]
 	},
@@ -154,14 +163,8 @@ export const threads: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Search query text for public Threads posts.",
-		"placeholder": "e.g. automation",
+		"placeholder": "e.g. basketball",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "query"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -196,12 +199,7 @@ export const threads: INodeProperties[] = [
 				"type": "string",
 				"default": "",
 				"description": "Optional start date filter in YYYY-MM-DD format.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "startDate"
-					}
-				}
+				"placeholder": "e.g. 2025-10-01"
 			},
 			{
 				"displayName": "End Date",
@@ -209,82 +207,14 @@ export const threads: INodeProperties[] = [
 				"type": "string",
 				"default": "",
 				"description": "Optional end date filter in YYYY-MM-DD format.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "endDate"
-					}
-				}
+				"placeholder": "e.g. 2026-03-31"
 			},
 			{
 				"displayName": "Trim",
 				"name": "trim",
 				"type": "boolean",
 				"default": false,
-				"description": "Whether to request a smaller response shape when available.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "trim"
-					}
-				}
-			}
-		]
-	},
-	{
-		"displayName": "URL",
-		"name": "url",
-		"type": "string",
-		"default": "",
-		"description": "Link to the Threads post.",
-		"placeholder": "e.g. https://example.com/page",
-		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "url"
-			}
-		},
-		"displayOptions": {
-			"show": {
-				"resource": [
-					"threads"
-				],
-				"operation": [
-					"threads.post.get"
-				]
-			}
-		}
-	},
-	{
-		"displayName": "Additional Fields",
-		"name": "additionalOptions",
-		"type": "collection",
-		"placeholder": "Add Field",
-		"default": {},
-		"displayOptions": {
-			"show": {
-				"resource": [
-					"threads"
-				],
-				"operation": [
-					"threads.post.get"
-				]
-			}
-		},
-		"options": [
-			{
-				"displayName": "Trim",
-				"name": "trim",
-				"type": "boolean",
-				"default": false,
-				"description": "When true, returns a smaller response with fewer fields.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "trim"
-					}
-				}
+				"description": "Whether to request a smaller response shape when available."
 			}
 		]
 	},
@@ -294,14 +224,8 @@ export const threads: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Search query text for Threads users.",
-		"placeholder": "e.g. automation",
+		"placeholder": "e.g. shams",
 		"required": true,
-		"routing": {
-			"send": {
-				"type": "query",
-				"property": "query"
-			}
-		},
 		"displayOptions": {
 			"show": {
 				"resource": [

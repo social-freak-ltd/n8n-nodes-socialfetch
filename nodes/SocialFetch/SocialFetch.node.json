@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://www.socialfetch.dev/docs"
+				"url": "https://www.socialfetch.dev/docs/integrations/n8n"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://www.socialfetch.dev/docs"
+				"url": "https://www.socialfetch.dev/docs/integrations/n8n"
 			}
 		]
 	}

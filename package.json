@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-socialfetch",
-	"version": "0.20.0",
+	"version": "0.40.0",
 	"description": "Fetch social media and web data with the Social Fetch API.",
 	"keywords": [
 		"n8n-community-node-package",
@@ -34,6 +34,7 @@
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
+		"test": "tsc && node dist/nodes/SocialFetch/webhook-signature.test.js",
 		"release": "n8n-node release",
 		"prepublishOnly": "n8n-node prerelease"
 	},
@@ -46,7 +47,8 @@
 			"dist/credentials/SocialFetchApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/SocialFetch/SocialFetch.node.js"
+			"dist/nodes/SocialFetch/SocialFetch.node.js",
+			"dist/nodes/SocialFetch/SocialFetchTrigger.node.js"
 		]
 	},
 	"devDependencies": {
@@ -58,5 +60,13 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"pnpm": {
+		"ignoredBuiltDependencies": [
+			"cpu-features",
+			"isolated-vm",
+			"ssh2",
+			"unrs-resolver"
+		]
 	}
 }

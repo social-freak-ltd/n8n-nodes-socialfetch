@@ -20,25 +20,13 @@ export const auth: INodeProperties[] = [
 				"name": "Whoami",
 				"value": "auth.whoami",
 				"action": "Whoami",
-				"description": "Get the authenticated API account for this session.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/whoami"
-					}
-				}
+				"description": "Get the authenticated API account for this session."
 			},
 			{
 				"name": "Balance",
 				"value": "billing.balance.get",
 				"action": "Get account balance",
-				"description": "Get remaining credit balance before running large batches of metered tools.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/balance"
-					}
-				}
+				"description": "Get remaining credit balance before running large batches of metered tools."
 			}
 		]
 	}

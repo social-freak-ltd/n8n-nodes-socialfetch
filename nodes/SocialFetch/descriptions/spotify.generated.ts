@@ -20,37 +20,75 @@ export const spotify: INodeProperties[] = [
 				"name": "Artist",
 				"value": "spotify.artist.get",
 				"action": "Get Spotify artist",
-				"description": "Get a Spotify artist by id or profile URL.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/spotify/artist"
-					}
-				}
+				"description": "Get a Spotify artist by id or profile URL."
 			},
 			{
 				"name": "Album",
 				"value": "spotify.album.get",
 				"action": "Get Spotify album",
-				"description": "Get a Spotify album by id or album URL.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/spotify/album"
-					}
-				}
+				"description": "Get a Spotify album by id or album URL."
 			},
 			{
 				"name": "Track",
 				"value": "spotify.track.get",
 				"action": "Get Spotify track",
-				"description": "Get a Spotify track by id or track URL.",
-				"routing": {
-					"request": {
-						"method": "GET",
-						"url": "/v1/spotify/track"
-					}
-				}
+				"description": "Get a Spotify track by id or track URL."
+			}
+		]
+	},
+	{
+		"displayName": "Artist ID",
+		"name": "artistId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify artist id for the request. Leave empty only if you set URL under Additional Fields instead.",
+		"placeholder": "e.g. 1uNFoZAHBGtllmzznpCI3s",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.artist.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.artist.get"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Artist ID",
+				"name": "artistId",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify artist id for the request.",
+				"placeholder": "e.g. 1uNFoZAHBGtllmzznpCI3s"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify artist URL for the request.",
+				"placeholder": "e.g. https://open.spotify.com/artist/1uNFoZAHBGtllmzznpCI3s"
 			}
 		]
 	},
@@ -67,36 +105,80 @@ export const spotify: INodeProperties[] = [
 				],
 				"operation": [
 					"spotify.artist.get"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
 				]
 			}
 		},
 		"options": [
-			{
-				"displayName": "Artist ID",
-				"name": "artistId",
-				"type": "string",
-				"default": "",
-				"description": "Optional Spotify artist id for the request.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "artistId"
-					}
-				}
-			},
 			{
 				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
 				"description": "Optional Spotify artist URL for the request.",
-				"placeholder": "e.g. https://example.com/page",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "url"
-					}
-				}
+				"placeholder": "e.g. https://open.spotify.com/artist/1uNFoZAHBGtllmzznpCI3s"
+			}
+		]
+	},
+	{
+		"displayName": "Album ID",
+		"name": "albumId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify album id for the request. Leave empty only if you set URL under Additional Fields instead.",
+		"placeholder": "e.g. 0pgrg7phBbnwGJ2HBEl9EG",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.album.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.album.get"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Album ID",
+				"name": "albumId",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify album id for the request.",
+				"placeholder": "e.g. 0pgrg7phBbnwGJ2HBEl9EG"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify album URL for the request.",
+				"placeholder": "e.g. https://open.spotify.com/album/0pgrg7phBbnwGJ2HBEl9EG"
 			}
 		]
 	},
@@ -113,36 +195,80 @@ export const spotify: INodeProperties[] = [
 				],
 				"operation": [
 					"spotify.album.get"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
 				]
 			}
 		},
 		"options": [
-			{
-				"displayName": "Album ID",
-				"name": "albumId",
-				"type": "string",
-				"default": "",
-				"description": "Optional Spotify album id for the request.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "albumId"
-					}
-				}
-			},
 			{
 				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
 				"description": "Optional Spotify album URL for the request.",
-				"placeholder": "e.g. https://example.com/page",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "url"
-					}
-				}
+				"placeholder": "e.g. https://open.spotify.com/album/0pgrg7phBbnwGJ2HBEl9EG"
+			}
+		]
+	},
+	{
+		"displayName": "Track ID",
+		"name": "trackId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify track id for the request. Leave empty only if you set URL under Additional Fields instead.",
+		"placeholder": "e.g. 1ITJflybJsfarsUtiBvkfK",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.track.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.track.get"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Track ID",
+				"name": "trackId",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify track id for the request.",
+				"placeholder": "e.g. 1ITJflybJsfarsUtiBvkfK"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Optional Spotify track URL for the request.",
+				"placeholder": "e.g. https://open.spotify.com/track/1ITJflybJsfarsUtiBvkfK"
 			}
 		]
 	},
@@ -159,36 +285,24 @@ export const spotify: INodeProperties[] = [
 				],
 				"operation": [
 					"spotify.track.get"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
 				]
 			}
 		},
 		"options": [
-			{
-				"displayName": "Track ID",
-				"name": "trackId",
-				"type": "string",
-				"default": "",
-				"description": "Optional Spotify track id for the request.",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "trackId"
-					}
-				}
-			},
 			{
 				"displayName": "URL",
 				"name": "url",
 				"type": "string",
 				"default": "",
 				"description": "Optional Spotify track URL for the request.",
-				"placeholder": "e.g. https://example.com/page",
-				"routing": {
-					"send": {
-						"type": "query",
-						"property": "url"
-					}
-				}
+				"placeholder": "e.g. https://open.spotify.com/track/1ITJflybJsfarsUtiBvkfK"
 			}
 		]
 	}
