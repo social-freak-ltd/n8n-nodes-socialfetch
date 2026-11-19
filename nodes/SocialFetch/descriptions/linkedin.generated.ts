@@ -32,6 +32,30 @@ export const linkedin: INodeProperties[] = [
 				"description": "Get LinkedIn person profiles by URL."
 			},
 			{
+				"name": "Profile Email",
+				"value": "linkedin.profile.email.get.v2",
+				"action": "Get LinkedIn profile email",
+				"description": "Find a person's work email from their LinkedIn profile URL."
+			},
+			{
+				"name": "Profile Phones",
+				"value": "linkedin.profile.phones.get.v2",
+				"action": "Get LinkedIn profile phone numbers",
+				"description": "Find a person's phone numbers from their LinkedIn profile URL."
+			},
+			{
+				"name": "Profile Contact Info",
+				"value": "linkedin.live.profile.contact.v2",
+				"action": "Get LinkedIn profile contact info",
+				"description": "Get the websites and profile links a LinkedIn person lists publicly."
+			},
+			{
+				"name": "Profile Featured",
+				"value": "linkedin.live.profile.featured.v2",
+				"action": "Get LinkedIn profile featured items",
+				"description": "Get up to 5 items a LinkedIn person features on their profile."
+			},
+			{
 				"name": "Resolve Person",
 				"value": "linkedin.live.person.resolve.v2",
 				"action": "Resolve LinkedIn person",
@@ -48,6 +72,12 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.person.comments.v2",
 				"action": "List LinkedIn profile comments",
 				"description": "List comments authored by a LinkedIn person."
+			},
+			{
+				"name": "Profile Reactions",
+				"value": "linkedin.live.person.reactions.v2",
+				"action": "List LinkedIn profile reactions",
+				"description": "List the posts a LinkedIn person reacted to, with each reaction."
 			},
 			{
 				"name": "Employment History",
@@ -110,6 +140,12 @@ export const linkedin: INodeProperties[] = [
 				"description": "Get headcount for a LinkedIn organization."
 			},
 			{
+				"name": "Organization Insights",
+				"value": "linkedin.live.organization.insights.v2",
+				"action": "Get LinkedIn organization insights",
+				"description": "Get where a LinkedIn organization's employees live, studied and work, with counts."
+			},
+			{
 				"name": "Affiliated Organizations",
 				"value": "linkedin.live.organization.affiliated.v2",
 				"action": "List affiliated LinkedIn organizations",
@@ -152,6 +188,18 @@ export const linkedin: INodeProperties[] = [
 				"description": "List similar LinkedIn jobs."
 			},
 			{
+				"name": "Group",
+				"value": "linkedin.live.group.get.v2",
+				"action": "Get LinkedIn group",
+				"description": "Get a LinkedIn group by id."
+			},
+			{
+				"name": "Group Posts",
+				"value": "linkedin.live.group.posts.v2",
+				"action": "List LinkedIn group posts",
+				"description": "List posts in a LinkedIn group."
+			},
+			{
 				"name": "Activity",
 				"value": "linkedin.live.activity.get.v2",
 				"action": "Get LinkedIn activity",
@@ -162,6 +210,12 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.activity.comments.v2",
 				"action": "List LinkedIn activity comments",
 				"description": "List comments on a LinkedIn activity."
+			},
+			{
+				"name": "Comment Replies",
+				"value": "linkedin.live.comment.replies.v2",
+				"action": "List LinkedIn comment replies",
+				"description": "List replies to a LinkedIn comment."
 			},
 			{
 				"name": "Activity Reactions",
@@ -186,6 +240,18 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.jobs.search.v2",
 				"action": "Search LinkedIn jobs",
 				"description": "Search LinkedIn jobs by keyword and filters."
+			},
+			{
+				"name": "School Search",
+				"value": "linkedin.live.schools.search.v2",
+				"action": "Search LinkedIn schools",
+				"description": "Search LinkedIn schools by name."
+			},
+			{
+				"name": "Location Search",
+				"value": "linkedin.live.locations.search.v2",
+				"action": "Search LinkedIn locations",
+				"description": "Search LinkedIn locations by name to get the geo IDs search filters take."
 			},
 			{
 				"name": "Company Page",
@@ -261,6 +327,30 @@ export const linkedin: INodeProperties[] = [
 				"description": "Get LinkedIn person profiles by URL."
 			},
 			{
+				"name": "Profile Email",
+				"value": "linkedin.profile.email.get.v2",
+				"action": "Get LinkedIn profile email",
+				"description": "Find a person's work email from their LinkedIn profile URL."
+			},
+			{
+				"name": "Profile Phones",
+				"value": "linkedin.profile.phones.get.v2",
+				"action": "Get LinkedIn profile phone numbers",
+				"description": "Find a person's phone numbers from their LinkedIn profile URL."
+			},
+			{
+				"name": "Profile Contact Info",
+				"value": "linkedin.live.profile.contact.v2",
+				"action": "Get LinkedIn profile contact info",
+				"description": "Get the websites and profile links a LinkedIn person lists publicly."
+			},
+			{
+				"name": "Profile Featured",
+				"value": "linkedin.live.profile.featured.v2",
+				"action": "Get LinkedIn profile featured items",
+				"description": "Get up to 5 items a LinkedIn person features on their profile."
+			},
+			{
 				"name": "Resolve Person",
 				"value": "linkedin.live.person.resolve.v2",
 				"action": "Resolve LinkedIn person",
@@ -277,6 +367,12 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.person.comments.v2",
 				"action": "List LinkedIn profile comments",
 				"description": "List comments authored by a LinkedIn person."
+			},
+			{
+				"name": "Profile Reactions",
+				"value": "linkedin.live.person.reactions.v2",
+				"action": "List LinkedIn profile reactions",
+				"description": "List the posts a LinkedIn person reacted to, with each reaction."
 			},
 			{
 				"name": "Employment History",
@@ -339,6 +435,12 @@ export const linkedin: INodeProperties[] = [
 				"description": "Get headcount for a LinkedIn organization."
 			},
 			{
+				"name": "Organization Insights",
+				"value": "linkedin.live.organization.insights.v2",
+				"action": "Get LinkedIn organization insights",
+				"description": "Get where a LinkedIn organization's employees live, studied and work, with counts."
+			},
+			{
 				"name": "Affiliated Organizations",
 				"value": "linkedin.live.organization.affiliated.v2",
 				"action": "List affiliated LinkedIn organizations",
@@ -381,6 +483,18 @@ export const linkedin: INodeProperties[] = [
 				"description": "List similar LinkedIn jobs."
 			},
 			{
+				"name": "Group",
+				"value": "linkedin.live.group.get.v2",
+				"action": "Get LinkedIn group",
+				"description": "Get a LinkedIn group by id."
+			},
+			{
+				"name": "Group Posts",
+				"value": "linkedin.live.group.posts.v2",
+				"action": "List LinkedIn group posts",
+				"description": "List posts in a LinkedIn group."
+			},
+			{
 				"name": "Activity",
 				"value": "linkedin.live.activity.get.v2",
 				"action": "Get LinkedIn activity",
@@ -391,6 +505,12 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.activity.comments.v2",
 				"action": "List LinkedIn activity comments",
 				"description": "List comments on a LinkedIn activity."
+			},
+			{
+				"name": "Comment Replies",
+				"value": "linkedin.live.comment.replies.v2",
+				"action": "List LinkedIn comment replies",
+				"description": "List replies to a LinkedIn comment."
 			},
 			{
 				"name": "Activity Reactions",
@@ -415,6 +535,18 @@ export const linkedin: INodeProperties[] = [
 				"value": "linkedin.live.jobs.search.v2",
 				"action": "Search LinkedIn jobs",
 				"description": "Search LinkedIn jobs by keyword and filters."
+			},
+			{
+				"name": "School Search",
+				"value": "linkedin.live.schools.search.v2",
+				"action": "Search LinkedIn schools",
+				"description": "Search LinkedIn schools by name."
+			},
+			{
+				"name": "Location Search",
+				"value": "linkedin.live.locations.search.v2",
+				"action": "Search LinkedIn locations",
+				"description": "Search LinkedIn locations by name to get the geo IDs search filters take."
 			},
 			{
 				"name": "Company Page",
@@ -608,6 +740,224 @@ export const linkedin: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn profile URL, e.g. https://www.linkedin.com/in/satyanadella, or the bare profile handle. Company, school and job URLs are refused.",
+		"placeholder": "e.g. https://www.linkedin.com/in/satyanadella/",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.profile.email.get.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn profile URL, e.g. https://www.linkedin.com/in/satyanadella, or the bare profile handle. Company, school and job URLs are refused.",
+		"placeholder": "e.g. https://www.linkedin.com/in/ryanroslansky/",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.profile.phones.get.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn profile handle. Not an organization slug. A /in/{handle} URL is accepted. Leave empty only if you set Entity ID under Additional Fields instead.",
+		"placeholder": "e.g. williamhgates",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.contact.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.contact.v2"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Handle",
+				"name": "handle",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn profile handle. Not an organization slug. A /in/{handle} URL is accepted.",
+				"placeholder": "e.g. williamhgates"
+			},
+			{
+				"displayName": "Entity ID",
+				"name": "entityId",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn person entity ID. Opaque; often ACo…. Not a vanity handle.",
+				"placeholder": "e.g. ACoAAAAKXBwBikfbNJww68eYvcu2dqDYJhHbp4g"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.contact.v2"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Entity ID",
+				"name": "entityId",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn person entity ID. Opaque; often ACo…. Not a vanity handle.",
+				"placeholder": "e.g. ACoAAAAKXBwBikfbNJww68eYvcu2dqDYJhHbp4g"
+			}
+		]
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn profile handle. Not an organization slug. A /in/{handle} URL is accepted. Leave empty only if you set Entity ID under Additional Fields instead.",
+		"placeholder": "e.g. williamhgates",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.featured.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.featured.v2"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Handle",
+				"name": "handle",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn profile handle. Not an organization slug. A /in/{handle} URL is accepted.",
+				"placeholder": "e.g. williamhgates"
+			},
+			{
+				"displayName": "Entity ID",
+				"name": "entityId",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn person entity ID. Opaque; often ACo…. Not a vanity handle.",
+				"placeholder": "e.g. ACoAAAAKXBwBikfbNJww68eYvcu2dqDYJhHbp4g"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.profile.featured.v2"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Entity ID",
+				"name": "entityId",
+				"type": "string",
+				"default": "",
+				"description": "LinkedIn person entity ID. Opaque; often ACo…. Not a vanity handle.",
+				"placeholder": "e.g. ACoAAAAKXBwBikfbNJww68eYvcu2dqDYJhHbp4g"
+			}
+		]
+	},
+	{
 		"displayName": "Handle",
 		"name": "handle",
 		"type": "string",
@@ -747,6 +1097,42 @@ export const linkedin: INodeProperties[] = [
 				"default": 0
 			}
 		]
+	},
+	{
+		"displayName": "Entity ID",
+		"name": "entityId",
+		"type": "string",
+		"default": "",
+		"description": "LinkedIn person entity ID. Not a vanity handle.",
+		"placeholder": "e.g. ACoAAAEkwwAB9KEc2TrQgOLEQ-vzRyZeCDyc6DQ",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.person.reactions.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.person.reactions.v2"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Entity ID",
@@ -1108,6 +1494,25 @@ export const linkedin: INodeProperties[] = [
 					"linkedin"
 				],
 				"operation": [
+					"linkedin.live.organization.insights.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Organization ID",
+		"name": "organizationId",
+		"type": "string",
+		"default": "",
+		"description": "Numeric LinkedIn organization ID.",
+		"placeholder": "e.g. 1441",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
 					"linkedin.live.organization.affiliated.v2"
 				]
 			}
@@ -1230,6 +1635,61 @@ export const linkedin: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Group ID",
+		"name": "groupId",
+		"type": "string",
+		"default": "",
+		"description": "Numeric LinkedIn group ID, as in `linkedin.com/groups/1898033/`.",
+		"placeholder": "e.g. 1898033",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.group.get.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Group ID",
+		"name": "groupId",
+		"type": "string",
+		"default": "",
+		"description": "Numeric LinkedIn group ID, as in `linkedin.com/groups/1898033/`.",
+		"placeholder": "e.g. 1898033",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.group.posts.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.group.posts.v2"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "Activity ID",
 		"name": "activityId",
 		"type": "string",
@@ -1330,6 +1790,42 @@ export const linkedin: INodeProperties[] = [
 				"default": "relevance"
 			}
 		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "The comment whose replies to list: its `permalink` from the activity comments endpoint, or its URN, e.g. `urn:li:comment:(activity:7510310093402329088,7510325550390026240)`.",
+		"placeholder": "e.g. urn:li:comment:(activity:7510310093402329088,7510325550390026240)",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.comment.replies.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.comment.replies.v2"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Activity ID",
@@ -2197,6 +2693,61 @@ export const linkedin: INodeProperties[] = [
 				"description": "Accepts a native boolean, or the string `true`/`false`/`1`/`0` (case-insensitive)."
 			}
 		]
+	},
+	{
+		"displayName": "Keyword",
+		"name": "keyword",
+		"type": "string",
+		"default": "",
+		"description": "Words from the school's name, e.g. `stanford` or `london business school`. Up to 100 characters.",
+		"placeholder": "e.g. stanford",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.schools.search.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.schools.search.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Keyword",
+		"name": "keyword",
+		"type": "string",
+		"default": "",
+		"description": "A place name, e.g. `London`, `New York` or `Bavaria`. Write it out: `UK` may match Ukraine.",
+		"placeholder": "e.g. London",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"linkedin"
+				],
+				"operation": [
+					"linkedin.live.locations.search.v2"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "URL",

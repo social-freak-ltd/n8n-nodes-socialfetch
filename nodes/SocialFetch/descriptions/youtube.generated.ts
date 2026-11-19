@@ -35,6 +35,30 @@ export const youtube: INodeProperties[] = [
 				"description": "List Shorts from a YouTube channel (not long-form videos)."
 			},
 			{
+				"name": "Channel Search",
+				"value": "youtube.channel.search.list",
+				"action": "Search inside a YouTube channel",
+				"description": "Search one YouTube channel's videos, Shorts, live streams and playlists by keyword (for all of YouTube, use youtube.search.list)."
+			},
+			{
+				"name": "Channel Community Posts",
+				"value": "youtube.channel.communityPosts.list",
+				"action": "List YouTube channel community posts",
+				"description": "List the community posts on a YouTube channel's Posts tab, newest first."
+			},
+			{
+				"name": "Channel Playlists",
+				"value": "youtube.channel.playlists.list",
+				"action": "List YouTube channel playlists",
+				"description": "List the playlists on a YouTube channel's Playlists tab."
+			},
+			{
+				"name": "Channel Live Streams",
+				"value": "youtube.channel.liveStreams.list",
+				"action": "List YouTube channel live streams",
+				"description": "List a YouTube channel's live, scheduled and past streams."
+			},
+			{
 				"name": "Playlist",
 				"value": "youtube.playlist.get",
 				"action": "Get YouTube playlist",
@@ -57,6 +81,12 @@ export const youtube: INodeProperties[] = [
 				"value": "youtube.search.hashtag.list",
 				"action": "Search YouTube by hashtag",
 				"description": "Search YouTube content by hashtag (not free-text keyword — use youtube.search.list for that)."
+			},
+			{
+				"name": "Search Suggestions",
+				"value": "youtube.search.suggestions.list",
+				"action": "Get YouTube search suggestions",
+				"description": "Get YouTube search suggestions for a partial query."
 			},
 			{
 				"name": "Video",
@@ -87,6 +117,12 @@ export const youtube: INodeProperties[] = [
 				"value": "youtube.video.transcript.get",
 				"action": "Get YouTube video transcript",
 				"description": "Get the transcript for a YouTube video by URL."
+			},
+			{
+				"name": "Sponsors",
+				"value": "youtube.video.sponsors.get",
+				"action": "Get YouTube video sponsors",
+				"description": "Get a YouTube video's paid promotion flag and its likely sponsors by URL."
 			},
 			{
 				"name": "Trending Shorts",
@@ -499,6 +535,382 @@ export const youtube: INodeProperties[] = [
 		]
 	},
 	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "YouTube channel handle to search inside, with or without a leading @.",
+		"placeholder": "e.g. charlidamelio",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Text to search for in the channel's uploads.",
+		"placeholder": "e.g. lamborghini",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "YouTube channel handle whose posts should be listed, with or without a leading @. Leave empty only if you set Channel ID under Additional Fields instead.",
+		"placeholder": "e.g. charlidamelio",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.communityPosts.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.communityPosts.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.communityPosts.list"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose posts should be listed.",
+				"placeholder": "e.g. UCX6OQ3DkcsbYNE6H8uQQuVA"
+			},
+			{
+				"displayName": "Handle",
+				"name": "handle",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel handle whose posts should be listed, with or without a leading @.",
+				"placeholder": "e.g. charlidamelio"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.communityPosts.list"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose posts should be listed.",
+				"placeholder": "e.g. UCX6OQ3DkcsbYNE6H8uQQuVA"
+			}
+		]
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "YouTube channel handle whose playlists should be listed, with or without a leading @. Leave empty only if you set Channel ID under Additional Fields instead.",
+		"placeholder": "e.g. veritasium",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.playlists.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.playlists.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.playlists.list"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose playlists should be listed, such as `UCHnyfMqiRRG1u-2MsSQLbXA`.",
+				"placeholder": "e.g. UCHnyfMqiRRG1u-2MsSQLbXA"
+			},
+			{
+				"displayName": "Handle",
+				"name": "handle",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel handle whose playlists should be listed, with or without a leading @.",
+				"placeholder": "e.g. veritasium"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.playlists.list"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose playlists should be listed, such as `UCHnyfMqiRRG1u-2MsSQLbXA`.",
+				"placeholder": "e.g. UCHnyfMqiRRG1u-2MsSQLbXA"
+			}
+		]
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "YouTube channel handle whose live streams should be listed, with or without a leading @. Leave empty only if you set Channel ID under Additional Fields instead.",
+		"placeholder": "e.g. IShowSpeed",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.liveStreams.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.liveStreams.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.liveStreams.list"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose live streams should be listed, such as `UCWsDFcIhY2DBi3GB5uykGXA`.",
+				"placeholder": "e.g. UCWsDFcIhY2DBi3GB5uykGXA"
+			},
+			{
+				"displayName": "Handle",
+				"name": "handle",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel handle whose live streams should be listed, with or without a leading @.",
+				"placeholder": "e.g. IShowSpeed"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.channel.liveStreams.list"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Channel ID",
+				"name": "channelId",
+				"type": "string",
+				"default": "",
+				"description": "YouTube channel id whose live streams should be listed, such as `UCWsDFcIhY2DBi3GB5uykGXA`.",
+				"placeholder": "e.g. UCWsDFcIhY2DBi3GB5uykGXA"
+			}
+		]
+	},
+	{
 		"displayName": "Playlist ID",
 		"name": "playlistId",
 		"type": "string",
@@ -794,6 +1206,25 @@ export const youtube: INodeProperties[] = [
 		]
 	},
 	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "The text typed so far, whole or partial, such as `mr beast`.",
+		"placeholder": "e.g. mr beast",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.search.suggestions.list"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "URL",
 		"name": "url",
 		"type": "string",
@@ -1033,6 +1464,52 @@ export const youtube: INodeProperties[] = [
 				"type": "boolean",
 				"default": false,
 				"description": "When `true`, only return captions in the video's original spoken language, and ignore `language`. If the original language can't be identified or has no captions, `transcript` is `null`. Default: `false`."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the YouTube video to check, such as `https://www.youtube.com/watch?v=AVO0ifle-OU`, or its 11-character id. Shorts URLs are also supported.",
+		"placeholder": "e.g. https://www.youtube.com/watch?v=AVO0ifle-OU",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.video.sponsors.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"youtube"
+				],
+				"operation": [
+					"youtube.video.sponsors.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Language",
+				"name": "language",
+				"type": "string",
+				"default": "",
+				"description": "Language code of the captions to read for spoken sponsor mentions, such as `en` or `es`.",
+				"placeholder": "e.g. en"
 			}
 		]
 	}

@@ -44,6 +44,12 @@ export const instagram: INodeProperties[] = [
 				"description": "List an Instagram profile's live stories by handle, profile URL or user id."
 			},
 			{
+				"name": "Similar Profiles",
+				"value": "instagram.profile.similar.list.v2",
+				"action": "List Instagram similar profiles",
+				"description": "List the accounts Instagram suggests as similar to a profile."
+			},
+			{
 				"name": "Profile Following",
 				"value": "instagram.profile.following.list.v2",
 				"action": "List Instagram profile following",
@@ -72,6 +78,12 @@ export const instagram: INodeProperties[] = [
 				"value": "instagram.highlight.get.v2",
 				"action": "Get Instagram highlight",
 				"description": "Get a saved Instagram highlight and the stories inside it by highlight id."
+			},
+			{
+				"name": "Story",
+				"value": "instagram.story.get.v2",
+				"action": "Get Instagram story",
+				"description": "Get an Instagram story by its id or URL, while it is live."
 			},
 			{
 				"name": "Engagement",
@@ -144,6 +156,12 @@ export const instagram: INodeProperties[] = [
 				"value": "instagram.media.comments.replies.list.v2",
 				"action": "List Instagram comment replies",
 				"description": "List the replies to an Instagram comment, oldest first."
+			},
+			{
+				"name": "Comment Likers",
+				"value": "instagram.media.comments.likers.list.v2",
+				"action": "List Instagram comment likers",
+				"description": "List the accounts that liked a comment on an Instagram post or Reel."
 			},
 			{
 				"name": "Media Transcript",
@@ -231,6 +249,12 @@ export const instagram: INodeProperties[] = [
 				"description": "List an Instagram profile's live stories by handle, profile URL or user id."
 			},
 			{
+				"name": "Similar Profiles",
+				"value": "instagram.profile.similar.list.v2",
+				"action": "List Instagram similar profiles",
+				"description": "List the accounts Instagram suggests as similar to a profile."
+			},
+			{
 				"name": "Profile Following",
 				"value": "instagram.profile.following.list.v2",
 				"action": "List Instagram profile following",
@@ -259,6 +283,12 @@ export const instagram: INodeProperties[] = [
 				"value": "instagram.highlight.get.v2",
 				"action": "Get Instagram highlight",
 				"description": "Get a saved Instagram highlight and the stories inside it by highlight id."
+			},
+			{
+				"name": "Story",
+				"value": "instagram.story.get.v2",
+				"action": "Get Instagram story",
+				"description": "Get an Instagram story by its id or URL, while it is live."
 			},
 			{
 				"name": "Engagement",
@@ -331,6 +361,12 @@ export const instagram: INodeProperties[] = [
 				"value": "instagram.media.comments.replies.list.v2",
 				"action": "List Instagram comment replies",
 				"description": "List the replies to an Instagram comment, oldest first."
+			},
+			{
+				"name": "Comment Likers",
+				"value": "instagram.media.comments.likers.list.v2",
+				"action": "List Instagram comment likers",
+				"description": "List the accounts that liked a comment on an Instagram post or Reel."
 			},
 			{
 				"name": "Media Transcript",
@@ -675,6 +711,25 @@ export const instagram: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Handle, profile URL or numeric user id.",
+		"placeholder": "e.g. instagram",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.profile.similar.list.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Profile",
+		"name": "profile",
+		"type": "string",
+		"default": "",
+		"description": "Handle, profile URL or numeric user id.",
 		"placeholder": "e.g. nike",
 		"required": true,
 		"displayOptions": {
@@ -837,6 +892,25 @@ export const instagram: INodeProperties[] = [
 		}
 	},
 	{
+		"displayName": "Story ID",
+		"name": "storyId",
+		"type": "string",
+		"default": "",
+		"description": "Story id, or the story's instagram.com/stories/{handle}/{id} URL.",
+		"placeholder": "e.g. 4031625382102038479",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.story.get.v2"
+				]
+			}
+		}
+	},
+	{
 		"displayName": "Profile",
 		"name": "profile",
 		"type": "string",
@@ -951,7 +1025,7 @@ export const instagram: INodeProperties[] = [
 		"name": "query",
 		"type": "string",
 		"default": "",
-		"description": "Place name, such as `times square`.",
+		"description": "Place name, such as `times square`, or a business such as `superdry`. Add `lat` and `lng` to find the one near a city.",
 		"placeholder": "e.g. times square",
 		"required": true,
 		"displayOptions": {
@@ -964,6 +1038,39 @@ export const instagram: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.locations.search.list.v2"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Lat",
+				"name": "lat",
+				"type": "number",
+				"default": 0,
+				"description": "Latitude, -90 to 90, to rank places near this point first. Send it with `lng`. Without `lat` and `lng`, the search is by name alone."
+			},
+			{
+				"displayName": "Lng",
+				"name": "lng",
+				"type": "number",
+				"default": 0,
+				"description": "Longitude, -180 to 180, to rank places near this point first. Send it with `lat`."
+			}
+		]
 	},
 	{
 		"displayName": "Query",
@@ -1231,6 +1338,61 @@ export const instagram: INodeProperties[] = [
 					"instagram"
 				],
 				"operation": [
+					"instagram.media.comments.likers.list.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Comment ID",
+		"name": "commentId",
+		"type": "string",
+		"default": "",
+		"description": "Id of the parent comment, from the comments endpoint.",
+		"placeholder": "e.g. 18357739894223089",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.media.comments.likers.list.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
+					"instagram.media.comments.likers.list.v2"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Media",
+		"name": "media",
+		"type": "string",
+		"default": "",
+		"description": "Shortcode, post or Reel URL, or numeric media id.",
+		"placeholder": "e.g. DePzV26vLFB",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"instagram"
+				],
+				"operation": [
 					"instagram.media.transcript.get.v2"
 				]
 			}
@@ -1408,7 +1570,7 @@ export const instagram: INodeProperties[] = [
 					}
 				],
 				"default": "top",
-				"description": "`top` (default), `recent` or `reels`."
+				"description": "`top` (default): posts and Reels as Instagram's app shows them, ranked by relevance. `reels`: the Reels in that view. `recent`: posts from the last 7 days, newest first within each page."
 			}
 		]
 	},

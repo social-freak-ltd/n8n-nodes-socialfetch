@@ -33,6 +33,30 @@ export const spotify: INodeProperties[] = [
 				"value": "spotify.track.get",
 				"action": "Get Spotify track",
 				"description": "Get a Spotify track by id or track URL."
+			},
+			{
+				"name": "Playlist",
+				"value": "spotify.playlist.get",
+				"action": "Get Spotify playlist",
+				"description": "Get a Spotify playlist and its tracks by id or playlist URL."
+			},
+			{
+				"name": "Podcast",
+				"value": "spotify.podcast.get",
+				"action": "Get Spotify podcast",
+				"description": "Get a Spotify podcast by id or podcast URL."
+			},
+			{
+				"name": "Podcast Episodes",
+				"value": "spotify.podcast.episodes.list",
+				"action": "List Spotify podcast episodes",
+				"description": "List a Spotify podcast's episodes by id or podcast URL."
+			},
+			{
+				"name": "Search",
+				"value": "spotify.search.list",
+				"action": "Search Spotify",
+				"description": "Search Spotify for tracks, artists, albums, playlists, podcasts, episodes and audiobooks."
 			}
 		]
 	},
@@ -305,5 +329,327 @@ export const spotify: INodeProperties[] = [
 				"placeholder": "e.g. https://open.spotify.com/track/1ITJflybJsfarsUtiBvkfK"
 			}
 		]
+	},
+	{
+		"displayName": "Playlist ID",
+		"name": "playlistId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify playlist id, such as `37i9dQZF1DX4UtSsGT1Sbe`. Pass this or `url`. Leave empty only if you set URL or Cursor under Additional Fields instead.",
+		"placeholder": "e.g. 37i9dQZF1DX4UtSsGT1Sbe",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.playlist.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.playlist.get"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Playlist ID",
+				"name": "playlistId",
+				"type": "string",
+				"default": "",
+				"description": "Spotify playlist id, such as `37i9dQZF1DX4UtSsGT1Sbe`. Pass this or `url`.",
+				"placeholder": "e.g. 37i9dQZF1DX4UtSsGT1Sbe"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify playlist URL, such as `https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe`. Pass this or `playlistId`.",
+				"placeholder": "e.g. https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe"
+			},
+			{
+				"displayName": "Cursor",
+				"name": "cursor",
+				"type": "string",
+				"default": "",
+				"description": "Pass `page.nextCursor` from the previous response to get the next page.",
+				"placeholder": "e.g. 50"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.playlist.get"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify playlist URL, such as `https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe`. Pass this or `playlistId`.",
+				"placeholder": "e.g. https://open.spotify.com/playlist/37i9dQZF1DX4UtSsGT1Sbe"
+			},
+			{
+				"displayName": "Cursor",
+				"name": "cursor",
+				"type": "string",
+				"default": "",
+				"description": "Pass `page.nextCursor` from the previous response to get the next page.",
+				"placeholder": "e.g. 50"
+			}
+		]
+	},
+	{
+		"displayName": "Podcast ID",
+		"name": "podcastId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify podcast id, such as `3mliji9352UAk3XnWElnDV`. Pass this or `url`. Leave empty only if you set URL under Additional Fields instead.",
+		"placeholder": "e.g. 3mliji9352UAk3XnWElnDV",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.get"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Podcast ID",
+				"name": "podcastId",
+				"type": "string",
+				"default": "",
+				"description": "Spotify podcast id, such as `3mliji9352UAk3XnWElnDV`. Pass this or `url`.",
+				"placeholder": "e.g. 3mliji9352UAk3XnWElnDV"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify podcast URL, such as `https://open.spotify.com/show/3mliji9352UAk3XnWElnDV`. Pass this or `podcastId`.",
+				"placeholder": "e.g. https://open.spotify.com/show/3mliji9352UAk3XnWElnDV"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.get"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify podcast URL, such as `https://open.spotify.com/show/3mliji9352UAk3XnWElnDV`. Pass this or `podcastId`.",
+				"placeholder": "e.g. https://open.spotify.com/show/3mliji9352UAk3XnWElnDV"
+			}
+		]
+	},
+	{
+		"displayName": "Podcast ID",
+		"name": "podcastId",
+		"type": "string",
+		"default": "",
+		"description": "Spotify podcast id, such as `3mliji9352UAk3XnWElnDV`. Pass this or `url`. Leave empty only if you set URL under Additional Fields instead.",
+		"placeholder": "e.g. 3mliji9352UAk3XnWElnDV",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.episodes.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.episodes.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.episodes.list"
+				],
+				"@version": [
+					1
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Podcast ID",
+				"name": "podcastId",
+				"type": "string",
+				"default": "",
+				"description": "Spotify podcast id, such as `3mliji9352UAk3XnWElnDV`. Pass this or `url`.",
+				"placeholder": "e.g. 3mliji9352UAk3XnWElnDV"
+			},
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify podcast URL, such as `https://open.spotify.com/show/3mliji9352UAk3XnWElnDV`. Pass this or `podcastId`.",
+				"placeholder": "e.g. https://open.spotify.com/show/3mliji9352UAk3XnWElnDV"
+			}
+		]
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.podcast.episodes.list"
+				],
+				"@version": [
+					{
+						"_cnd": {
+							"gte": 2
+						}
+					}
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "URL",
+				"name": "url",
+				"type": "string",
+				"default": "",
+				"description": "Public Spotify podcast URL, such as `https://open.spotify.com/show/3mliji9352UAk3XnWElnDV`. Pass this or `podcastId`.",
+				"placeholder": "e.g. https://open.spotify.com/show/3mliji9352UAk3XnWElnDV"
+			}
+		]
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Search text, such as a song, artist, podcast or playlist name (for example `my first million`).",
+		"placeholder": "e.g. my first million",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"spotify"
+				],
+				"operation": [
+					"spotify.search.list"
+				]
+			}
+		}
 	}
 ];

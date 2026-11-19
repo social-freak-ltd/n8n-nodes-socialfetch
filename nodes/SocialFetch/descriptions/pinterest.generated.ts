@@ -35,6 +35,12 @@ export const pinterest: INodeProperties[] = [
 				"description": "Fetch a public Pinterest pin by URL."
 			},
 			{
+				"name": "Topic",
+				"value": "pinterest.topic.get",
+				"action": "Get Pinterest topic",
+				"description": "Get a Pinterest topic by ideas URL, with its search count and narrower topics."
+			},
+			{
 				"name": "Search",
 				"value": "pinterest.search.pins.list",
 				"action": "Search Pinterest pins",
@@ -210,6 +216,25 @@ export const pinterest: INodeProperties[] = [
 				"description": "When true, returns a smaller response with fewer fields."
 			}
 		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the Pinterest ideas page of the topic, such as `https://www.pinterest.com/ideas/home-decor/935249274030/`.",
+		"placeholder": "e.g. https://www.pinterest.com/ideas/home-decor/935249274030/",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"pinterest"
+				],
+				"operation": [
+					"pinterest.topic.get"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Query",

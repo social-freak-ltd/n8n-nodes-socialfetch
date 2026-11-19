@@ -71,6 +71,12 @@ export const facebook: INodeProperties[] = [
 				"description": "Get the transcript for a Facebook post or Reel by URL."
 			},
 			{
+				"name": "Video Search",
+				"value": "facebook.videos.search.list",
+				"action": "Search Facebook videos",
+				"description": "Search Facebook videos and Reels by keyword."
+			},
+			{
 				"name": "Group",
 				"value": "facebook.group.get",
 				"action": "Get Facebook group",
@@ -692,6 +698,42 @@ export const facebook: INodeProperties[] = [
 				"description": "Lifts the 2-minute limit on AI transcription. A transcript then costs 10 credits per started minute of video, short clips included (plus the base 1), billed up to 60 minutes; a video with no transcript stays at the base price. Long videos can take a minute or more."
 			}
 		]
+	},
+	{
+		"displayName": "Query",
+		"name": "query",
+		"type": "string",
+		"default": "",
+		"description": "Keyword or phrase to search Facebook videos and Reels for, such as `dogs`.",
+		"placeholder": "e.g. dogs",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"facebook"
+				],
+				"operation": [
+					"facebook.videos.search.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"facebook"
+				],
+				"operation": [
+					"facebook.videos.search.list"
+				]
+			}
+		}
 	},
 	{
 		"displayName": "Group ID",

@@ -54,6 +54,36 @@ import { googleNews } from "./google-news.generated";
 import { googleTrends } from "./google-trends.generated";
 import { kick } from "./kick.generated";
 import { discord } from "./discord.generated";
+import { googlePlay } from "./google-play.generated";
+import { naver } from "./naver.generated";
+import { sephora } from "./sephora.generated";
+import { goodreads } from "./goodreads.generated";
+import { gumtree } from "./gumtree.generated";
+import { gab } from "./gab.generated";
+import { komi } from "./komi.generated";
+import { pillar } from "./pillar.generated";
+import { linkme } from "./linkme.generated";
+import { kwai } from "./kwai.generated";
+import { cosmos } from "./cosmos.generated";
+import { xing } from "./xing.generated";
+import { hm } from "./hm.generated";
+import { duckduckgo } from "./duckduckgo.generated";
+import { economy } from "./economy.generated";
+import { booking } from "./booking.generated";
+import { airbnb } from "./airbnb.generated";
+import { klarna } from "./klarna.generated";
+import { walmart } from "./walmart.generated";
+import { homeDepot } from "./home-depot.generated";
+import { kohls } from "./kohls.generated";
+import { xiaohongshu } from "./xiaohongshu.generated";
+import { trustpilot } from "./trustpilot.generated";
+import { tripadvisor } from "./tripadvisor.generated";
+import { g2 } from "./g2.generated";
+import { etsy } from "./etsy.generated";
+import { weibo } from "./weibo.generated";
+import { douyin } from "./douyin.generated";
+import { googleShopping } from "./google-shopping.generated";
+import { bing } from "./bing.generated";
 import { appleAppStore } from "./apple-app-store.generated";
 import { polymarket } from "./polymarket.generated";
 import { devTo } from "./dev-to.generated";
@@ -277,6 +307,126 @@ export const resourceOptions = [
 		"value": "discord"
 	},
 	{
+		"name": "Google Play",
+		"value": "google-play"
+	},
+	{
+		"name": "Naver",
+		"value": "naver"
+	},
+	{
+		"name": "Sephora",
+		"value": "sephora"
+	},
+	{
+		"name": "Goodreads",
+		"value": "goodreads"
+	},
+	{
+		"name": "Gumtree",
+		"value": "gumtree"
+	},
+	{
+		"name": "Gab",
+		"value": "gab"
+	},
+	{
+		"name": "Komi",
+		"value": "komi"
+	},
+	{
+		"name": "Pillar",
+		"value": "pillar"
+	},
+	{
+		"name": "Linkme",
+		"value": "linkme"
+	},
+	{
+		"name": "Kwai",
+		"value": "kwai"
+	},
+	{
+		"name": "Cosmos",
+		"value": "cosmos"
+	},
+	{
+		"name": "XING",
+		"value": "xing"
+	},
+	{
+		"name": "H&M",
+		"value": "hm"
+	},
+	{
+		"name": "DuckDuckGo",
+		"value": "duckduckgo"
+	},
+	{
+		"name": "Economy",
+		"value": "economy"
+	},
+	{
+		"name": "Booking.com",
+		"value": "booking"
+	},
+	{
+		"name": "Airbnb",
+		"value": "airbnb"
+	},
+	{
+		"name": "Klarna",
+		"value": "klarna"
+	},
+	{
+		"name": "Walmart",
+		"value": "walmart"
+	},
+	{
+		"name": "Home Depot",
+		"value": "home-depot"
+	},
+	{
+		"name": "Kohl's",
+		"value": "kohls"
+	},
+	{
+		"name": "Xiaohongshu",
+		"value": "xiaohongshu"
+	},
+	{
+		"name": "Trustpilot",
+		"value": "trustpilot"
+	},
+	{
+		"name": "Tripadvisor",
+		"value": "tripadvisor"
+	},
+	{
+		"name": "G2",
+		"value": "g2"
+	},
+	{
+		"name": "Etsy",
+		"value": "etsy"
+	},
+	{
+		"name": "Weibo",
+		"value": "weibo"
+	},
+	{
+		"name": "Douyin",
+		"value": "douyin"
+	},
+	{
+		"name": "Google Shopping",
+		"value": "google-shopping"
+	},
+	{
+		"name": "Bing",
+		"value": "bing"
+	},
+	{
 		"name": "Apple App Store",
 		"value": "apple-app-store"
 	},
@@ -349,6 +499,36 @@ export const allResourceProperties: INodeProperties[] = [
 	...googleTrends,
 	...kick,
 	...discord,
+	...googlePlay,
+	...naver,
+	...sephora,
+	...goodreads,
+	...gumtree,
+	...gab,
+	...komi,
+	...pillar,
+	...linkme,
+	...kwai,
+	...cosmos,
+	...xing,
+	...hm,
+	...duckduckgo,
+	...economy,
+	...booking,
+	...airbnb,
+	...klarna,
+	...walmart,
+	...homeDepot,
+	...kohls,
+	...xiaohongshu,
+	...trustpilot,
+	...tripadvisor,
+	...g2,
+	...etsy,
+	...weibo,
+	...douyin,
+	...googleShopping,
+	...bing,
 	...appleAppStore,
 	...polymarket,
 	...devTo,

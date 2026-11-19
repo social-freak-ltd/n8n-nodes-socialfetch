@@ -39,6 +39,12 @@ export const twitch: INodeProperties[] = [
 				"value": "twitch.clip.get",
 				"action": "Get Twitch clip",
 				"description": "Get metadata and playback URLs for a Twitch clip by URL."
+			},
+			{
+				"name": "Clip Transcript",
+				"value": "twitch.clip.transcript.get",
+				"action": "Get Twitch clip transcript",
+				"description": "Get the transcript for a Twitch clip by URL."
 			}
 		]
 	},
@@ -174,5 +180,50 @@ export const twitch: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Link to the Twitch clip whose transcript should be returned.",
+		"placeholder": "e.g. https://www.twitch.tv/mish/clip/WrongMagnificentTomatoCorgiDerp-C720OEMqocSPbrqA",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitch"
+				],
+				"operation": [
+					"twitch.clip.transcript.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitch"
+				],
+				"operation": [
+					"twitch.clip.transcript.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Use AI Fallback",
+				"name": "useAiFallback",
+				"type": "boolean",
+				"default": false,
+				"description": "When true and the clip has no captions, transcribes the audio with AI at no extra cost. Defaults to false, which returns captions only."
+			}
+		]
 	}
 ];

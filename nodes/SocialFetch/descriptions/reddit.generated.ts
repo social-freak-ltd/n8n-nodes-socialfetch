@@ -56,7 +56,7 @@ export const reddit: INodeProperties[] = [
 				"name": "Search",
 				"value": "reddit.search.list",
 				"action": "Search Reddit posts",
-				"description": "Search Reddit posts site-wide by keyword (not scoped to one subreddit — use reddit.subreddit.search.list for that)."
+				"description": "Search Reddit posts or comments site-wide by keyword (to search one subreddit, use reddit.subreddit.search.list)."
 			}
 		]
 	},
@@ -519,7 +519,7 @@ export const reddit: INodeProperties[] = [
 		"name": "query",
 		"type": "string",
 		"default": "",
-		"description": "Search query text for public Reddit posts.",
+		"description": "Search query text for public Reddit posts or comments.",
 		"placeholder": "e.g. web scraping",
 		"required": true,
 		"displayOptions": {
@@ -567,6 +567,23 @@ export const reddit: INodeProperties[] = [
 			}
 		},
 		"options": [
+			{
+				"displayName": "Type",
+				"name": "type",
+				"type": "options",
+				"options": [
+					{
+						"name": "Posts",
+						"value": "posts"
+					},
+					{
+						"name": "Comments",
+						"value": "comments"
+					}
+				],
+				"default": "posts",
+				"description": "What to search: `posts` (the default) or `comments`. Comment search answers in `comments`, sorts by `relevance`, `new` or `top`, and takes no `timeframe`."
+			},
 			{
 				"displayName": "Sort By",
 				"name": "sortBy",

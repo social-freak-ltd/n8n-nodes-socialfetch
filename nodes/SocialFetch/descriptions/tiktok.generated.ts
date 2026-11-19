@@ -1530,7 +1530,7 @@ export const tiktok: INodeProperties[] = [
 		"name": "url",
 		"type": "string",
 		"default": "",
-		"description": "Public TikTok Shop store URL whose products should be listed.",
+		"description": "Public TikTok Shop store URL whose products should be listed: a `tiktok.com/shop/store/…` URL, or a store share link from the TikTok app (`vt.tiktok.com/…`).",
 		"placeholder": "e.g. https://www.tiktok.com/shop/store/goli-nutrition/7495794203056835079",
 		"required": true,
 		"displayOptions": {
@@ -1714,70 +1714,10 @@ export const tiktok: INodeProperties[] = [
 					{
 						"name": "US",
 						"value": "US"
-					},
-					{
-						"name": "GB",
-						"value": "GB"
-					},
-					{
-						"name": "DE",
-						"value": "DE"
-					},
-					{
-						"name": "FR",
-						"value": "FR"
-					},
-					{
-						"name": "IT",
-						"value": "IT"
-					},
-					{
-						"name": "ID",
-						"value": "ID"
-					},
-					{
-						"name": "MY",
-						"value": "MY"
-					},
-					{
-						"name": "MX",
-						"value": "MX"
-					},
-					{
-						"name": "PH",
-						"value": "PH"
-					},
-					{
-						"name": "SG",
-						"value": "SG"
-					},
-					{
-						"name": "ES",
-						"value": "ES"
-					},
-					{
-						"name": "TH",
-						"value": "TH"
-					},
-					{
-						"name": "VN",
-						"value": "VN"
-					},
-					{
-						"name": "BR",
-						"value": "BR"
-					},
-					{
-						"name": "JP",
-						"value": "JP"
-					},
-					{
-						"name": "IE",
-						"value": "IE"
 					}
 				],
 				"default": "US",
-				"description": "Optional country or region code for the product catalog. When omitted, the default catalog region applies."
+				"description": "Optional catalog region. Only `US` is supported, and it is the default when omitted. For products sold in other regions, use `/v1/tiktok/shop/products` with that region."
 			}
 		]
 	},
@@ -2206,7 +2146,7 @@ export const tiktok: INodeProperties[] = [
 		"name": "advertiserName",
 		"type": "string",
 		"default": "",
-		"description": "Search the public TikTok Ads Library by advertiser name. Leave empty only if you set Query or Advertiser Business ID under Additional Fields instead.",
+		"description": "Search the public TikTok Ads Library by advertiser name. Leave empty only if you set Query or Advertiser Business ID or Start Date or End Date under Additional Fields instead.",
 		"placeholder": "e.g. Nike",
 		"displayOptions": {
 			"show": {
@@ -2279,6 +2219,171 @@ export const tiktok: INodeProperties[] = [
 				"default": "",
 				"description": "TikTok advertiser business ID, from `advertiserMatches[].businessId` or an ad's `advertiserBusinessId`. Pins an advertiser search to that exact advertiser. Requires `advertiserName`.",
 				"placeholder": "e.g. abc123"
+			},
+			{
+				"displayName": "Country",
+				"name": "country",
+				"type": "options",
+				"options": [
+					{
+						"name": "ALL",
+						"value": "ALL"
+					},
+					{
+						"name": "AT",
+						"value": "AT"
+					},
+					{
+						"name": "BE",
+						"value": "BE"
+					},
+					{
+						"name": "BG",
+						"value": "BG"
+					},
+					{
+						"name": "BR",
+						"value": "BR"
+					},
+					{
+						"name": "CH",
+						"value": "CH"
+					},
+					{
+						"name": "CY",
+						"value": "CY"
+					},
+					{
+						"name": "CZ",
+						"value": "CZ"
+					},
+					{
+						"name": "DE",
+						"value": "DE"
+					},
+					{
+						"name": "DK",
+						"value": "DK"
+					},
+					{
+						"name": "EE",
+						"value": "EE"
+					},
+					{
+						"name": "ES",
+						"value": "ES"
+					},
+					{
+						"name": "FI",
+						"value": "FI"
+					},
+					{
+						"name": "FR",
+						"value": "FR"
+					},
+					{
+						"name": "GB",
+						"value": "GB"
+					},
+					{
+						"name": "GR",
+						"value": "GR"
+					},
+					{
+						"name": "HR",
+						"value": "HR"
+					},
+					{
+						"name": "HU",
+						"value": "HU"
+					},
+					{
+						"name": "IE",
+						"value": "IE"
+					},
+					{
+						"name": "IS",
+						"value": "IS"
+					},
+					{
+						"name": "IT",
+						"value": "IT"
+					},
+					{
+						"name": "LI",
+						"value": "LI"
+					},
+					{
+						"name": "LT",
+						"value": "LT"
+					},
+					{
+						"name": "LU",
+						"value": "LU"
+					},
+					{
+						"name": "LV",
+						"value": "LV"
+					},
+					{
+						"name": "MT",
+						"value": "MT"
+					},
+					{
+						"name": "NL",
+						"value": "NL"
+					},
+					{
+						"name": "NO",
+						"value": "NO"
+					},
+					{
+						"name": "PL",
+						"value": "PL"
+					},
+					{
+						"name": "PT",
+						"value": "PT"
+					},
+					{
+						"name": "RO",
+						"value": "RO"
+					},
+					{
+						"name": "SE",
+						"value": "SE"
+					},
+					{
+						"name": "SI",
+						"value": "SI"
+					},
+					{
+						"name": "SK",
+						"value": "SK"
+					},
+					{
+						"name": "TR",
+						"value": "TR"
+					}
+				],
+				"default": "ALL",
+				"description": "Country the ad was shown in (its targeting or delivery country, not the advertiser's). Case-insensitive. Omit it, or use `ALL`, for every supported country. The US isn't supported."
+			},
+			{
+				"displayName": "Start Date",
+				"name": "startDate",
+				"type": "string",
+				"default": "",
+				"description": "Only ads last shown on or after this date (UTC, YYYY-MM-DD). Use with `endDate`. Without both, the search covers the last 30 days. A narrower window means fewer pages to read.",
+				"placeholder": "e.g. 2025-10-01"
+			},
+			{
+				"displayName": "End Date",
+				"name": "endDate",
+				"type": "string",
+				"default": "",
+				"description": "Only ads last shown on or before this date (UTC, YYYY-MM-DD, inclusive). Use with `startDate`.",
+				"placeholder": "e.g. 2026-03-31"
 			}
 		]
 	},
@@ -2321,6 +2426,171 @@ export const tiktok: INodeProperties[] = [
 				"default": "",
 				"description": "TikTok advertiser business ID, from `advertiserMatches[].businessId` or an ad's `advertiserBusinessId`. Pins an advertiser search to that exact advertiser. Requires `advertiserName`.",
 				"placeholder": "e.g. abc123"
+			},
+			{
+				"displayName": "Country",
+				"name": "country",
+				"type": "options",
+				"options": [
+					{
+						"name": "ALL",
+						"value": "ALL"
+					},
+					{
+						"name": "AT",
+						"value": "AT"
+					},
+					{
+						"name": "BE",
+						"value": "BE"
+					},
+					{
+						"name": "BG",
+						"value": "BG"
+					},
+					{
+						"name": "BR",
+						"value": "BR"
+					},
+					{
+						"name": "CH",
+						"value": "CH"
+					},
+					{
+						"name": "CY",
+						"value": "CY"
+					},
+					{
+						"name": "CZ",
+						"value": "CZ"
+					},
+					{
+						"name": "DE",
+						"value": "DE"
+					},
+					{
+						"name": "DK",
+						"value": "DK"
+					},
+					{
+						"name": "EE",
+						"value": "EE"
+					},
+					{
+						"name": "ES",
+						"value": "ES"
+					},
+					{
+						"name": "FI",
+						"value": "FI"
+					},
+					{
+						"name": "FR",
+						"value": "FR"
+					},
+					{
+						"name": "GB",
+						"value": "GB"
+					},
+					{
+						"name": "GR",
+						"value": "GR"
+					},
+					{
+						"name": "HR",
+						"value": "HR"
+					},
+					{
+						"name": "HU",
+						"value": "HU"
+					},
+					{
+						"name": "IE",
+						"value": "IE"
+					},
+					{
+						"name": "IS",
+						"value": "IS"
+					},
+					{
+						"name": "IT",
+						"value": "IT"
+					},
+					{
+						"name": "LI",
+						"value": "LI"
+					},
+					{
+						"name": "LT",
+						"value": "LT"
+					},
+					{
+						"name": "LU",
+						"value": "LU"
+					},
+					{
+						"name": "LV",
+						"value": "LV"
+					},
+					{
+						"name": "MT",
+						"value": "MT"
+					},
+					{
+						"name": "NL",
+						"value": "NL"
+					},
+					{
+						"name": "NO",
+						"value": "NO"
+					},
+					{
+						"name": "PL",
+						"value": "PL"
+					},
+					{
+						"name": "PT",
+						"value": "PT"
+					},
+					{
+						"name": "RO",
+						"value": "RO"
+					},
+					{
+						"name": "SE",
+						"value": "SE"
+					},
+					{
+						"name": "SI",
+						"value": "SI"
+					},
+					{
+						"name": "SK",
+						"value": "SK"
+					},
+					{
+						"name": "TR",
+						"value": "TR"
+					}
+				],
+				"default": "ALL",
+				"description": "Country the ad was shown in (its targeting or delivery country, not the advertiser's). Case-insensitive. Omit it, or use `ALL`, for every supported country. The US isn't supported."
+			},
+			{
+				"displayName": "Start Date",
+				"name": "startDate",
+				"type": "string",
+				"default": "",
+				"description": "Only ads last shown on or after this date (UTC, YYYY-MM-DD). Use with `endDate`. Without both, the search covers the last 30 days. A narrower window means fewer pages to read.",
+				"placeholder": "e.g. 2025-10-01"
+			},
+			{
+				"displayName": "End Date",
+				"name": "endDate",
+				"type": "string",
+				"default": "",
+				"description": "Only ads last shown on or before this date (UTC, YYYY-MM-DD, inclusive). Use with `startDate`.",
+				"placeholder": "e.g. 2026-03-31"
 			}
 		]
 	}

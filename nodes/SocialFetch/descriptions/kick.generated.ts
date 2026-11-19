@@ -77,6 +77,12 @@ export const kick: INodeProperties[] = [
 				"description": "Get a Kick clip by id with its views, likes, creator, channel and playback."
 			},
 			{
+				"name": "Clip Transcript",
+				"value": "kick.clip.transcript.get",
+				"action": "Get Kick clip transcript",
+				"description": "Get the transcript of a Kick clip's audio by clip id."
+			},
+			{
 				"name": "Clips",
 				"value": "kick.clips.list",
 				"action": "List Kick clips",
@@ -429,6 +435,51 @@ export const kick: INodeProperties[] = [
 				]
 			}
 		}
+	},
+	{
+		"displayName": "Clip ID",
+		"name": "clipId",
+		"type": "string",
+		"default": "",
+		"description": "Kick clip id.",
+		"placeholder": "e.g. clip_01M7FKTPTNYPWEXS45AP6EXD2M",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"kick"
+				],
+				"operation": [
+					"kick.clip.transcript.get"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"kick"
+				],
+				"operation": [
+					"kick.clip.transcript.get"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Allow Long Transcription",
+				"name": "allowLongTranscription",
+				"type": "boolean",
+				"default": false,
+				"description": "Lifts the 2-minute limit on AI transcription. A transcript then costs 10 credits per started minute of video, short clips included (plus the base 1), billed up to 60 minutes; a video with no transcript stays at the base price. Long videos can take a minute or more."
+			}
+		]
 	},
 	{
 		"displayName": "Sort",

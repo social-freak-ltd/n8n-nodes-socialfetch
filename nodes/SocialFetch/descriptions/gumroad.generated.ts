@@ -1145,7 +1145,7 @@ export const gumroad: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "A post URL, e.g. https://clifhuman.gumroad.com/p/some-post. Leave empty only if you set Creator or Slug under Additional Fields instead.",
-		"placeholder": "e.g. https://riggingpro.gumroad.com/p/master-the-node-editor-7-pro-tips-for-riggers",
+		"placeholder": "e.g. https://gumroad.gumroad.com/p/buy-within-gumroad-for-ios-and-android",
 		"displayOptions": {
 			"show": {
 				"resource": [
@@ -1183,7 +1183,7 @@ export const gumroad: INodeProperties[] = [
 				"type": "string",
 				"default": "",
 				"description": "A post URL, e.g. https://clifhuman.gumroad.com/p/some-post.",
-				"placeholder": "e.g. https://riggingpro.gumroad.com/p/master-the-node-editor-7-pro-tips-for-riggers"
+				"placeholder": "e.g. https://gumroad.gumroad.com/p/buy-within-gumroad-for-ios-and-android"
 			},
 			{
 				"displayName": "Creator",
@@ -1251,7 +1251,7 @@ export const gumroad: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "postId, as returned by the Gumroad endpoint that names it.",
-		"placeholder": "e.g. TpoCZ_m_1kAgW8ea4OwDzw==",
+		"placeholder": "e.g. EF4D7qdztBRH5T6FmiXG7g==",
 		"required": true,
 		"displayOptions": {
 			"show": {
@@ -1270,7 +1270,7 @@ export const gumroad: INodeProperties[] = [
 		"type": "string",
 		"default": "",
 		"description": "Gumroad creator username (the storefront subdomain), e.g. `clifhuman`. A profile URL such as https://clifhuman.gumroad.com/ or https://gumroad.com/clifhuman is also accepted.",
-		"placeholder": "e.g. riggingpro",
+		"placeholder": "e.g. gumroad",
 		"required": true,
 		"displayOptions": {
 			"show": {

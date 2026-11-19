@@ -83,6 +83,12 @@ export const twitter: INodeProperties[] = [
 				"description": "List tweets from an X profile by handle or numeric user id."
 			},
 			{
+				"name": "Profile Media",
+				"value": "twitter.profile.media.list",
+				"action": "List Twitter profile media",
+				"description": "List an X profile's photo or video tweets by handle or numeric user id."
+			},
+			{
 				"name": "Tweet",
 				"value": "twitter.tweet.get",
 				"action": "Get Twitter tweet",
@@ -936,6 +942,113 @@ export const twitter: INodeProperties[] = [
 				"type": "boolean",
 				"default": false,
 				"description": "When true, includes the pinned tweet when available."
+			},
+			{
+				"displayName": "By",
+				"name": "by",
+				"type": "options",
+				"options": [
+					{
+						"name": "ID",
+						"value": "id"
+					},
+					{
+						"name": "Handle",
+						"value": "handle"
+					}
+				],
+				"default": "id",
+				"description": "Treat the path value as a handle or a numeric user id. Defaults to id when the value is all digits."
+			}
+		]
+	},
+	{
+		"displayName": "Handle",
+		"name": "handle",
+		"type": "string",
+		"default": "",
+		"description": "X (Twitter) profile handle without the leading @, or a numeric user id.",
+		"placeholder": "e.g. nasa",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.profile.media.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Type",
+		"name": "type",
+		"type": "options",
+		"options": [
+			{
+				"name": "Photos",
+				"value": "photos"
+			},
+			{
+				"name": "Videos",
+				"value": "videos"
+			}
+		],
+		"default": "photos",
+		"description": "Which media tab to read: `photos` (tweets with photos) or `videos` (tweets with videos). X keeps them as separate tabs. Keep it unchanged when paging.",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.profile.media.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Return All",
+		"name": "returnAll",
+		"type": "boolean",
+		"default": false,
+		"description": "Whether to return all results by paginating through every page, or only the first page. Each page consumes API credits. Stops after 100 pages.",
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.profile.media.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"twitter"
+				],
+				"operation": [
+					"twitter.profile.media.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 0,
+				"description": "Requested page size (1–100). Best-effort; the actual page size may differ."
 			},
 			{
 				"displayName": "By",

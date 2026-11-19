@@ -473,6 +473,15 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 			},
 			{
 				"name": "advertiserBusinessId"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "startDate"
+			},
+			{
+				"name": "endDate"
 			}
 		],
 		"pagination": "cursor",
@@ -527,6 +536,16 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"query": [],
 		"itemsPath": "data.media",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/profiles/profile/stories/get"
+	},
+	"instagram.profile.similar.list.v2": {
+		"method": "GET",
+		"path": "/v2/instagram/profiles/{profile}/similar",
+		"pathParams": [
+			"profile"
+		],
+		"query": [],
+		"itemsPath": "data.accounts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/profiles/profile/similar/get"
 	},
 	"instagram.profile.following.list.v2": {
 		"method": "GET",
@@ -587,6 +606,15 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"query": [],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/highlights/highlightid/get"
 	},
+	"instagram.story.get.v2": {
+		"method": "GET",
+		"path": "/v2/instagram/stories/{storyId}",
+		"pathParams": [
+			"storyId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/stories/storyid/get"
+	},
 	"instagram.profile.engagement.get.v2": {
 		"method": "GET",
 		"path": "/v2/instagram/profiles/{profile}/engagement",
@@ -641,6 +669,12 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"query": [
 			{
 				"name": "query"
+			},
+			{
+				"name": "lat"
+			},
+			{
+				"name": "lng"
 			}
 		],
 		"itemsPath": "data.locations",
@@ -727,6 +761,18 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.comments",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/media/media/comments/commentid/replies/get"
+	},
+	"instagram.media.comments.likers.list.v2": {
+		"method": "GET",
+		"path": "/v2/instagram/media/{media}/comments/{commentId}/likers",
+		"pathParams": [
+			"media",
+			"commentId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.accounts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/instagram/media/media/comments/commentid/likers/get"
 	},
 	"instagram.media.transcript.get.v2": {
 		"method": "GET",
@@ -1109,6 +1155,69 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"itemsPath": "data.shorts",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/channels/shorts/get"
 	},
+	"youtube.channel.search.list": {
+		"method": "GET",
+		"path": "/v1/youtube/channels/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "handle"
+			},
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/channels/search/get"
+	},
+	"youtube.channel.communityPosts.list": {
+		"method": "GET",
+		"path": "/v1/youtube/channels/community-posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "channelId"
+			},
+			{
+				"name": "handle"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/channels/community-posts/get"
+	},
+	"youtube.channel.playlists.list": {
+		"method": "GET",
+		"path": "/v1/youtube/channels/playlists",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "channelId"
+			},
+			{
+				"name": "handle"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.playlists",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/channels/playlists/get"
+	},
+	"youtube.channel.liveStreams.list": {
+		"method": "GET",
+		"path": "/v1/youtube/channels/live-streams",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "channelId"
+			},
+			{
+				"name": "handle"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.streams",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/channels/live-streams/get"
+	},
 	"youtube.playlist.get": {
 		"method": "GET",
 		"path": "/v1/youtube/playlists",
@@ -1179,6 +1288,18 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.results",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/search/hashtags/get"
+	},
+	"youtube.search.suggestions.list": {
+		"method": "GET",
+		"path": "/v1/youtube/search/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.suggestions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/search/suggestions/get"
 	},
 	"youtube.video.get": {
 		"method": "GET",
@@ -1252,6 +1373,20 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 			}
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/videos/transcript/get"
+	},
+	"youtube.video.sponsors.get": {
+		"method": "GET",
+		"path": "/v1/youtube/videos/sponsors",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/youtube/videos/sponsors/get"
 	},
 	"youtube.shorts.trending.list": {
 		"method": "GET",
@@ -1440,6 +1575,27 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.tweets",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/twitter/profiles/handle/tweets/get"
+	},
+	"twitter.profile.media.list": {
+		"method": "GET",
+		"path": "/v1/twitter/profiles/{handle}/media",
+		"pathParams": [
+			"handle"
+		],
+		"query": [
+			{
+				"name": "type"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "by"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.tweets",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/twitter/profiles/handle/media/get"
 	},
 	"twitter.tweet.get": {
 		"method": "GET",
@@ -1824,6 +1980,19 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/facebook/posts/transcript/get"
 	},
+	"facebook.videos.search.list": {
+		"method": "GET",
+		"path": "/v1/facebook/videos/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.videos",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/facebook/videos/search/get"
+	},
 	"facebook.group.get": {
 		"method": "GET",
 		"path": "/v1/facebook/groups",
@@ -2110,6 +2279,56 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/profiles/batch/get"
 	},
+	"linkedin.profile.email.get.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/profiles/email",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/profiles/email/get"
+	},
+	"linkedin.profile.phones.get.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/profiles/phones",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/profiles/phones/get"
+	},
+	"linkedin.live.profile.contact.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/profiles/contact",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "handle"
+			},
+			{
+				"name": "entityId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/profiles/contact/get"
+	},
+	"linkedin.live.profile.featured.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/profiles/featured",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "handle"
+			},
+			{
+				"name": "entityId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/profiles/featured/get"
+	},
 	"linkedin.live.person.resolve.v2": {
 		"method": "GET",
 		"path": "/v2/linkedin/people/resolve",
@@ -2150,6 +2369,17 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.comments",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/people/entityId/comments/get"
+	},
+	"linkedin.live.person.reactions.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/people/{entityId}/reactions",
+		"pathParams": [
+			"entityId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reactions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/people/entityId/reactions/get"
 	},
 	"linkedin.live.person.employmentHistory.v2": {
 		"method": "GET",
@@ -2267,6 +2497,15 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"itemsPath": "data.headcount.groups",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/organizations/organizationId/headcount/get"
 	},
+	"linkedin.live.organization.insights.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/organizations/{organizationId}/insights",
+		"pathParams": [
+			"organizationId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/organizations/organizationId/insights/get"
+	},
 	"linkedin.live.organization.affiliated.v2": {
 		"method": "GET",
 		"path": "/v2/linkedin/organizations/{organizationId}/affiliated",
@@ -2338,6 +2577,26 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"itemsPath": "data.jobs",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/jobs/jobId/similar/get"
 	},
+	"linkedin.live.group.get.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/groups/{groupId}",
+		"pathParams": [
+			"groupId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/groups/groupId/get"
+	},
+	"linkedin.live.group.posts.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/groups/{groupId}/posts",
+		"pathParams": [
+			"groupId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.activities",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/groups/groupId/posts/get"
+	},
 	"linkedin.live.activity.get.v2": {
 		"method": "GET",
 		"path": "/v2/linkedin/activities/{activityId}",
@@ -2367,6 +2626,19 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.comments",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/activities/activityId/comments/get"
+	},
+	"linkedin.live.comment.replies.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/comments/replies",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.replies",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/comments/replies/get"
 	},
 	"linkedin.live.activity.reactions.v2": {
 		"method": "GET",
@@ -2532,6 +2804,31 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"pagination": "cursor",
 		"itemsPath": "data.jobs",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/jobs/search/get"
+	},
+	"linkedin.live.schools.search.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/schools/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "keyword"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.schools",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/schools/search/get"
+	},
+	"linkedin.live.locations.search.v2": {
+		"method": "GET",
+		"path": "/v2/linkedin/locations/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "keyword"
+			}
+		],
+		"itemsPath": "data.locations",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v2/linkedin/locations/search/get"
 	},
 	"linkedin.company.get": {
 		"method": "GET",
@@ -2855,6 +3152,9 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 				"name": "query"
 			},
 			{
+				"name": "type"
+			},
+			{
 				"name": "sortBy"
 			},
 			{
@@ -3018,6 +3318,17 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/pinterest/pins/get"
 	},
+	"pinterest.topic.get": {
+		"method": "GET",
+		"path": "/v1/pinterest/topics",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/pinterest/topics/get"
+	},
 	"pinterest.search.pins.list": {
 		"method": "GET",
 		"path": "/v1/pinterest/search",
@@ -3112,6 +3423,20 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 			}
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/twitch/clips/get"
+	},
+	"twitch.clip.transcript.get": {
+		"method": "GET",
+		"path": "/v1/twitch/clips/transcript",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "useAiFallback"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/twitch/clips/transcript/get"
 	},
 	"rumble.channel.videos.list": {
 		"method": "GET",
@@ -6377,6 +6702,64 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/spotify/track/get"
 	},
+	"spotify.playlist.get": {
+		"method": "GET",
+		"path": "/v1/spotify/playlist",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "playlistId"
+			},
+			{
+				"name": "url"
+			},
+			{
+				"name": "cursor"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/spotify/playlist/get"
+	},
+	"spotify.podcast.get": {
+		"method": "GET",
+		"path": "/v1/spotify/podcast",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "podcastId"
+			},
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/spotify/podcast/get"
+	},
+	"spotify.podcast.episodes.list": {
+		"method": "GET",
+		"path": "/v1/spotify/podcast/episodes",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "podcastId"
+			},
+			{
+				"name": "url"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.episodes",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/spotify/podcast/episodes/get"
+	},
+	"spotify.search.list": {
+		"method": "GET",
+		"path": "/v1/spotify/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/spotify/search/get"
+	},
 	"appleMusic.search.list": {
 		"method": "GET",
 		"path": "/v1/apple-music/search",
@@ -6593,6 +6976,23 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/web/network/get"
 	},
+	"web.seo.audit": {
+		"method": "GET",
+		"path": "/v1/web/seo",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "proxy"
+			},
+			{
+				"name": "maxCredits"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/web/seo/get"
+	},
 	"web.screenshot.capture": {
 		"method": "GET",
 		"path": "/v1/web/screenshot",
@@ -6679,6 +7079,38 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"itemsPath": "data.results",
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/web/crawl/get"
+	},
+	"web.map.list": {
+		"method": "GET",
+		"path": "/v1/web/map",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "query"
+			},
+			{
+				"name": "sitemap"
+			},
+			{
+				"name": "includeSubdomains"
+			},
+			{
+				"name": "ignoreQueryParameters"
+			},
+			{
+				"name": "proxy"
+			},
+			{
+				"name": "maxCredits"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/web/map/get"
 	},
 	"auth.whoami": {
 		"method": "GET",
@@ -12497,6 +12929,19 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		"query": [],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kick/clips/clipid/get"
 	},
+	"kick.clip.transcript.get": {
+		"method": "GET",
+		"path": "/v1/kick/clips/{clipId}/transcript",
+		"pathParams": [
+			"clipId"
+		],
+		"query": [
+			{
+				"name": "allowLongTranscription"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kick/clips/clipid/transcript/get"
+	},
 	"kick.clips.list": {
 		"method": "GET",
 		"path": "/v1/kick/clips",
@@ -12873,6 +13318,3137 @@ export const operations: Record<string, SocialFetchOperationSpec> = {
 		],
 		"query": [],
 		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/discord/announcement-channels/channelid/posts/messageid/get"
+	},
+	"google_play.app.get": {
+		"method": "GET",
+		"path": "/v1/google-play/apps/{appId}",
+		"pathParams": [
+			"appId"
+		],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/apps/appid/get"
+	},
+	"google_play.app.reviews.list": {
+		"method": "GET",
+		"path": "/v1/google-play/apps/{appId}/reviews",
+		"pathParams": [
+			"appId"
+		],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "stars"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/apps/appid/reviews/get"
+	},
+	"google_play.developer.get": {
+		"method": "GET",
+		"path": "/v1/google-play/developers/{developerId}",
+		"pathParams": [
+			"developerId"
+		],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "cursor"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/developers/developerid/get"
+	},
+	"google_play.apps.search": {
+		"method": "GET",
+		"path": "/v1/google-play/apps/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "price"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.results",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/apps/search/get"
+	},
+	"google_play.suggestions.list": {
+		"method": "GET",
+		"path": "/v1/google-play/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"itemsPath": "data.suggestions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/suggestions/get"
+	},
+	"google_play.charts.list": {
+		"method": "GET",
+		"path": "/v1/google-play/charts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "chart"
+			},
+			{
+				"name": "category"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"itemsPath": "data.entries",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/charts/get"
+	},
+	"google_play.categories.list": {
+		"method": "GET",
+		"path": "/v1/google-play/categories",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/categories/get"
+	},
+	"google_play.storefronts.list": {
+		"method": "GET",
+		"path": "/v1/google-play/storefronts",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.storefronts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/storefronts/get"
+	},
+	"google_play.languages.list": {
+		"method": "GET",
+		"path": "/v1/google-play/languages",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.languages",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-play/languages/get"
+	},
+	"naver.search.blogs.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/blogs",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "page",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/blogs/get"
+	},
+	"naver.search.news.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/news",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.articles",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/news/get"
+	},
+	"naver.search.cafes.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/cafes",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.articles",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/cafes/get"
+	},
+	"naver.search.kin.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/kin",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.questions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/kin/get"
+	},
+	"naver.search.images.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/images",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.images",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/images/get"
+	},
+	"naver.search.web.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/web",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.documents",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/web/get"
+	},
+	"naver.search.encyclopedia.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/encyclopedia",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.entries",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/encyclopedia/get"
+	},
+	"naver.search.places.list": {
+		"method": "GET",
+		"path": "/v1/naver/search/places",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "page"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "latitude"
+			},
+			{
+				"name": "longitude"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.places",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/places/get"
+	},
+	"naver.search.brief.get": {
+		"method": "GET",
+		"path": "/v1/naver/search/brief",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/brief/get"
+	},
+	"naver.search.typo.get": {
+		"method": "GET",
+		"path": "/v1/naver/search/typo",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/typo/get"
+	},
+	"naver.search.adult.get": {
+		"method": "GET",
+		"path": "/v1/naver/search/adult",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/search/adult/get"
+	},
+	"naver.place.get": {
+		"method": "GET",
+		"path": "/v1/naver/places/{placeId}",
+		"pathParams": [
+			"placeId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/places/placeid/get"
+	},
+	"naver.place.reviews.list": {
+		"method": "GET",
+		"path": "/v1/naver/places/{placeId}/reviews",
+		"pathParams": [
+			"placeId"
+		],
+		"query": [
+			{
+				"name": "limit"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/places/placeid/reviews/get"
+	},
+	"naver.place.rank.get": {
+		"method": "GET",
+		"path": "/v1/naver/places/{placeId}/rank",
+		"pathParams": [
+			"placeId"
+		],
+		"query": [
+			{
+				"name": "query",
+				"format": "repeat"
+			},
+			{
+				"name": "depth"
+			},
+			{
+				"name": "latitude"
+			},
+			{
+				"name": "longitude"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/places/placeid/rank/get"
+	},
+	"naver.blog.get": {
+		"method": "GET",
+		"path": "/v1/naver/blogs/{blogId}",
+		"pathParams": [
+			"blogId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/blogs/blogid/get"
+	},
+	"naver.blog.posts.list": {
+		"method": "GET",
+		"path": "/v1/naver/blogs/{blogId}/posts",
+		"pathParams": [
+			"blogId"
+		],
+		"query": [
+			{
+				"name": "page"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "categoryId"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/blogs/blogid/posts/get"
+	},
+	"naver.trends.search.get": {
+		"method": "GET",
+		"path": "/v1/naver/trends/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query",
+				"format": "repeat"
+			},
+			{
+				"name": "startDate"
+			},
+			{
+				"name": "endDate"
+			},
+			{
+				"name": "timeUnit"
+			},
+			{
+				"name": "device"
+			},
+			{
+				"name": "gender"
+			},
+			{
+				"name": "ages",
+				"format": "csv"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/trends/search/get"
+	},
+	"naver.trends.shopping_category.get": {
+		"method": "GET",
+		"path": "/v1/naver/trends/shopping-category",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "startDate"
+			},
+			{
+				"name": "endDate"
+			},
+			{
+				"name": "timeUnit"
+			},
+			{
+				"name": "device"
+			},
+			{
+				"name": "gender"
+			},
+			{
+				"name": "ages",
+				"format": "csv"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/trends/shopping-category/get"
+	},
+	"naver.trends.shopping_keywords.get": {
+		"method": "GET",
+		"path": "/v1/naver/trends/shopping-keywords",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "startDate"
+			},
+			{
+				"name": "endDate"
+			},
+			{
+				"name": "timeUnit"
+			},
+			{
+				"name": "device"
+			},
+			{
+				"name": "gender"
+			},
+			{
+				"name": "ages",
+				"format": "csv"
+			},
+			{
+				"name": "query",
+				"format": "repeat"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/trends/shopping-keywords/get"
+	},
+	"naver.trends.shopping_categories.list": {
+		"method": "GET",
+		"path": "/v1/naver/trends/shopping-categories",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "parent"
+			}
+		],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/naver/trends/shopping-categories/get"
+	},
+	"sephora.product.get": {
+		"method": "GET",
+		"path": "/v1/sephora/product",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "skuId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/product/get"
+	},
+	"sephora.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/sephora/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "rating"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/product/reviews/get"
+	},
+	"sephora.product.questions.list": {
+		"method": "GET",
+		"path": "/v1/sephora/product/questions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.questions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/product/questions/get"
+	},
+	"sephora.search.list": {
+		"method": "GET",
+		"path": "/v1/sephora/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/search/get"
+	},
+	"sephora.search.suggestions.list": {
+		"method": "GET",
+		"path": "/v1/sephora/search/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/search/suggestions/get"
+	},
+	"sephora.categories.list": {
+		"method": "GET",
+		"path": "/v1/sephora/categories",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "depth"
+			}
+		],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/categories/get"
+	},
+	"sephora.category.get": {
+		"method": "GET",
+		"path": "/v1/sephora/category",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/category/get"
+	},
+	"sephora.category.products.list": {
+		"method": "GET",
+		"path": "/v1/sephora/category/products",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/category/products/get"
+	},
+	"sephora.brands.list": {
+		"method": "GET",
+		"path": "/v1/sephora/brands",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.brands",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/brands/get"
+	},
+	"sephora.brand.products.list": {
+		"method": "GET",
+		"path": "/v1/sephora/brand/products",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "brand"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/brand/products/get"
+	},
+	"sephora.stores.list": {
+		"method": "GET",
+		"path": "/v1/sephora/stores",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "region"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.stores",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/stores/get"
+	},
+	"sephora.store.get": {
+		"method": "GET",
+		"path": "/v1/sephora/store",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "store"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/sephora/store/get"
+	},
+	"goodreads.book.get": {
+		"method": "GET",
+		"path": "/v1/goodreads/books/{bookId}",
+		"pathParams": [
+			"bookId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/books/bookid/get"
+	},
+	"goodreads.book.reviews.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/books/{bookId}/reviews",
+		"pathParams": [
+			"bookId"
+		],
+		"query": [
+			{
+				"name": "sort"
+			},
+			{
+				"name": "rating"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "query"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/books/bookid/reviews/get"
+	},
+	"goodreads.book.editions.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/books/{bookId}/editions",
+		"pathParams": [
+			"bookId"
+		],
+		"query": [
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.editions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/books/bookid/editions/get"
+	},
+	"goodreads.review.comments.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/reviews/comments",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "reviewId"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.comments",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/reviews/comments/get"
+	},
+	"goodreads.search.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.books",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/search/get"
+	},
+	"goodreads.author.get": {
+		"method": "GET",
+		"path": "/v1/goodreads/authors/{authorId}",
+		"pathParams": [
+			"authorId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/authors/authorid/get"
+	},
+	"goodreads.author.books.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/authors/{authorId}/books",
+		"pathParams": [
+			"authorId"
+		],
+		"query": [
+			{
+				"name": "page"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.books",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/authors/authorid/books/get"
+	},
+	"goodreads.quotes.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/quotes",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "tag"
+			},
+			{
+				"name": "authorId"
+			},
+			{
+				"name": "page"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.quotes",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/quotes/get"
+	},
+	"goodreads.series.get": {
+		"method": "GET",
+		"path": "/v1/goodreads/series/{seriesId}",
+		"pathParams": [
+			"seriesId"
+		],
+		"query": [
+			{
+				"name": "page"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/series/seriesid/get"
+	},
+	"goodreads.lists.list": {
+		"method": "GET",
+		"path": "/v1/goodreads/lists",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "tag"
+			},
+			{
+				"name": "page"
+			}
+		],
+		"pagination": "page",
+		"itemsPath": "data.lists",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/lists/get"
+	},
+	"goodreads.list.get": {
+		"method": "GET",
+		"path": "/v1/goodreads/lists/{listId}",
+		"pathParams": [
+			"listId"
+		],
+		"query": [
+			{
+				"name": "page"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/goodreads/lists/listid/get"
+	},
+	"gumtree.listings.search": {
+		"method": "GET",
+		"path": "/v1/gumtree/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "category"
+			},
+			{
+				"name": "location"
+			},
+			{
+				"name": "distance"
+			},
+			{
+				"name": "minPrice"
+			},
+			{
+				"name": "maxPrice"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/search/get"
+	},
+	"gumtree.listing.get": {
+		"method": "GET",
+		"path": "/v1/gumtree/listings/{listingId}",
+		"pathParams": [
+			"listingId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/listings/listingid/get"
+	},
+	"gumtree.listing.similar.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/listings/{listingId}/similar",
+		"pathParams": [
+			"listingId"
+		],
+		"query": [],
+		"itemsPath": "data.listings",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/listings/listingid/similar/get"
+	},
+	"gumtree.seller.get": {
+		"method": "GET",
+		"path": "/v1/gumtree/sellers/{sellerId}",
+		"pathParams": [
+			"sellerId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/sellers/sellerid/get"
+	},
+	"gumtree.seller.listings.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/sellers/{sellerId}/listings",
+		"pathParams": [
+			"sellerId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.listings",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/sellers/sellerid/listings/get"
+	},
+	"gumtree.search.suggestions.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/search/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.suggestions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/search/suggestions/get"
+	},
+	"gumtree.searches.trending.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/trending",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "locationId"
+			}
+		],
+		"itemsPath": "data.searches",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/trending/get"
+	},
+	"gumtree.categories.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/categories",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "categoryId"
+			}
+		],
+		"itemsPath": "data.children",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/categories/get"
+	},
+	"gumtree.filters.get": {
+		"method": "GET",
+		"path": "/v1/gumtree/filters",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/filters/get"
+	},
+	"gumtree.locations.search": {
+		"method": "GET",
+		"path": "/v1/gumtree/locations",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.locations",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/locations/get"
+	},
+	"gumtree.locations.children.list": {
+		"method": "GET",
+		"path": "/v1/gumtree/locations/children",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "locationId"
+			}
+		],
+		"itemsPath": "data.children",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gumtree/locations/children/get"
+	},
+	"gab.profile.get": {
+		"method": "GET",
+		"path": "/v1/gab/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/profiles/handle/get"
+	},
+	"gab.profile.posts.list": {
+		"method": "GET",
+		"path": "/v1/gab/profiles/{handle}/posts",
+		"pathParams": [
+			"handle"
+		],
+		"query": [
+			{
+				"name": "includeReplies"
+			},
+			{
+				"name": "onlyMedia"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/profiles/handle/posts/get"
+	},
+	"gab.post.get": {
+		"method": "GET",
+		"path": "/v1/gab/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/posts/get"
+	},
+	"gab.post.comments.list": {
+		"method": "GET",
+		"path": "/v1/gab/posts/comments",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.comments",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/posts/comments/get"
+	},
+	"gab.search.posts.list": {
+		"method": "GET",
+		"path": "/v1/gab/search/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/search/posts/get"
+	},
+	"gab.search.profiles.list": {
+		"method": "GET",
+		"path": "/v1/gab/search/profiles",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.profiles",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/search/profiles/get"
+	},
+	"gab.search.groups.list": {
+		"method": "GET",
+		"path": "/v1/gab/search/groups",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.groups",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/gab/search/groups/get"
+	},
+	"komi.profile.get": {
+		"method": "GET",
+		"path": "/v1/komi/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/komi/profiles/handle/get"
+	},
+	"pillar.profile.get": {
+		"method": "GET",
+		"path": "/v1/pillar/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/pillar/profiles/handle/get"
+	},
+	"linkme.profile.get": {
+		"method": "GET",
+		"path": "/v1/linkme/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/linkme/profiles/handle/get"
+	},
+	"kwai.profile.get": {
+		"method": "GET",
+		"path": "/v1/kwai/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kwai/profiles/handle/get"
+	},
+	"kwai.profile.videos.list": {
+		"method": "GET",
+		"path": "/v1/kwai/profiles/{handle}/videos",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.videos",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kwai/profiles/handle/videos/get"
+	},
+	"kwai.video.get": {
+		"method": "GET",
+		"path": "/v1/kwai/videos",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kwai/videos/get"
+	},
+	"cosmos.profile.get": {
+		"method": "GET",
+		"path": "/v1/cosmos/profiles/{handle}",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/profiles/handle/get"
+	},
+	"cosmos.profile.posts.list": {
+		"method": "GET",
+		"path": "/v1/cosmos/profiles/{handle}/posts",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/profiles/handle/posts/get"
+	},
+	"cosmos.profile.collections.list": {
+		"method": "GET",
+		"path": "/v1/cosmos/profiles/{handle}/collections",
+		"pathParams": [
+			"handle"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.collections",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/profiles/handle/collections/get"
+	},
+	"cosmos.post.get": {
+		"method": "GET",
+		"path": "/v1/cosmos/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/posts/get"
+	},
+	"cosmos.collection.get": {
+		"method": "GET",
+		"path": "/v1/cosmos/collections",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/collections/get"
+	},
+	"cosmos.collection.posts.list": {
+		"method": "GET",
+		"path": "/v1/cosmos/collections/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/collections/posts/get"
+	},
+	"cosmos.search.posts.list": {
+		"method": "GET",
+		"path": "/v1/cosmos/search/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/cosmos/search/posts/get"
+	},
+	"xing.jobs.search": {
+		"method": "GET",
+		"path": "/v1/xing/jobs/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "location"
+			},
+			{
+				"name": "employmentType"
+			},
+			{
+				"name": "careerLevel"
+			},
+			{
+				"name": "remote"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.jobs",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xing/jobs/search/get"
+	},
+	"xing.job.get": {
+		"method": "GET",
+		"path": "/v1/xing/jobs/{jobId}",
+		"pathParams": [
+			"jobId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xing/jobs/jobid/get"
+	},
+	"hm.search.list": {
+		"method": "GET",
+		"path": "/v1/hm/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/search/get"
+	},
+	"hm.search.suggest.list": {
+		"method": "GET",
+		"path": "/v1/hm/search/suggest",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/search/suggest/get"
+	},
+	"hm.product.get": {
+		"method": "GET",
+		"path": "/v1/hm/products/{id}",
+		"pathParams": [
+			"id"
+		],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/products/id/get"
+	},
+	"hm.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/hm/products/{id}/reviews",
+		"pathParams": [
+			"id"
+		],
+		"query": [
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/products/id/reviews/get"
+	},
+	"hm.product.suppliers.get": {
+		"method": "GET",
+		"path": "/v1/hm/products/{id}/suppliers",
+		"pathParams": [
+			"id"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/products/id/suppliers/get"
+	},
+	"hm.categories.list": {
+		"method": "GET",
+		"path": "/v1/hm/categories",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/categories/get"
+	},
+	"hm.countries.list": {
+		"method": "GET",
+		"path": "/v1/hm/countries",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.countries",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/countries/get"
+	},
+	"hm.stores.list": {
+		"method": "GET",
+		"path": "/v1/hm/stores",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.stores",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/hm/stores/get"
+	},
+	"duckduckgo.search.list": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/search/get"
+	},
+	"duckduckgo.rank.get": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/rank",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "domain"
+			},
+			{
+				"name": "depth"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/rank/get"
+	},
+	"duckduckgo.news.list": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/news",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.articles",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/news/get"
+	},
+	"duckduckgo.videos.list": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/videos",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.videos",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/videos/get"
+	},
+	"duckduckgo.images.list": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/images",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "size"
+			},
+			{
+				"name": "color"
+			},
+			{
+				"name": "type"
+			},
+			{
+				"name": "layout"
+			},
+			{
+				"name": "license"
+			},
+			{
+				"name": "safeSearch"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/images/get"
+	},
+	"duckduckgo.instant_answer.get": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/instant-answer",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/instant-answer/get"
+	},
+	"duckduckgo.search.suggest.list": {
+		"method": "GET",
+		"path": "/v1/duckduckgo/search/suggest",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"itemsPath": "data.queries",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/duckduckgo/search/suggest/get"
+	},
+	"economy.consumer_spend.get": {
+		"method": "GET",
+		"path": "/v1/economy/consumer-spend",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country",
+				"format": "csv"
+			},
+			{
+				"name": "category",
+				"format": "csv"
+			},
+			{
+				"name": "unit"
+			},
+			{
+				"name": "fromYear"
+			},
+			{
+				"name": "toYear"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/economy/consumer-spend/get"
+	},
+	"economy.tourism_spend.get": {
+		"method": "GET",
+		"path": "/v1/economy/tourism-spend",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country",
+				"format": "csv"
+			},
+			{
+				"name": "category",
+				"format": "csv"
+			},
+			{
+				"name": "purpose"
+			},
+			{
+				"name": "destination"
+			},
+			{
+				"name": "measure"
+			},
+			{
+				"name": "tripLength"
+			},
+			{
+				"name": "fromYear"
+			},
+			{
+				"name": "toYear"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/economy/tourism-spend/get"
+	},
+	"economy.government_spend.get": {
+		"method": "GET",
+		"path": "/v1/economy/government-spend",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "level"
+			},
+			{
+				"name": "scope"
+			},
+			{
+				"name": "state"
+			},
+			{
+				"name": "awardType"
+			},
+			{
+				"name": "naics",
+				"format": "repeat"
+			},
+			{
+				"name": "psc",
+				"format": "repeat"
+			},
+			{
+				"name": "keyword"
+			},
+			{
+				"name": "from"
+			},
+			{
+				"name": "to"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/economy/government-spend/get"
+	},
+	"economy.government_contracts.search": {
+		"method": "GET",
+		"path": "/v1/economy/government-contracts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "recipient"
+			},
+			{
+				"name": "keyword"
+			},
+			{
+				"name": "naics",
+				"format": "repeat"
+			},
+			{
+				"name": "psc",
+				"format": "repeat"
+			},
+			{
+				"name": "state"
+			},
+			{
+				"name": "type"
+			},
+			{
+				"name": "from"
+			},
+			{
+				"name": "to"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "order"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.awards",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/economy/government-contracts/get"
+	},
+	"economy.imports.get": {
+		"method": "GET",
+		"path": "/v1/economy/imports",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "company"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/economy/imports/get"
+	},
+	"booking.properties.search": {
+		"method": "GET",
+		"path": "/v1/booking/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "checkIn"
+			},
+			{
+				"name": "checkOut"
+			},
+			{
+				"name": "adults"
+			},
+			{
+				"name": "childrenAges"
+			},
+			{
+				"name": "rooms"
+			},
+			{
+				"name": "currency"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "filters",
+				"format": "repeat"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/booking/search/get"
+	},
+	"booking.property.get": {
+		"method": "GET",
+		"path": "/v1/booking/property",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "currency"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/booking/property/get"
+	},
+	"booking.property.reviews.list": {
+		"method": "GET",
+		"path": "/v1/booking/properties/{propertyId}/reviews",
+		"pathParams": [
+			"propertyId"
+		],
+		"query": [
+			{
+				"name": "sort"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "travellerType"
+			},
+			{
+				"name": "season"
+			},
+			{
+				"name": "query"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/booking/properties/propertyid/reviews/get"
+	},
+	"airbnb.listings.search": {
+		"method": "GET",
+		"path": "/v1/airbnb/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "location"
+			},
+			{
+				"name": "checkIn"
+			},
+			{
+				"name": "checkOut"
+			},
+			{
+				"name": "adults"
+			},
+			{
+				"name": "children"
+			},
+			{
+				"name": "infants"
+			},
+			{
+				"name": "pets"
+			},
+			{
+				"name": "currency"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.listings",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/airbnb/search/get"
+	},
+	"airbnb.listing.get": {
+		"method": "GET",
+		"path": "/v1/airbnb/listings/{listingId}",
+		"pathParams": [
+			"listingId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/airbnb/listings/listingid/get"
+	},
+	"airbnb.listing.reviews.list": {
+		"method": "GET",
+		"path": "/v1/airbnb/listings/{listingId}/reviews",
+		"pathParams": [
+			"listingId"
+		],
+		"query": [
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/airbnb/listings/listingid/reviews/get"
+	},
+	"airbnb.listing.availability.get": {
+		"method": "GET",
+		"path": "/v1/airbnb/listings/{listingId}/availability",
+		"pathParams": [
+			"listingId"
+		],
+		"query": [
+			{
+				"name": "month"
+			},
+			{
+				"name": "months"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/airbnb/listings/listingid/availability/get"
+	},
+	"klarna.product.get": {
+		"method": "GET",
+		"path": "/v1/klarna/product",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/get"
+	},
+	"klarna.product.offers.list": {
+		"method": "GET",
+		"path": "/v1/klarna/product/offers",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/offers/get"
+	},
+	"klarna.product.price_history.get": {
+		"method": "GET",
+		"path": "/v1/klarna/product/price-history",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/price-history/get"
+	},
+	"klarna.product.similar.list": {
+		"method": "GET",
+		"path": "/v1/klarna/product/similar",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/similar/get"
+	},
+	"klarna.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/klarna/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "type"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/reviews/get"
+	},
+	"klarna.product.review_summary.get": {
+		"method": "GET",
+		"path": "/v1/klarna/product/reviews/summary",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/product/reviews/summary/get"
+	},
+	"klarna.search.list": {
+		"method": "GET",
+		"path": "/v1/klarna/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "exact"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/search/get"
+	},
+	"klarna.search.suggest.list": {
+		"method": "GET",
+		"path": "/v1/klarna/search/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/search/suggestions/get"
+	},
+	"klarna.deals.list": {
+		"method": "GET",
+		"path": "/v1/klarna/deals",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "minDiscount"
+			},
+			{
+				"name": "category"
+			},
+			{
+				"name": "brandId"
+			},
+			{
+				"name": "storeId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/deals/get"
+	},
+	"klarna.deals.filters.get": {
+		"method": "GET",
+		"path": "/v1/klarna/deals/filters",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "minDiscount"
+			},
+			{
+				"name": "category"
+			},
+			{
+				"name": "brandId"
+			},
+			{
+				"name": "storeId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/deals/filters/get"
+	},
+	"klarna.stores.list": {
+		"method": "GET",
+		"path": "/v1/klarna/stores",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "country"
+			},
+			{
+				"name": "query"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.stores",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/stores/get"
+	},
+	"klarna.store.products.list": {
+		"method": "GET",
+		"path": "/v1/klarna/store/products",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "storeId"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "minDiscount"
+			},
+			{
+				"name": "category"
+			},
+			{
+				"name": "brandId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/store/products/get"
+	},
+	"klarna.category.products.list": {
+		"method": "GET",
+		"path": "/v1/klarna/category",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "subcategory"
+			},
+			{
+				"name": "brandId"
+			},
+			{
+				"name": "filters"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/category/get"
+	},
+	"klarna.category.filters.get": {
+		"method": "GET",
+		"path": "/v1/klarna/category/filters",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "filterId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/category/filters/get"
+	},
+	"klarna.category.guide.get": {
+		"method": "GET",
+		"path": "/v1/klarna/category/guide",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/category/guide/get"
+	},
+	"klarna.category.children.list": {
+		"method": "GET",
+		"path": "/v1/klarna/categories/children",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/categories/children/get"
+	},
+	"klarna.category.keywords.list": {
+		"method": "GET",
+		"path": "/v1/klarna/category/keywords",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "country"
+			}
+		],
+		"itemsPath": "data.keywords",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/klarna/category/keywords/get"
+	},
+	"walmart.product.get": {
+		"method": "GET",
+		"path": "/v1/walmart/product",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/walmart/product/get"
+	},
+	"walmart.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/walmart/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "rating"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/walmart/product/reviews/get"
+	},
+	"walmart.search.list": {
+		"method": "GET",
+		"path": "/v1/walmart/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/walmart/search/get"
+	},
+	"walmart.category.products.list": {
+		"method": "GET",
+		"path": "/v1/walmart/category/products",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "category"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/walmart/category/products/get"
+	},
+	"home_depot.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/home-depot/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "rating"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/home-depot/product/reviews/get"
+	},
+	"home_depot.product.questions.list": {
+		"method": "GET",
+		"path": "/v1/home-depot/product/questions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.questions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/home-depot/product/questions/get"
+	},
+	"home_depot.product.get": {
+		"method": "GET",
+		"path": "/v1/home-depot/product",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/home-depot/product/get"
+	},
+	"home_depot.search.list": {
+		"method": "GET",
+		"path": "/v1/home-depot/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/home-depot/search/get"
+	},
+	"home_depot.stores.list": {
+		"method": "GET",
+		"path": "/v1/home-depot/stores",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "zipCode"
+			},
+			{
+				"name": "radius"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.stores",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/home-depot/stores/get"
+	},
+	"kohls.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/kohls/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "rating"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kohls/product/reviews/get"
+	},
+	"kohls.product.questions.list": {
+		"method": "GET",
+		"path": "/v1/kohls/product/questions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.questions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kohls/product/questions/get"
+	},
+	"kohls.search.list": {
+		"method": "GET",
+		"path": "/v1/kohls/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/kohls/search/get"
+	},
+	"xiaohongshu.profile.get": {
+		"method": "GET",
+		"path": "/v1/xiaohongshu/profiles/{profileId}",
+		"pathParams": [
+			"profileId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xiaohongshu/profiles/profileid/get"
+	},
+	"xiaohongshu.profile.notes.list": {
+		"method": "GET",
+		"path": "/v1/xiaohongshu/profiles/{profileId}/notes",
+		"pathParams": [
+			"profileId"
+		],
+		"query": [],
+		"itemsPath": "data.notes",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xiaohongshu/profiles/profileid/notes/get"
+	},
+	"xiaohongshu.note.get": {
+		"method": "GET",
+		"path": "/v1/xiaohongshu/notes/{noteId}",
+		"pathParams": [
+			"noteId"
+		],
+		"query": [
+			{
+				"name": "xsecToken"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xiaohongshu/notes/noteid/get"
+	},
+	"xiaohongshu.note.comments.list": {
+		"method": "GET",
+		"path": "/v1/xiaohongshu/notes/{noteId}/comments",
+		"pathParams": [
+			"noteId"
+		],
+		"query": [
+			{
+				"name": "xsecToken"
+			}
+		],
+		"itemsPath": "data.comments",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/xiaohongshu/notes/noteid/comments/get"
+	},
+	"trustpilot.businesses.search": {
+		"method": "GET",
+		"path": "/v1/trustpilot/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "minTrustScore"
+			},
+			{
+				"name": "minReviews"
+			},
+			{
+				"name": "claimed"
+			},
+			{
+				"name": "location"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/trustpilot/search/get"
+	},
+	"trustpilot.business.get": {
+		"method": "GET",
+		"path": "/v1/trustpilot/business",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "domain"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/trustpilot/business/get"
+	},
+	"trustpilot.business.reviews.list": {
+		"method": "GET",
+		"path": "/v1/trustpilot/business/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "domain"
+			},
+			{
+				"name": "sort"
+			},
+			{
+				"name": "language"
+			},
+			{
+				"name": "stars"
+			},
+			{
+				"name": "date"
+			},
+			{
+				"name": "query"
+			},
+			{
+				"name": "topic"
+			},
+			{
+				"name": "verified"
+			},
+			{
+				"name": "withReplies"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/trustpilot/business/reviews/get"
+	},
+	"tripadvisor.locations.search": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "type"
+			}
+		],
+		"itemsPath": "data.results",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/search/get"
+	},
+	"tripadvisor.place.get": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/place",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/place/get"
+	},
+	"tripadvisor.hotels.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/hotels",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "geoId"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.places",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/hotels/get"
+	},
+	"tripadvisor.restaurants.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/restaurants",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "geoId"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.places",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/restaurants/get"
+	},
+	"tripadvisor.attractions.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/attractions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "geoId"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.places",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/attractions/get"
+	},
+	"tripadvisor.attraction_types.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/attractions/types",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "geoId"
+			}
+		],
+		"itemsPath": "data.types",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/attractions/types/get"
+	},
+	"tripadvisor.cruises.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/cruises",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "geoId"
+			},
+			{
+				"name": "departureMonth"
+			},
+			{
+				"name": "cabinType"
+			},
+			{
+				"name": "length"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.cruises",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/cruises/get"
+	},
+	"tripadvisor.cruise_ship.get": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/cruise-ships/{locationId}",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/cruise-ships/locationid/get"
+	},
+	"tripadvisor.cruise_ship.reviews.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/cruise-ships/{locationId}/reviews",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/cruise-ships/locationid/reviews/get"
+	},
+	"tripadvisor.hotel.get": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/hotels/{locationId}",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/hotels/locationid/get"
+	},
+	"tripadvisor.restaurant.get": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/restaurants/{locationId}",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/restaurants/locationid/get"
+	},
+	"tripadvisor.attraction.get": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/attractions/{locationId}",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/attractions/locationid/get"
+	},
+	"tripadvisor.place.reviews.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/places/{locationId}/reviews",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/places/locationid/reviews/get"
+	},
+	"tripadvisor.hotel.reviews.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/hotels/{locationId}/reviews",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/hotels/locationid/reviews/get"
+	},
+	"tripadvisor.restaurant.reviews.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/restaurants/{locationId}/reviews",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/restaurants/locationid/reviews/get"
+	},
+	"tripadvisor.attraction.reviews.list": {
+		"method": "GET",
+		"path": "/v1/tripadvisor/attractions/{locationId}/reviews",
+		"pathParams": [
+			"locationId"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/tripadvisor/attractions/locationid/reviews/get"
+	},
+	"g2.product.get": {
+		"method": "GET",
+		"path": "/v1/g2/products/{slug}",
+		"pathParams": [
+			"slug"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/products/slug/get"
+	},
+	"g2.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/g2/products/{slug}/reviews",
+		"pathParams": [
+			"slug"
+		],
+		"query": [
+			{
+				"name": "sort"
+			},
+			{
+				"name": "stars"
+			},
+			{
+				"name": "query"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.reviews",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/products/slug/reviews/get"
+	},
+	"g2.products.list": {
+		"method": "GET",
+		"path": "/v1/g2/products",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "limit"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/products/get"
+	},
+	"g2.category.get": {
+		"method": "GET",
+		"path": "/v1/g2/categories/{slug}",
+		"pathParams": [
+			"slug"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/categories/slug/get"
+	},
+	"g2.categories.list": {
+		"method": "GET",
+		"path": "/v1/g2/categories",
+		"pathParams": [],
+		"query": [],
+		"itemsPath": "data.categories",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/categories/get"
+	},
+	"g2.seller.get": {
+		"method": "GET",
+		"path": "/v1/g2/sellers/{slug}",
+		"pathParams": [
+			"slug"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/sellers/slug/get"
+	},
+	"g2.seller.products.list": {
+		"method": "GET",
+		"path": "/v1/g2/sellers/{slug}/products",
+		"pathParams": [
+			"slug"
+		],
+		"query": [],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/g2/sellers/slug/products/get"
+	},
+	"etsy.listing.get": {
+		"method": "GET",
+		"path": "/v1/etsy/listing",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "listing"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/etsy/listing/get"
+	},
+	"etsy.listing.similar.list": {
+		"method": "GET",
+		"path": "/v1/etsy/listing/similar",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "listing"
+			}
+		],
+		"itemsPath": "data.listings",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/etsy/listing/similar/get"
+	},
+	"etsy.shop.listings.list": {
+		"method": "GET",
+		"path": "/v1/etsy/shop/listings",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "shop"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.listings",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/etsy/shop/listings/get"
+	},
+	"etsy.search.suggestions.list": {
+		"method": "GET",
+		"path": "/v1/etsy/search/suggestions",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.suggestions",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/etsy/search/suggestions/get"
+	},
+	"weibo.profile.get": {
+		"method": "GET",
+		"path": "/v1/weibo/profiles/{profileId}",
+		"pathParams": [
+			"profileId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/profiles/profileid/get"
+	},
+	"weibo.profile.posts.list": {
+		"method": "GET",
+		"path": "/v1/weibo/profiles/{profileId}/posts",
+		"pathParams": [
+			"profileId"
+		],
+		"query": [],
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/profiles/profileid/posts/get"
+	},
+	"weibo.post.get": {
+		"method": "GET",
+		"path": "/v1/weibo/posts/{postId}",
+		"pathParams": [
+			"postId"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/posts/postid/get"
+	},
+	"weibo.post.comments.list": {
+		"method": "GET",
+		"path": "/v1/weibo/posts/{postId}/comments",
+		"pathParams": [
+			"postId"
+		],
+		"query": [],
+		"itemsPath": "data.comments",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/posts/postid/comments/get"
+	},
+	"weibo.comment.replies.list": {
+		"method": "GET",
+		"path": "/v1/weibo/comments/{commentId}/replies",
+		"pathParams": [
+			"commentId"
+		],
+		"query": [],
+		"itemsPath": "data.replies",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/comments/commentid/replies/get"
+	},
+	"weibo.search.posts.list": {
+		"method": "GET",
+		"path": "/v1/weibo/search/posts",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "sort"
+			}
+		],
+		"itemsPath": "data.posts",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/search/posts/get"
+	},
+	"weibo.search.profiles.list": {
+		"method": "GET",
+		"path": "/v1/weibo/search/profiles",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			}
+		],
+		"itemsPath": "data.profiles",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/search/profiles/get"
+	},
+	"weibo.trending.list": {
+		"method": "GET",
+		"path": "/v1/weibo/trending",
+		"pathParams": [],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/weibo/trending/get"
+	},
+	"douyin.profile.get": {
+		"method": "GET",
+		"path": "/v1/douyin/profiles/{secUid}",
+		"pathParams": [
+			"secUid"
+		],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/douyin/profiles/secuid/get"
+	},
+	"douyin.profile.videos.list": {
+		"method": "GET",
+		"path": "/v1/douyin/profiles/{secUid}/videos",
+		"pathParams": [
+			"secUid"
+		],
+		"query": [],
+		"itemsPath": "data.videos",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/douyin/profiles/secuid/videos/get"
+	},
+	"douyin.video.get": {
+		"method": "GET",
+		"path": "/v1/douyin/videos",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/douyin/videos/get"
+	},
+	"douyin.video.comments.list": {
+		"method": "GET",
+		"path": "/v1/douyin/videos/comments",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "url"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.comments",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/douyin/videos/comments/get"
+	},
+	"douyin.trending.list": {
+		"method": "GET",
+		"path": "/v1/douyin/trending",
+		"pathParams": [],
+		"query": [],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/douyin/trending/get"
+	},
+	"google_shopping.search.list": {
+		"method": "GET",
+		"path": "/v1/google-shopping/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.products",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-shopping/search/get"
+	},
+	"google_shopping.product.get": {
+		"method": "GET",
+		"path": "/v1/google-shopping/product",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-shopping/product/get"
+	},
+	"google_shopping.product.sellers.list": {
+		"method": "GET",
+		"path": "/v1/google-shopping/product/sellers",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"itemsPath": "data.sellers",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-shopping/product/sellers/get"
+	},
+	"google_shopping.product.reviews.list": {
+		"method": "GET",
+		"path": "/v1/google-shopping/product/reviews",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-shopping/product/reviews/get"
+	},
+	"google_shopping.product.price_history.get": {
+		"method": "GET",
+		"path": "/v1/google-shopping/product/price-history",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "productId"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/google-shopping/product/price-history/get"
+	},
+	"bing.search.list": {
+		"method": "GET",
+		"path": "/v1/bing/search",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/bing/search/get"
+	},
+	"bing.rank.get": {
+		"method": "GET",
+		"path": "/v1/bing/rank",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "domain"
+			},
+			{
+				"name": "depth"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/bing/rank/get"
+	},
+	"bing.videos.list": {
+		"method": "GET",
+		"path": "/v1/bing/videos",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "time"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"pagination": "cursor",
+		"itemsPath": "data.videos",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/bing/videos/get"
+	},
+	"bing.search.suggest.list": {
+		"method": "GET",
+		"path": "/v1/bing/search/suggest",
+		"pathParams": [],
+		"query": [
+			{
+				"name": "query"
+			},
+			{
+				"name": "country"
+			},
+			{
+				"name": "language"
+			}
+		],
+		"itemsPath": "data.queries",
+		"docsUrl": "https://www.socialfetch.dev/docs/api/v1/bing/search/suggest/get"
 	},
 	"apple_app_store.app.get": {
 		"method": "GET",

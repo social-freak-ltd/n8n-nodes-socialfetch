@@ -47,6 +47,12 @@ export const web: INodeProperties[] = [
 				"description": "Load a web page and return the JSON and other responses its own scripts fetch while it loads."
 			},
 			{
+				"name": "SEO",
+				"value": "web.seo.audit",
+				"action": "Analyze web page SEO",
+				"description": "Check a web page's on-page SEO: title, meta tags, robots, canonical, hreflang, headings, structured data, links and images."
+			},
+			{
 				"name": "Screenshot",
 				"value": "web.screenshot.capture",
 				"action": "Capture website screenshot",
@@ -57,6 +63,12 @@ export const web: INodeProperties[] = [
 				"value": "web.crawl.run",
 				"action": "Crawl web pages",
 				"description": "Crawl a small set of web pages synchronously."
+			},
+			{
+				"name": "Map",
+				"value": "web.map.list",
+				"action": "List website URLs",
+				"description": "List a website's URLs from its sitemaps, or from the page's own links when it has none."
 			}
 		]
 	},
@@ -631,6 +643,72 @@ export const web: INodeProperties[] = [
 		"name": "url",
 		"type": "string",
 		"default": "",
+		"description": "Web page URL to audit, for example `https://www.socialfetch.dev/pricing`.",
+		"placeholder": "e.g. https://www.socialfetch.dev",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.seo.audit"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.seo.audit"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). Default 1, which loads about 1.6 MB on the datacenter proxy or 190 KB on residential or mobile. Raise it for heavy pages; you're charged only for what the page uses."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
 		"description": "Web page URL to fetch.",
 		"placeholder": "e.g. https://www.socialfetch.dev",
 		"required": true,
@@ -916,6 +994,122 @@ export const web: INodeProperties[] = [
 				"type": "number",
 				"default": 0,
 				"description": "Most credits each URL may cost (1–25). Default 1. The batch shares one budget of this times the number of URLs; you're charged for what the pages use, at least 1 credit per URL."
+			}
+		]
+	},
+	{
+		"displayName": "URL",
+		"name": "url",
+		"type": "string",
+		"default": "",
+		"description": "Site to map: its home page, any page on it, or a sitemap URL such as `https://www.socialfetch.dev/sitemap.xml`.",
+		"placeholder": "e.g. https://www.socialfetch.dev",
+		"required": true,
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.map.list"
+				]
+			}
+		}
+	},
+	{
+		"displayName": "Additional Fields",
+		"name": "additionalOptions",
+		"type": "collection",
+		"placeholder": "Add Field",
+		"default": {},
+		"displayOptions": {
+			"show": {
+				"resource": [
+					"web"
+				],
+				"operation": [
+					"web.map.list"
+				]
+			}
+		},
+		"options": [
+			{
+				"displayName": "Limit",
+				"name": "limit",
+				"type": "number",
+				"default": 0,
+				"description": "Most URLs to return (1–5000). Default 1000."
+			},
+			{
+				"displayName": "Query",
+				"name": "query",
+				"type": "string",
+				"default": "",
+				"description": "Only return URLs containing this text (case-insensitive), for example `/blog/`.",
+				"placeholder": "e.g. /blog/"
+			},
+			{
+				"displayName": "Sitemap",
+				"name": "sitemap",
+				"type": "options",
+				"options": [
+					{
+						"name": "Include",
+						"value": "include"
+					},
+					{
+						"name": "Only",
+						"value": "only"
+					},
+					{
+						"name": "Skip",
+						"value": "skip"
+					}
+				],
+				"default": "include",
+				"description": "How to find URLs: `include` reads the sitemaps and falls back to the page's links when they list nothing, `only` reads the sitemaps alone, `skip` reads only the page's links. Default `include`."
+			},
+			{
+				"displayName": "Include Subdomains",
+				"name": "includeSubdomains",
+				"type": "boolean",
+				"default": false,
+				"description": "Whether to keep URLs on subdomains of the site, such as `docs.` or `blog.`. Default true."
+			},
+			{
+				"displayName": "Ignore Query Parameters",
+				"name": "ignoreQueryParameters",
+				"type": "boolean",
+				"default": false,
+				"description": "Whether URLs that differ only by their query string count as one URL. Default true."
+			},
+			{
+				"displayName": "Proxy",
+				"name": "proxy",
+				"type": "options",
+				"options": [
+					{
+						"name": "Datacenter",
+						"value": "datacenter"
+					},
+					{
+						"name": "Residential",
+						"value": "residential"
+					},
+					{
+						"name": "Mobile",
+						"value": "mobile"
+					}
+				],
+				"default": "datacenter",
+				"description": "Most expensive proxy tier to use. The page is tried on `datacenter` first and moves up only if it is blocked, stopping at this tier. Default: every tier (`mobile`)."
+			},
+			{
+				"displayName": "Max Credits",
+				"name": "maxCredits",
+				"type": "number",
+				"default": 0,
+				"description": "Most credits this call may cost (1–25). Default 1, which loads about 1.6 MB on the datacenter proxy or 190 KB on residential or mobile. Raise it for heavy pages; you're charged only for what the page uses."
 			}
 		]
 	}
