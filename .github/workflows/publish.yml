@@ -1,5 +1,6 @@
 # Publishes this package to npm when you push a version tag (e.g. 0.1.0).
 # Uses npm provenance (required for n8n community verification from May 2026).
+# Auth is npm Trusted Publishing (OIDC): no NPM_TOKEN secret is used or needed.
 #
 # One-time setup: npmjs.com → package n8n-nodes-socialfetch → Trusted Publishers
 #   - Provider: GitHub Actions
@@ -18,6 +19,7 @@ on:
   push:
     tags:
       - "*.*.*"
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -35,19 +37,18 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          # Trusted Publishing (OIDC) needs npm >= 11.5.1; Node 24 ships npm 11.
+          node-version: "24"
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Use npm with Trusted Publishing support
+        run: npm install -g npm@^11.5.1
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Token-free: npm signs in with this job's GitHub OIDC token (id-token: write above).
+      # Never set an auth token here: a stale one overrides OIDC and npm answers 404.
       - name: Release to npm with provenance
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          fi
-          pnpm run release
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm run release
